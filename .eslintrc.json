@@ -1,0 +1,6 @@
+{
+  "root": true,
+  "extends": ["plugin:ezlint/recommended"],
+  "rules": {},
+  "ignorePatterns": ["dist"]
+}
