@@ -6,6 +6,12 @@
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "bin": {
+    "pvm": "./index.js",
+    "add": "./add.js",
+    "bump": "./bump.js",
+    "publish": "./publish.js"
+  },
   "scripts": {
     "clean": "rm -rf dist",
     "lint": "eslint -c ./.eslintrc.json \"./src/**/*.ts\"",
