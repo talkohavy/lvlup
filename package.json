@@ -3,9 +3,18 @@
   "version": "1.0.0",
   "description": "A simple version manager solution for packages",
   "private": "true",
-  "main": "index.js",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -rf dist",
+    "lint": "eslint -c ./.eslintrc.json \"./src/**/*.ts\"",
+    "format-check": "prettier . --check",
+    "format-fix": "prettier . --write",
+    "test": "node --test",
+    "typecheck": "tsc -p tsconfig.json",
+    "build": "node ./build.config.js",
+    "dev": "npm run build && node dist/index.js"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

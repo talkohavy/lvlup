@@ -24,47 +24,45 @@ async function buildPackageConfig() {
 
   copyReadmeFile();
 
-  copyChangesetDirectory();
-
   copyNpmIgnore();
 
   copyAndManipulatePackageJsonFile();
 
-  console.log('DONE !!!');
+  console.log('\n[34mDONE !!![39m\n');
 }
 
 function cleanDistDirectory() {
-  console.log('- Step 1: clear the dist directory');
+  console.log('[32m- Step 1:[39m clear the dist directory');
   execSync('rm -rf dist');
 }
 
 function buildWithTsc() {
-  console.log('- Step 2: build with vite');
-  execSync('tsc -p ./tsconfig.build.json');
+  console.log('[32m- Step 2:[39m build the output dir');
+  execSync('tsc -p ./tsconfig.json');
 }
 
 function copyReadmeFile() {
-  console.log('- Step 3: copy the README.md file');
+  console.log('[32m- Step 3:[39m copy the README.md file');
   const readStreamReadmeMd = fs.createReadStream('./README.md');
   const writeStreamReadmeMd = fs.createWriteStream(`./${outDirName}/README.md`);
   readStreamReadmeMd.pipe(writeStreamReadmeMd);
 }
 
 function copyAndManipulatePackageJsonFile() {
-  console.log('- Step 4: copy & manipulate the package.json file');
+  console.log('[32m- Step 4:[39m copy & manipulate the package.json file');
   // Step 1: get the original package.json file
   /** @type {PackageJson} */
   const packageJson = JSON.parse(fs.readFileSync('./package.json').toString());
 
   // Step 2: Remove all scripts
   delete packageJson.scripts;
-  console.log('-- deleted `scripts` key');
+  console.log('  • [34mdeleted[39m `scripts` key');
 
   // Step 3: Change from private to public
   delete packageJson.private;
   packageJson.publishConfig.access = 'public';
-  console.log('-- changed from private to public');
-  console.log('-- changed publishConfig access to public');
+  console.log('  • [34mchanged[39m from private to public');
+  console.log('  • [34mchanged[39m publishConfig access to public');
 
   // Step 4: remove 'outDirName/' from "main" & "types"
   packageJson.main = packageJson.main.replace(`${outDirName}/`, '');
@@ -72,15 +70,10 @@ function copyAndManipulatePackageJsonFile() {
 
   // Step 5: create new package.json file in the output folder
   fs.writeFileSync(`./${outDirName}/package.json`, JSON.stringify(packageJson));
-  console.log('-- package.json file written successfully!');
-}
-
-function copyChangesetDirectory() {
-  console.log('- Step 5: copy the .changeset directory');
-  cpSync('.changeset', `${outDirName}/.changeset`, { recursive: true });
+  console.log('  • [34mpackage.json[39m file written successfully!');
 }
 
 function copyNpmIgnore() {
-  console.log('- Step 6: copy the .npmignore file');
+  console.log('[32m- Step 5:[39m copy the .npmignore file');
   cpSync('.npmignore', `${outDirName}/.npmignore`);
 }
