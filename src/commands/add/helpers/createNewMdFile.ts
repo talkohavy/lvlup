@@ -6,7 +6,7 @@ import { PVM_BASE_PATH } from '../../../constants/globals.js';
 import { logger } from '../../../utils/logger/logger.js';
 
 const template = `---
-"{{packageName}}": {{semverLevel}}
+{{packageName}}: {{semverLevel}}
 ---
 
 {{commitMessage}}
