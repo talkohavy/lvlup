@@ -53,7 +53,7 @@ function executeAdd(props: ExecuteAddProps) {
 
   execSync(`touch ${pvmBase}/${filenameWithExtension}`);
   execSync(`git add ${pvmBase}/${filenameWithExtension}`);
-  execSync(`git commit -m ${commitMessage}`);
+  execSync(`git commit -m '${commitMessage}'`);
 
   console.log('✅  PVM changes added and committed');
   console.log("✅  If you want to modify or expand on the change's summary, you can find it here");
