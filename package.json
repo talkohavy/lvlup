@@ -12,6 +12,16 @@
     "bump": "./bump.js",
     "publish": "./publish.js"
   },
+  "exports": {
+    ".": {
+      "default": "./dist/index.js",
+      "types": "./dist/index.d.js"
+    },
+    "./add": {
+      "default": "./dist/commands/add.js",
+      "types": "./dist/commands/add/index.d.js"
+    }
+  },
   "scripts": {
     "clean": "rm -rf dist",
     "lint": "eslint -c ./.eslintrc.json \"./src/**/*.ts\"",
@@ -20,7 +30,7 @@
     "test": "node --test",
     "typecheck": "tsc -p tsconfig.json",
     "build": "node ./build.config.js",
-    "dev": "npm run build && node dist/add.js"
+    "dev": "npm run build && node dist/commands/add/index.js"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
