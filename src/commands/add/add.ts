@@ -1,10 +1,8 @@
 #!/usr/bin / env node
 
-import { execSync } from 'child_process';
 import { COLORS } from '../../constants/colors.js';
-import { PVM_BASE_PATH } from '../../constants/globals.js';
-import { logger } from '../../utils/logger/logger.js';
 import { validateRootPvmExists } from '../../utils/validateRootPvmExists.js';
+import { commitTheNewMdFile } from './helpers/commitTheNewMdFile.js';
 import { createNewMdFile } from './helpers/createNewMdFile.js';
 import { displayChangesSummary } from './helpers/displayChangesSummary.js';
 import { inquireCommitMessage } from './helpers/inquireCommitMessage.js';
@@ -50,14 +48,7 @@ async function executeAdd(props: ExecuteAddProps) {
   const { packageName, semverLevel, commitMessage } = props;
 
   const filenameWithExtension = await createNewMdFile({ packageName, semverLevel, commitMessage });
-  execSync(`git add ${PVM_BASE_PATH}/${filenameWithExtension}`);
-  execSync(`git commit -m '${commitMessage}'`);
-
-  console.log('');
-  logger.info('✅  PVM changes added and committed');
-  logger.info("✅  If you want to modify or expand on the change's summary, you can find it here");
-  logger.info(`✅  ${PVM_BASE_PATH}/${filenameWithExtension}`);
-  console.log('');
+  await commitTheNewMdFile({ filenameWithExtension, commitMessage });
 }
 
 export { add };
