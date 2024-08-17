@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { humanId } from 'human-id';
+import { SemverLevels } from '../../../constants/enums.js';
 import { PVM_BASE_PATH } from '../../../constants/globals.js';
 import { logger } from '../../../utils/logger/logger.js';
 
@@ -13,7 +14,7 @@ const template = `---
 
 type inquireSemverProps = {
   packageName: string;
-  semverLevel: string;
+  semverLevel: SemverLevels;
   commitMessage: string;
 };
 

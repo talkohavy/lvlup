@@ -9,6 +9,10 @@ class Logger {
     console.log(`🎩  ${COLORS.blue}info${COLORS.stop}`, message);
   }
 
+  warn(message: string) {
+    console.log(`🎩  ${COLORS.yellow}warn${COLORS.stop}`, message);
+  }
+
   error(message: string) {
     console.log(`🎩  ${COLORS.red}error${COLORS.stop}`, message);
   }

@@ -1,8 +1,9 @@
 import { COLORS } from '../../../constants/colors.js';
+import { SemverLevels } from '../../../constants/enums.js';
 
 type inquireSemverProps = {
   packageName: string;
-  semverLevel: string;
+  semverLevel: SemverLevels;
 };
 
 async function displayChangesSummary(props: inquireSemverProps) {

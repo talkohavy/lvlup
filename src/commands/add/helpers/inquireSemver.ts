@@ -1,4 +1,5 @@
 import { Separator, select } from '@inquirer/prompts';
+import { SemverLevels } from '../../../constants/enums.js';
 
 type inquireSemverProps = {
   packageName: string;
@@ -13,19 +14,19 @@ async function inquireSemver(props: inquireSemverProps) {
     choices: [
       new Separator(),
       {
-        name: 'patch',
-        value: 'patch',
+        name: SemverLevels.Patch,
+        value: SemverLevels.Patch,
         description: 'For bug fixes and patches',
         disabled: false,
       },
       {
-        name: 'minor',
-        value: 'minor',
+        name: SemverLevels.Minor,
+        value: SemverLevels.Minor,
         description: 'For when adding a new feature or ability',
       },
       {
-        name: 'major',
-        value: 'major',
+        name: SemverLevels.Major,
+        value: SemverLevels.Major,
         description: 'For when there are breaking changes',
       },
       new Separator(),

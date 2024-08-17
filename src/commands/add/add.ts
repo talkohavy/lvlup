@@ -1,6 +1,7 @@
 #!/usr/bin / env node
 
 import { COLORS } from '../../constants/colors.js';
+import { SemverLevels } from '../../constants/enums.js';
 import { validateRootPvmExists } from '../../utils/validateRootPvmExists.js';
 import { commitTheNewMdFile } from './helpers/commitTheNewMdFile.js';
 import { createNewMdFile } from './helpers/createNewMdFile.js';
@@ -40,7 +41,7 @@ add();
 
 type ExecuteAddProps = {
   packageName: string;
-  semverLevel: string;
+  semverLevel: SemverLevels;
   commitMessage: string;
 };
 

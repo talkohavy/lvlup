@@ -30,7 +30,8 @@
     "test": "node --test",
     "typecheck": "tsc -p tsconfig.json",
     "build": "node ./build.config.js",
-    "dev": "npm run build && node dist/commands/add/index.js"
+    "dev-add": "npm run build && node dist/commands/add/index.js",
+    "dev-bump": "npm run build && node dist/commands/bump/index.js"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
@@ -40,6 +41,8 @@
   "license": "MIT",
   "dependencies": {
     "@inquirer/prompts": "^5.3.8",
+    "glob": "^11.0.0",
+    "gray-matter": "^4.0.3",
     "human-id": "^4.1.1"
   },
   "devDependencies": {
