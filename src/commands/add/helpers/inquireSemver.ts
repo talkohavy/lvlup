@@ -8,7 +8,7 @@ type inquireSemverProps = {
 async function inquireSemver(props: inquireSemverProps) {
   const { packageName, currentVersion } = props;
 
-  const selectedSemver = await select({
+  const semverLevel = await select({
     message: `✨ What kind of change is this for ${packageName}? (current version is ${currentVersion})`,
     choices: [
       new Separator(),
@@ -32,7 +32,7 @@ async function inquireSemver(props: inquireSemverProps) {
     ],
   });
 
-  return selectedSemver;
+  return semverLevel;
 }
 
 export { inquireSemver };
