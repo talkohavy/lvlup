@@ -20,7 +20,7 @@
     "test": "node --test",
     "typecheck": "tsc -p tsconfig.json",
     "build": "node ./build.config.js",
-    "dev": "npm run build && node dist/index.js"
+    "dev": "npm run build && node dist/add.js"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
@@ -29,7 +29,8 @@
   "author": "Tal Kohavy <talkohavy@gmail.com> (https://github.com/talkohavy)",
   "license": "MIT",
   "dependencies": {
-    "@inquirer/prompts": "^5.3.8"
+    "@inquirer/prompts": "^5.3.8",
+    "human-id": "^4.1.1"
   },
   "devDependencies": {
     "@types/node": "^22.3.0",
