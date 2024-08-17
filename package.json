@@ -8,9 +8,9 @@
   "types": "dist/index.d.ts",
   "bin": {
     "pvm": "./index.js",
-    "add": "./add.js",
-    "bump": "./bump.js",
-    "publish": "./publish.js"
+    "add": "./commands/add/index.js",
+    "bump": "./commands/bump/index.js",
+    "publish": "./commands/publish/index.js"
   },
   "exports": {
     ".": {
