@@ -52,7 +52,7 @@ function executeAdd(props: ExecuteAddProps) {
   const filenameWithExtension = `${filename}.md`;
 
   execSync(`touch ${pvmBase}/${filenameWithExtension}`);
-  execSync(`git add ${pvmBase}${filenameWithExtension}`);
+  execSync(`git add ${pvmBase}/${filenameWithExtension}`);
   execSync(`git commit -m ${commitMessage}`);
 
   console.log('✅  PVM changes added and committed');
