@@ -3,6 +3,7 @@
 import { execSync } from 'child_process';
 import { COLORS } from '../../constants/colors.js';
 import { PVM_BASE_PATH } from '../../constants/globals.js';
+import { logger } from '../../utils/logger/logger.js';
 import { validateRootPvmExists } from '../../utils/validateRootPvmExists.js';
 import { createNewMdFile } from './helpers/createNewMdFile.js';
 import { displayChangesSummary } from './helpers/displayChangesSummary.js';
@@ -52,11 +53,11 @@ async function executeAdd(props: ExecuteAddProps) {
   execSync(`git add ${PVM_BASE_PATH}/${filenameWithExtension}`);
   execSync(`git commit -m '${commitMessage}'`);
 
-  console.log('✅  PVM changes added and committed');
-  console.log("✅  If you want to modify or expand on the change's summary, you can find it here");
-  console.log(`✅  info ${PVM_BASE_PATH}/${filenameWithExtension}`);
-
-  console.log('commitMessage', commitMessage);
+  console.log('');
+  logger.info('✅  PVM changes added and committed');
+  logger.info("✅  If you want to modify or expand on the change's summary, you can find it here");
+  logger.info(`✅  ${PVM_BASE_PATH}/${filenameWithExtension}`);
+  console.log('');
 }
 
 export { add };

@@ -6,7 +6,7 @@ class Logger {
   }
 
   info(message: string) {
-    console.log('🎩', message);
+    console.log(`🎩  ${COLORS.blue}info${COLORS.stop}`, message);
   }
 
   error(message: string) {
