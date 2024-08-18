@@ -6,6 +6,7 @@ import { readPackageJson } from '../../utils/readPackageJson.js';
 import { validatePackageJsonVersion } from '../../utils/validatePackageJsonVersion.js';
 import { calculateNextVersion } from './helpers/calculateNextVersion.js';
 import { deleteUsedMdFiles } from './helpers/deleteUsedMdFiles.js';
+import { updateTheChangelog } from './helpers/updateTheChangelog.js';
 import { updateVersionInPackageJson } from './helpers/updateVersionInPackageJson.js';
 
 async function bump() {
@@ -34,6 +35,8 @@ async function bump() {
   await updateVersionInPackageJson({ nextVersion, prevVersion, packageJsonAsString });
 
   await deleteUsedMdFiles({ mdVersionFiles });
+
+  await updateTheChangelog({ nextVersion, changes: { major: [], minor: [], patch: [] } });
 
   return nextVersion;
 }
