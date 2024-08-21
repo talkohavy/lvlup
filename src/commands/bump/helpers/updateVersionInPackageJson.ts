@@ -3,13 +3,13 @@ import path from 'path';
 import { PROJECT_ROOT } from '../../../constants/globals.js';
 
 type updateVersionInPackageJsonProps = {
+  packageJsonAsString: string;
   prevVersion: string;
   nextVersion: string;
-  packageJsonAsString: string;
 };
 
 async function updateVersionInPackageJson(props: updateVersionInPackageJsonProps) {
-  const { prevVersion, nextVersion, packageJsonAsString } = props;
+  const { packageJsonAsString, prevVersion, nextVersion } = props;
 
   const updatedPackageJsonAsString = packageJsonAsString.replace(prevVersion, nextVersion);
 

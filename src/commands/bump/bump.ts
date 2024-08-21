@@ -1,44 +1,50 @@
-import path from 'path';
-import { globSync } from 'glob';
-import { PVM_BASE_PATH, PVM_DIR_NAME } from '../../constants/globals.js';
+import { COLORS } from '../../constants/colors.js';
 import { logger } from '../../utils/logger/logger.js';
 import { readPackageJson } from '../../utils/readPackageJson.js';
 import { validatePackageJsonVersion } from '../../utils/validatePackageJsonVersion.js';
-import { calculateNextVersion } from './helpers/calculateNextVersion.js';
+import { calculateNextVersionByChanges } from './helpers/calculateNextVersionFor.js';
+import { commitBumpChanges } from './helpers/commitBumpChanges.js';
 import { deleteUsedMdFiles } from './helpers/deleteUsedMdFiles.js';
+import { extractChangesByPackageName } from './helpers/ExtractChangesByPackageNameProps.js';
+import { getAllMdVersionFiles } from './helpers/getMdVersionFilesByPackageName.js';
+import { isZeroChanges } from './helpers/isZeroChanges.js';
 import { updateTheChangelog } from './helpers/updateTheChangelog.js';
 import { updateVersionInPackageJson } from './helpers/updateVersionInPackageJson.js';
 
 async function bump() {
-  const { packageJsonAsObject, packageJsonAsString } = await readPackageJson();
+  try {
+    const { packageJsonAsObject, packageJsonAsString } = await readPackageJson();
 
-  const { name: currentPackageName, version: prevVersion } = packageJsonAsObject;
+    const { name: packageName, version: prevVersion } = packageJsonAsObject;
 
-  const currentVersionParsed = validatePackageJsonVersion(prevVersion);
+    const currentVersionParsed = validatePackageJsonVersion(prevVersion);
 
-  const mdVersionFiles = globSync(`${PVM_DIR_NAME}/*.md`).map((file) => {
-    const filenameWithExtension = file.replace(`${PVM_DIR_NAME}/`, '');
-    const filenameFullPath = path.resolve(PVM_BASE_PATH, filenameWithExtension);
-    return filenameFullPath;
-  });
+    const mdVersionFilePaths = getAllMdVersionFiles();
 
-  if (!mdVersionFiles.length) return logger.warn('No unreleased changesets found, exiting.');
+    const changes = await extractChangesByPackageName({ packageName, mdVersionFilePaths });
 
-  const nextVersion = await calculateNextVersion({
-    currentVersion: currentVersionParsed,
-    currentPackageName,
-    mdVersionFiles,
-  });
+    if (isZeroChanges(changes)) return logger.warn('No unreleased changesets found, exiting.');
 
-  logger.info(`New version calculated: ${nextVersion}`);
+    const nextVersion = await calculateNextVersionByChanges({ changes, currentVersion: currentVersionParsed });
 
-  await updateVersionInPackageJson({ nextVersion, prevVersion, packageJsonAsString });
+    logger.info(`New package version: ${nextVersion}`);
 
-  await deleteUsedMdFiles({ mdVersionFiles });
+    await updateVersionInPackageJson({ packageJsonAsString, prevVersion, nextVersion });
 
-  await updateTheChangelog({ nextVersion, changes: { major: [], minor: [], patch: [] } });
+    await deleteUsedMdFiles({ mdVersionFilePaths });
 
-  return nextVersion;
+    await updateTheChangelog({ packageName, nextVersion, changes });
+
+    await commitBumpChanges({ mdVersionFilePaths });
+
+    logger.info('All files have been updated and committed. You are ready to publish!');
+  } catch (error) {
+    logger.info('Something went wrong...');
+
+    console.error(error);
+
+    console.log(`\n${COLORS.red}Existed.\n`);
+  }
 }
 
 bump();

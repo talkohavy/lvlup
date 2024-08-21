@@ -1,5 +1,6 @@
 import fs, { PathOrFileDescriptor } from 'fs';
 import matter from 'gray-matter';
+import { COLORS } from '../../../constants/colors.js';
 import { SemverLevels } from '../../../constants/enums.js';
 import { trimNewLinesAndSpaces } from '../../../utils/trimNewLinesAndSpaces.js';
 import { Changes } from '../types.js';
@@ -36,7 +37,9 @@ async function extractChangesByPackageName(props: ExtractChangesByPackageNamePro
       return changes.patch.push({ commitHash: 'abcd', description: trimmedDescription });
     }
 
-    throw new Error(`Couldn't find semver level on file ${versionFileAbsolutePath}. File is corrupted...`);
+    throw new Error(
+      `Couldn't find semver level on file ${COLORS.red}${versionFileAbsolutePath}${COLORS.stop} related to ${packageName}. File is corrupted...`,
+    );
   });
 
   return changes;
