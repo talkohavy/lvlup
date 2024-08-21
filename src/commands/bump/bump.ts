@@ -27,7 +27,7 @@ async function bump() {
 
     const nextVersion = await calculateNextVersionByChanges({ changes, currentVersion: currentVersionParsed });
 
-    logger.info(`New package version: ${nextVersion}`);
+    logger.info(`New package version: ${COLORS.yellow}${nextVersion}`);
 
     await updateVersionInPackageJson({ packageJsonAsString, prevVersion, nextVersion });
 
@@ -39,7 +39,7 @@ async function bump() {
 
     logger.info('All files have been updated and committed. You are ready to publish!');
   } catch (error) {
-    logger.info('Something went wrong...');
+    logger.error('Something went wrong...');
 
     console.error(error);
 
