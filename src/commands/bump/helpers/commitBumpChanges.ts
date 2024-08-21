@@ -1,4 +1,5 @@
 import { execSync } from 'child_process';
+import { COLORS } from '../../../constants/colors.js';
 import { logger } from '../../../utils/logger/logger.js';
 
 type CommitBumpChangesProps = {
@@ -9,7 +10,13 @@ async function commitBumpChanges(props: CommitBumpChangesProps) {
   const { mdVersionFilePaths } = props;
 
   mdVersionFilePaths.forEach((mdVersionFileAbsolutePath) => {
-    execSync(`git add ${mdVersionFileAbsolutePath}`);
+    try {
+      execSync(`git add ${mdVersionFileAbsolutePath}`);
+    } catch (_error) {
+      logger.warn(
+        `WARNING! 'git add' operation failed. Detected an md version file which probably was not committed. Path to file was: ${COLORS.yellow}${mdVersionFileAbsolutePath}`,
+      );
+    }
   });
   execSync('git add package.json');
   execSync('git add CHANGELOG.md');
