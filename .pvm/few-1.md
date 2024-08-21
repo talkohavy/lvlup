@@ -2,4 +2,4 @@
 pvm: minor
 ---
 
-hello kill cat
+minor 1
