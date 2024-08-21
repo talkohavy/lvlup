@@ -1,10 +1,12 @@
+import { SemverLevels } from '../../constants/enums.js';
+
 type SingleChange = {
   commitHash: string;
   description: string;
 };
 
 export type Changes = {
-  major: Array<SingleChange>;
-  minor: Array<SingleChange>;
-  patch: Array<SingleChange>;
+  [SemverLevels.Major]: Array<SingleChange>;
+  [SemverLevels.Minor]: Array<SingleChange>;
+  [SemverLevels.Patch]: Array<SingleChange>;
 };

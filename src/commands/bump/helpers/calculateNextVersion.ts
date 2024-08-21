@@ -7,14 +7,14 @@ import { Changes } from '../types.js';
 
 type CalculateNextVersionProps = {
   currentVersion: VersionObject;
-  currentPackageName: string;
+  packageName: string;
   mdVersionFiles: Array<string>;
 };
 
 async function calculateNextVersion(props: CalculateNextVersionProps) {
-  const { mdVersionFiles, currentPackageName, currentVersion } = props;
+  const { mdVersionFiles, packageName, currentVersion } = props;
 
-  const changesObj: Changes = { major: [], minor: [], patch: [] };
+  const changes: Changes = { major: [], minor: [], patch: [] };
 
   const nextVersionObj = { ...currentVersion };
 
@@ -24,34 +24,34 @@ async function calculateNextVersion(props: CalculateNextVersionProps) {
 
     const trimmedDescription = trimNewLinesAndSpaces(description);
 
-    if (!frontmatter?.[currentPackageName]) return;
+    if (!frontmatter?.[packageName]) return;
 
-    const semverLevel = frontmatter[currentPackageName];
+    const semverLevel = frontmatter[packageName];
 
     if (semverLevel === SemverLevels.Major) {
-      return changesObj.major.push({ commitHash: 'abcd', description: trimmedDescription });
+      return changes.major.push({ commitHash: 'abcd', description: trimmedDescription });
     }
 
     if (semverLevel === SemverLevels.Minor) {
-      return changesObj.minor.push({ commitHash: 'abcd', description: trimmedDescription });
+      return changes.minor.push({ commitHash: 'abcd', description: trimmedDescription });
     }
 
     if (semverLevel === SemverLevels.Patch) {
-      return changesObj.patch.push({ commitHash: 'abcd', description: trimmedDescription });
+      return changes.patch.push({ commitHash: 'abcd', description: trimmedDescription });
     }
 
     throw new Error(`Couldn't find semver level on file ${absolutePath}. File is corrupted...`);
   });
 
-  if (changesObj.major.length) {
+  if (changes.major.length) {
     nextVersionObj.major += 1;
-  } else if (changesObj.minor.length) {
+  } else if (changes.minor.length) {
     nextVersionObj.minor += 1;
   } else {
     nextVersionObj.patch += 1;
   }
 
-  return `${nextVersionObj.major}.${nextVersionObj.minor}.${nextVersionObj.patch}`;
+  return { changes, nextVersion: `${nextVersionObj.major}.${nextVersionObj.minor}.${nextVersionObj.patch}` };
 }
 
 export { calculateNextVersion };
