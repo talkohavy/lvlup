@@ -32,6 +32,9 @@ async function updateTheChangelog(props: UpdateTheChangelogProps) {
 
   if (fs.existsSync(changelogFullPath)) {
     changelogContent = fs.readFileSync(changelogFullPath, 'utf-8');
+  } else {
+    // Add new line at the end of the file on its first creation
+    changelogContent = `${changelogContent}\n`;
   }
 
   // Insert the new entry before the existing content:
