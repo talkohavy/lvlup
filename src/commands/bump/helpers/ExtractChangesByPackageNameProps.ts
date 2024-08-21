@@ -26,15 +26,15 @@ async function extractChangesByPackageName(props: ExtractChangesByPackageNamePro
     const semverLevel = frontmatter[packageName];
 
     if (semverLevel === SemverLevels.Major) {
-      return changes.major.push({ commitHash: 'abcd', description: trimmedDescription });
+      return changes.major.push({ description: trimmedDescription });
     }
 
     if (semverLevel === SemverLevels.Minor) {
-      return changes.minor.push({ commitHash: 'abcd', description: trimmedDescription });
+      return changes.minor.push({ description: trimmedDescription });
     }
 
     if (semverLevel === SemverLevels.Patch) {
-      return changes.patch.push({ commitHash: 'abcd', description: trimmedDescription });
+      return changes.patch.push({ description: trimmedDescription });
     }
 
     throw new Error(

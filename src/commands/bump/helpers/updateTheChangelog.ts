@@ -26,10 +26,8 @@ async function updateTheChangelog(props: UpdateTheChangelogProps) {
     changesAsOneBigString = `${changesAsOneBigString}\n\n### ${capitalize(key)} Changes\n`;
 
     changes[key as SemverLevels].forEach((change) => {
-      changesAsOneBigString = `${changesAsOneBigString}\n- ${change.commitHash}: ${change.description}`;
+      changesAsOneBigString = `${changesAsOneBigString}\n- ${change.description}`;
     });
-
-    changesAsOneBigString = `${changesAsOneBigString}\n`;
   }
 
   if (fs.existsSync(changelogFullPath)) {
