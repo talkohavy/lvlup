@@ -14,8 +14,6 @@ type UpdateTheChangelogProps = {
 async function updateTheChangelog(props: UpdateTheChangelogProps) {
   const { packageName, nextVersion, changes } = props;
 
-  console.log('changes', changes);
-
   const changelogFullPath = path.resolve(PROJECT_ROOT, CHANGELOG_FILENAME);
 
   let changelogContent = `# ${packageName}`;
