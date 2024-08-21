@@ -2,14 +2,14 @@ import { execSync } from 'child_process';
 import { logger } from '../../../utils/logger/logger.js';
 
 type CommitBumpChangesProps = {
-  mdVersionFiles: Array<string>;
+  mdVersionFilePaths: Array<string>;
 };
 
-function commitBumpChanges(props: CommitBumpChangesProps) {
-  const { mdVersionFiles } = props;
+async function commitBumpChanges(props: CommitBumpChangesProps) {
+  const { mdVersionFilePaths } = props;
 
-  mdVersionFiles.forEach((absolutePathToMdFile) => {
-    execSync(`git add ${absolutePathToMdFile}`);
+  mdVersionFilePaths.forEach((mdVersionFileAbsolutePath) => {
+    execSync(`git add ${mdVersionFileAbsolutePath}`);
   });
   execSync('git add package.json');
   execSync('git add CHANGELOG.md');

@@ -1,25 +1,21 @@
 import fs, { PathOrFileDescriptor } from 'fs';
 import matter from 'gray-matter';
 import { SemverLevels } from '../../../constants/enums.js';
-import { VersionObject } from '../../../constants/types.js';
 import { trimNewLinesAndSpaces } from '../../../utils/trimNewLinesAndSpaces.js';
 import { Changes } from '../types.js';
 
-type CalculateNextVersionProps = {
-  currentVersion: VersionObject;
+type ExtractChangesByPackageNameProps = {
   packageName: string;
-  mdVersionFiles: Array<string>;
+  mdVersionFilePaths: Array<string>;
 };
 
-async function calculateNextVersion(props: CalculateNextVersionProps) {
-  const { mdVersionFiles, packageName, currentVersion } = props;
+async function extractChangesByPackageName(props: ExtractChangesByPackageNameProps) {
+  const { mdVersionFilePaths, packageName } = props;
 
   const changes: Changes = { major: [], minor: [], patch: [] };
 
-  const nextVersionObj = { ...currentVersion };
-
-  mdVersionFiles.forEach((absolutePath) => {
-    const fileContent = fs.readFileSync(absolutePath as PathOrFileDescriptor, 'utf-8');
+  mdVersionFilePaths.forEach((versionFileAbsolutePath) => {
+    const fileContent = fs.readFileSync(versionFileAbsolutePath as PathOrFileDescriptor, 'utf-8');
     const { data: frontmatter, content: description } = matter(fileContent);
 
     const trimmedDescription = trimNewLinesAndSpaces(description);
@@ -40,18 +36,10 @@ async function calculateNextVersion(props: CalculateNextVersionProps) {
       return changes.patch.push({ commitHash: 'abcd', description: trimmedDescription });
     }
 
-    throw new Error(`Couldn't find semver level on file ${absolutePath}. File is corrupted...`);
+    throw new Error(`Couldn't find semver level on file ${versionFileAbsolutePath}. File is corrupted...`);
   });
 
-  if (changes.major.length) {
-    nextVersionObj.major += 1;
-  } else if (changes.minor.length) {
-    nextVersionObj.minor += 1;
-  } else {
-    nextVersionObj.patch += 1;
-  }
-
-  return { changes, nextVersion: `${nextVersionObj.major}.${nextVersionObj.minor}.${nextVersionObj.patch}` };
+  return changes;
 }
 
-export { calculateNextVersion };
+export { extractChangesByPackageName };

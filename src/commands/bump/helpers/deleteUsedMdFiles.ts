@@ -1,17 +1,16 @@
-import { PathLike } from 'fs';
 import fs from 'fs/promises';
 
 type deleteUsedMdFilesProps = {
-  mdVersionFiles: Array<string>;
+  mdVersionFilePaths: Array<string>;
 };
 
 async function deleteUsedMdFiles(props: deleteUsedMdFilesProps) {
-  const { mdVersionFiles } = props;
+  const { mdVersionFilePaths } = props;
 
   const promisesArr: Array<Promise<void>> = [];
 
-  mdVersionFiles.forEach((absolutePath) => {
-    const promise = fs.unlink(absolutePath as PathLike);
+  mdVersionFilePaths.forEach((mdVersionFileAbsolutePath) => {
+    const promise = fs.unlink(mdVersionFileAbsolutePath);
     promisesArr.push(promise);
   });
 

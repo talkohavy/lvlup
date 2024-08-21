@@ -1,48 +1,51 @@
 import fs from 'fs';
 import path from 'path';
+import { SemverLevels } from '../../../constants/enums.js';
 import { CHANGELOG_FILENAME, PROJECT_ROOT } from '../../../constants/globals.js';
+import { capitalize } from '../../../utils/capitalize.js';
 import { Changes } from '../types.js';
 
-type deleteUsedMdFilesProps = {
+type UpdateTheChangelogProps = {
+  packageName: string;
   nextVersion: string;
   changes: Changes;
 };
 
-async function updateTheChangelog(props: deleteUsedMdFilesProps) {
-  const { nextVersion, changes } = props;
+async function updateTheChangelog(props: UpdateTheChangelogProps) {
+  const { packageName, nextVersion, changes } = props;
 
   console.log('changes', changes);
-  const semverLevel = 'minor';
 
   const changelogFullPath = path.resolve(PROJECT_ROOT, CHANGELOG_FILENAME);
 
-  let changelogContent = '';
+  let changelogContent = `# ${packageName}`;
 
-  // If the changelog exists, read its content
+  let changesAsOneBigString = `## ${nextVersion}`;
+
+  for (const key in changes) {
+    if (!changes[key as SemverLevels].length) continue;
+
+    changesAsOneBigString = `${changesAsOneBigString}\n\n### ${capitalize(key)} Changes\n`;
+
+    changes[key as SemverLevels].forEach((change) => {
+      changesAsOneBigString = `${changesAsOneBigString}\n- ${change.commitHash}: ${change.description}`;
+    });
+
+    changesAsOneBigString = `${changesAsOneBigString}\n`;
+  }
+
   if (fs.existsSync(changelogFullPath)) {
     changelogContent = fs.readFileSync(changelogFullPath, 'utf-8');
   }
 
-  // Write code here...
-  // Define the new entry to be added
-  const newEntry = `## ${nextVersion}
-
-### ${capitalize(semverLevel)} Changes
-
-- ${(changes.major[0] as any).commitHash}: ${(changes.major[0] as any).description}
-`;
-
-  // Insert the new entry before the existing content
-  const updatedChangelogContent = `# k8x
-
-${newEntry}${changelogContent}`;
+  // Insert the new entry before the existing content:
+  const updatedChangelogContent = changelogContent.replace(
+    `# ${packageName}`,
+    `# ${packageName}\n\n${changesAsOneBigString}`,
+  );
 
   // Write the updated content back to the CHANGELOG.md file
   fs.writeFileSync(changelogFullPath, updatedChangelogContent, 'utf-8');
-}
-
-function capitalize(str: string) {
-  return str.charAt(0).toUpperCase + str.slice(1);
 }
 
 export { updateTheChangelog };
