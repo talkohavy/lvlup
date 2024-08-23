@@ -8,6 +8,7 @@
   "types": "dist/index.d.ts",
   "bin": {
     "lvlup": "./index.js",
+    "init": "./commands/init/index.js",
     "add": "./commands/add/index.js",
     "bump": "./commands/bump/index.js",
     "publish": "./commands/publish/index.js"
@@ -17,9 +18,21 @@
       "default": "./dist/index.js",
       "types": "./dist/index.d.js"
     },
+    "./init": {
+      "default": "./dist/commands/init.js",
+      "types": "./dist/commands/init/index.d.js"
+    },
     "./add": {
       "default": "./dist/commands/add.js",
       "types": "./dist/commands/add/index.d.js"
+    },
+    "./bump": {
+      "default": "./dist/commands/bump.js",
+      "types": "./dist/commands/bump/index.d.js"
+    },
+    "./publish": {
+      "default": "./dist/commands/publish.js",
+      "types": "./dist/commands/publish/index.d.js"
     }
   },
   "scripts": {
@@ -31,7 +44,8 @@
     "typecheck": "tsc -p tsconfig.json",
     "build": "node ./build.config.js",
     "dev-add": "npm run build && node dist/commands/add/index.js",
-    "dev-bump": "npm run build && node dist/commands/bump/index.js"
+    "dev-bump": "npm run build && node dist/commands/bump/index.js",
+    "dev-pub": "npm run build && cd dist && npm publish"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
