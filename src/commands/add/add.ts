@@ -2,6 +2,7 @@
 
 import { COLORS } from '../../constants/colors.js';
 import { SemverLevels } from '../../constants/enums.js';
+import { readPackageJson } from '../../utils/readPackageJson.js';
 import { validateRootPvmExists } from '../../utils/validateRootPvmExists.js';
 import { commitTheNewMdFile } from './helpers/commitTheNewMdFile.js';
 import { createNewMdFile } from './helpers/createNewMdFile.js';
@@ -17,10 +18,10 @@ async function add() {
   try {
     console.clear();
 
-    validateRootPvmExists();
+    const { packageJsonAsObject } = await readPackageJson(); // <--- for `add` command, there's no need to run `validatePackageJsonVersion` after `readPackageJson`.
+    const { version: currentVersion, name: packageName } = packageJsonAsObject;
 
-    const currentVersion = '0.0.6';
-    const packageName = 'pvm';
+    validateRootPvmExists();
 
     const semverLevel = await inquireSemver({ packageName, currentVersion });
     const commitMessage = await inquireCommitMessage();
@@ -31,7 +32,7 @@ async function add() {
 
     if (!shouldMoveForward) return;
 
-    executeAdd({ packageName, semverLevel, commitMessage });
+    executeAddByAnswers({ packageName, semverLevel, commitMessage });
   } catch (_error: any) {
     console.log(`\n${COLORS.red}Bye.\n`);
   }
@@ -45,7 +46,7 @@ type ExecuteAddProps = {
   commitMessage: string;
 };
 
-async function executeAdd(props: ExecuteAddProps) {
+async function executeAddByAnswers(props: ExecuteAddProps) {
   const { packageName, semverLevel, commitMessage } = props;
 
   const filenameWithExtension = await createNewMdFile({ packageName, semverLevel, commitMessage });

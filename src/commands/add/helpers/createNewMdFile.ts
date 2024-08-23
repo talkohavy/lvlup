@@ -4,13 +4,7 @@ import { humanId } from 'human-id';
 import { SemverLevels } from '../../../constants/enums.js';
 import { PVM_BASE_PATH } from '../../../constants/globals.js';
 import { logger } from '../../../utils/logger/logger.js';
-
-const template = `---
-{{packageName}}: {{semverLevel}}
----
-
-{{commitMessage}}
-`;
+import { mdVersionFileTemplate } from './constants.js';
 
 type inquireSemverProps = {
   packageName: string;
@@ -27,7 +21,7 @@ async function createNewMdFile(props: inquireSemverProps) {
     const filename = humanId({ separator: '-', capitalize: false });
     filenameWithExtension = `${filename}.md`;
 
-    const newMdContents = template
+    const newMdContents = mdVersionFileTemplate
       .replace('{{packageName}}', packageName)
       .replace('{{semverLevel}}', semverLevel)
       .replace('{{commitMessage}}', commitMessage);
