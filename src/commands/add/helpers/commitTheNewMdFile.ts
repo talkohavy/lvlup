@@ -16,9 +16,10 @@ async function commitTheNewMdFile(props: inquireSemverProps) {
     const { filenameWithExtension, commitMessage } = props;
 
     const filenameFullPath = path.resolve(PVM_BASE_PATH, filenameWithExtension);
+    const escapedCommitMessage = commitMessage.replace(/"/g, '\\"');
 
     execSync(`git add ${filenameFullPath}`);
-    execSync(`git commit -m 'docs(pvm): ${commitMessage}'`);
+    execSync(`git commit -m 'docs(pvm): ${escapedCommitMessage}'`);
 
     console.log('');
     logger.info('✅  PVM changes added and committed');
