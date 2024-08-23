@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { LVLUP_DIR_NAME, LVLUP_TOOL_NAME } from '@src/constants/globals.js';
+import { LVLUP_DIR_NAME, LVLUP_TOOL_NAME } from '../constants/globals.js';
 import { logger } from './logger/index.js';
 
 function validateRootLvlupExists() {
