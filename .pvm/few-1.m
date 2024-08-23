@@ -1,5 +1,5 @@
 ---
-pvm: minor
+lvlup: minor
 ---
 
 minor 1

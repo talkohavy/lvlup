@@ -1,5 +1,5 @@
 {
-  "name": "pvm",
+  "name": "lvlup",
   "version": "0.0.0",
   "description": "A simple version manager solution for packages",
   "private": "true",
@@ -7,7 +7,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "pvm": "./index.js",
+    "lvlup": "./index.js",
     "add": "./commands/add/index.js",
     "bump": "./commands/bump/index.js",
     "publish": "./commands/publish/index.js"

@@ -3,7 +3,7 @@
 import { COLORS } from '../../constants/colors.js';
 import { SemverLevels } from '../../constants/enums.js';
 import { readPackageJson } from '../../utils/readPackageJson.js';
-import { validateRootPvmExists } from '../../utils/validateRootPvmExists.js';
+import { validateRootLvlupExists } from '../../utils/validateRootLvlupExists.js';
 import { commitTheNewMdFile } from './helpers/commitTheNewMdFile.js';
 import { createNewMdFile } from './helpers/createNewMdFile.js';
 import { displayChangesSummary } from './helpers/displayChangesSummary.js';
@@ -21,7 +21,7 @@ async function add() {
     const { packageJsonAsObject } = await readPackageJson(); // <--- for `add` command, there's no need to run `validatePackageJsonVersion` after `readPackageJson`.
     const { version: currentVersion, name: packageName } = packageJsonAsObject;
 
-    validateRootPvmExists();
+    validateRootLvlupExists();
 
     const semverLevel = await inquireSemver({ packageName, currentVersion });
     const commitMessage = await inquireCommitMessage();

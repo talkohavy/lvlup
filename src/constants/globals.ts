@@ -1,11 +1,13 @@
 import path from 'path';
 
-const PVM_DIR_NAME = '.pvm';
+const LVLUP_TOOL_NAME = 'lvlup';
+
+const LVLUP_DIR_NAME = `.${LVLUP_TOOL_NAME}`;
 
 const CHANGELOG_FILENAME = 'CHANGELOG.md';
 
 const PROJECT_ROOT = process.cwd();
 
-const PVM_BASE_PATH = path.resolve(PROJECT_ROOT, PVM_DIR_NAME);
+const LVLUP_BASE_PATH = path.resolve(PROJECT_ROOT, LVLUP_DIR_NAME);
 
-export { CHANGELOG_FILENAME, PROJECT_ROOT, PVM_BASE_PATH, PVM_DIR_NAME };
+export { CHANGELOG_FILENAME, LVLUP_BASE_PATH, LVLUP_DIR_NAME, LVLUP_TOOL_NAME, PROJECT_ROOT };

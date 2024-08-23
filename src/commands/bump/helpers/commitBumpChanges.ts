@@ -23,7 +23,7 @@ async function commitBumpChanges(props: CommitBumpChangesProps) {
   execSync("git commit -m 'RELEASING: Releasing 1 package'");
 
   console.log('');
-  logger.info("✅  PVM - All files have been updated and committed. You're ready to publish!");
+  logger.info("✅  LVLUP - All files have been updated and committed. You're ready to publish!");
   console.log('');
 }
 
