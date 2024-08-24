@@ -18,7 +18,7 @@ type commandMapperProps = {
 function commandMapper(props: commandMapperProps) {
   const { commands } = props;
 
-  const command = commands[0] as Commands;
+  const [command] = commands as [Commands];
 
   COMMAND_MAPPER[command]();
 }

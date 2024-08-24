@@ -6,6 +6,7 @@ import yargs from 'yargs/yargs';
 import { commandMapper } from './commandMapper.js';
 import { bigTextLvlUp } from './constants/bigTextLvlUp.js';
 import { COLORS } from './constants/colors.js';
+import { showVersion } from './flags/version.js';
 
 type ArgsV = {
   $0: any;
@@ -93,6 +94,11 @@ const argv = yargInstance.parse();
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { $0: cliToolName, _: commands, ...flags } = argv as ArgsV;
+
+if (flags.version) {
+  await showVersion();
+  process.exit(0);
+}
 
 if (flags.help || !commands.length) {
   const helpMenuAsText = await yargInstance.getHelp();
