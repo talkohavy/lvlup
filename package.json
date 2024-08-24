@@ -40,8 +40,9 @@
     "typecheck": "tsc -p tsconfig.json",
     "build": "node ./build.config.js",
     "dev": "npm run build && node dist/index.js",
-    "dev-add": "npm run build && node dist/commands/add/index.js",
-    "dev-bump": "npm run build && node dist/commands/bump/index.js",
+    "dev-init": "npm run build && node dist/index.js init",
+    "dev-add": "npm run build && node dist/index.js add",
+    "dev-bump": "npm run build && node dist/index.js bump",
     "dev-pub": "npm run build && cd dist && npm publish"
   },
   "publishConfig": {
