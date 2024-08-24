@@ -15,8 +15,6 @@ import { inquireSemver } from './helpers/inquireSemver.js';
 
 async function add() {
   try {
-    console.clear();
-
     const { packageJsonAsObject } = await readPackageJson(); // <--- for `add` command, there's no need to run `validatePackageJsonVersion` after `readPackageJson`.
     const { version: currentVersion, name: packageName } = packageJsonAsObject;
 
