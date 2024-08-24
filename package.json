@@ -39,6 +39,7 @@
     "test": "node --test",
     "typecheck": "tsc -p tsconfig.json",
     "build": "node ./build.config.js",
+    "dev": "npm run build && node dist/index.js",
     "dev-add": "npm run build && node dist/commands/add/index.js",
     "dev-bump": "npm run build && node dist/commands/bump/index.js",
     "dev-pub": "npm run build && cd dist && npm publish"
@@ -57,10 +58,12 @@
   },
   "devDependencies": {
     "@types/node": "^22.3.0",
+    "@types/yargs": "^17.0.33",
     "eslint": "^8.57.0",
     "eslint-plugin-ezlint": "^1.2.0",
     "husky": "^9.0.11",
     "prettier": "^3.2.5",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "yargs": "^17.7.2"
   }
 }

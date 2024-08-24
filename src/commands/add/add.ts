@@ -37,8 +37,6 @@ async function add() {
   }
 }
 
-add();
-
 type ExecuteAddProps = {
   packageName: string;
   semverLevel: SemverLevels;

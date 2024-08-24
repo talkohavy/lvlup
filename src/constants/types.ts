@@ -12,3 +12,11 @@ export type VersionObject = {
   minor: number;
   patch: number;
 };
+
+export enum Commands {
+  Init = 'init',
+  Add = 'add',
+  Status = 'status',
+  Bump = 'bump',
+  Publish = 'Publish',
+}
