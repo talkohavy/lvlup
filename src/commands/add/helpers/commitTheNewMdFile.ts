@@ -19,7 +19,7 @@ async function commitTheNewMdFile(props: inquireSemverProps) {
     const escapedCommitMessage = commitMessage.replace(/"/g, '\\"');
 
     execSync(`git add ${filenameFullPath}`);
-    execSync(`git commit -m 'docs(lvlup): ${escapedCommitMessage}'`);
+    execSync(`git commit -m "docs(lvlup): ${escapedCommitMessage}"`);
 
     console.log('');
     logger.info('✅  LVLUP changes added and committed');
