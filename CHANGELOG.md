@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.4
+
+### Patch Changes
+
+- one file, many commands: init, add, bump, status & publish
+
 ## 0.0.3
 
 ### Patch Changes
