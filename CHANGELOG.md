@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.9
+
+### Patch Changes
+
+- IMPROVEMENT: made CLI weigh much less. removed .js.map files
+
 ## 0.0.8
 
 ### Patch Changes
