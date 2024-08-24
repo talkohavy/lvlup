@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.8
+
+### Patch Changes
+
+- BUGFIX: version was again taked from the wrong place. it is now being hardcoded during build
+
 ## 0.0.7
 
 ### Patch Changes
