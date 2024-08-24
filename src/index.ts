@@ -22,13 +22,15 @@ const yargInstance = yargs(hideBin(process.argv))
   .scriptName(`${COLORS.green}lvlup${COLORS.stop}`)
   /**
    * @description
+   * I put version to `false`, because yargs do not support -v, only --version, and I would like to have both.
+   *
    * Add an option (e.g. --version) that displays the version number (given by the version parameter) and exits the process. By default yargs enables version for the --version option.
    *
    * If no arguments are passed to version (.version()), yargs will parse the package.json of your module and use its version value.
    *
    * If the boolean argument false is provided, it will disable --version.
    */
-  .version()
+  .version(false)
   /**
    * @description
    *
