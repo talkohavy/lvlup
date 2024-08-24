@@ -1,5 +1,3 @@
-#!/usr/bin / env node
-
 import { COLORS } from '../../constants/colors.js';
 import { SemverLevels } from '../../constants/enums.js';
 import { readPackageJson } from '../../utils/readPackageJson.js';
