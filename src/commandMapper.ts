@@ -1,11 +1,12 @@
 import { add } from './commands/add/index.js';
+import { bump } from './commands/bump/bump.js';
 import { Commands } from './constants/types.js';
 
 const COMMAND_MAPPER = {
   [Commands.Init]: add,
   [Commands.Add]: add,
   [Commands.Status]: add,
-  [Commands.Bump]: add,
+  [Commands.Bump]: bump,
   [Commands.Publish]: add,
 };
 
