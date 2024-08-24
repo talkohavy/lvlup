@@ -90,21 +90,25 @@ const yargInstance = yargs(hideBin(process.argv))
    */
   .help(false); // <--- help('help') & help() result in the same behavior.
 
-const argv = yargInstance.parse();
+async function run() {
+  const argv = yargInstance.parse();
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const { $0: cliToolName, _: commands, ...flags } = argv as ArgsV;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { $0: cliToolName, _: commands, ...flags } = argv as ArgsV;
 
-if (flags.version) {
-  await showVersion();
-  process.exit(0);
+  if (flags.version) {
+    await showVersion();
+    process.exit(0);
+  }
+
+  if (flags.help || !commands.length) {
+    const helpMenuAsText = await yargInstance.getHelp();
+    const helpTextBig = `${bigTextLvlUp}${os.EOL}${os.EOL}${helpMenuAsText}`;
+    console.log(helpTextBig);
+    process.exit(0);
+  }
+
+  commandMapper({ commands, flags });
 }
 
-if (flags.help || !commands.length) {
-  const helpMenuAsText = await yargInstance.getHelp();
-  const helpTextBig = `${bigTextLvlUp}${os.EOL}${os.EOL}${helpMenuAsText}`;
-  console.log(helpTextBig);
-  process.exit(0);
-}
-
-commandMapper({ commands, flags });
+run();
