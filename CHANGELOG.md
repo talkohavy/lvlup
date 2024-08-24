@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.6
+
+### Patch Changes
+
+- yargs should be a dependency and NOT a devDependency
+
 ## 0.0.5
 
 ### Patch Changes
