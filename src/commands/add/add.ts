@@ -1,3 +1,4 @@
+import os from 'os';
 import { COLORS } from '../../constants/colors.js';
 import { SemverLevels } from '../../constants/enums.js';
 import { readPackageJson } from '../../utils/readPackageJson.js';
@@ -32,7 +33,7 @@ async function add() {
 
     executeAddByAnswers({ packageName, semverLevel, commitMessage });
   } catch (_error: any) {
-    console.log(`\n${COLORS.red}Bye.\n`);
+    console.log(`${os.EOL}${COLORS.red}Bye.${os.EOL}`);
   }
 }
 

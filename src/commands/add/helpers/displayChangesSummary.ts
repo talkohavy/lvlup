@@ -1,3 +1,4 @@
+import os from 'os';
 import { COLORS } from '../../../constants/colors.js';
 import { SemverLevels } from '../../../constants/enums.js';
 
@@ -9,8 +10,8 @@ type inquireSemverProps = {
 async function displayChangesSummary(props: inquireSemverProps) {
   const { packageName, semverLevel } = props;
 
-  console.log('\n=== Summary of changes ===', '\n');
-  console.log(`${COLORS.green}${semverLevel}:${COLORS.stop}`, packageName, '\n');
+  console.log(`${os.EOL}=== Summary of changes ===${os.EOL}`);
+  console.log(`${COLORS.green}${semverLevel}:${COLORS.stop}`, packageName, os.EOL);
 }
 
 export { displayChangesSummary };

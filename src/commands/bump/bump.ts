@@ -1,3 +1,4 @@
+import os from 'os';
 import { COLORS } from '../../constants/colors.js';
 import { logger } from '../../utils/logger/logger.js';
 import { readPackageJson } from '../../utils/readPackageJson.js';
@@ -43,7 +44,7 @@ async function bump() {
 
     console.error(error);
 
-    console.log(`\n${COLORS.red}Existed.\n`);
+    console.log(`${os.EOL}${COLORS.red}Existed.${os.EOL}`);
   }
 }
 

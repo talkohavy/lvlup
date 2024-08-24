@@ -1,5 +1,6 @@
 import { execSync } from 'child_process';
 import fs, { cpSync } from 'fs';
+import os from 'os';
 
 /**
  * @typedef {{
@@ -28,7 +29,7 @@ async function buildPackageConfig() {
 
   copyAndManipulatePackageJsonFile();
 
-  console.log('\n[34mDONE !!![39m\n');
+  console.log(`${os.EOL}[34mDONE !!![39m${os.EOL}`);
 }
 
 function cleanDistDirectory() {

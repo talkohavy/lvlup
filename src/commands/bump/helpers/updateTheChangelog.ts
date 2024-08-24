@@ -1,4 +1,5 @@
 import fs from 'fs';
+import os from 'os';
 import path from 'path';
 import { SemverLevels } from '../../../constants/enums.js';
 import { CHANGELOG_FILENAME, PROJECT_ROOT } from '../../../constants/globals.js';
@@ -23,10 +24,10 @@ async function updateTheChangelog(props: UpdateTheChangelogProps) {
   for (const key in changes) {
     if (!changes[key as SemverLevels].length) continue;
 
-    changesAsOneBigString = `${changesAsOneBigString}\n\n### ${capitalize(key)} Changes\n`;
+    changesAsOneBigString = `${changesAsOneBigString}${os.EOL}${os.EOL}### ${capitalize(key)} Changes${os.EOL}`;
 
     changes[key as SemverLevels].forEach((change) => {
-      changesAsOneBigString = `${changesAsOneBigString}\n- ${change.description}`;
+      changesAsOneBigString = `${changesAsOneBigString}${os.EOL}- ${change.description}`;
     });
   }
 
@@ -34,13 +35,13 @@ async function updateTheChangelog(props: UpdateTheChangelogProps) {
     changelogContent = fs.readFileSync(changelogFullPath, 'utf-8');
   } else {
     // Add new line at the end of the file on its first creation
-    changelogContent = `${changelogContent}\n`;
+    changelogContent = `${changelogContent}${os.EOL}`;
   }
 
   // Insert the new entry before the existing content:
   const updatedChangelogContent = changelogContent.replace(
     `# ${packageName}`,
-    `# ${packageName}\n\n${changesAsOneBigString}`,
+    `# ${packageName}${os.EOL}${os.EOL}${changesAsOneBigString}`,
   );
 
   // Write the updated content back to the CHANGELOG.md file
