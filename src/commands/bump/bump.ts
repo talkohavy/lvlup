@@ -19,7 +19,7 @@ async function bump() {
 
     const currentVersionParsed = validatePackageJsonVersion(prevVersion);
 
-    const mdVersionFilePaths = getAllMdVersionFiles();
+    const mdVersionFilePaths = await getAllMdVersionFiles();
 
     const changes = await extractChangesByPackageName({ packageName, mdVersionFilePaths });
 
