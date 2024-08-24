@@ -1,10 +1,12 @@
 import { execSync } from 'child_process';
 import fs, { cpSync } from 'fs';
 import os from 'os';
+import path from 'path';
 
 /**
  * @typedef {{
  *   main: string,
+ *   version: string,
  *   types: string,
  *   private?: string | boolean,
  *   scripts?: Record<string, string>,
@@ -22,6 +24,8 @@ async function buildPackageConfig() {
   cleanDistDirectory();
 
   buildWithTsc();
+
+  manipulateShowVersionFunction(); // <--- must come AFTER build!
 
   copyReadmeFile();
 
@@ -77,4 +81,19 @@ function copyAndManipulatePackageJsonFile() {
 function copyNpmIgnore() {
   console.log('[32m- Step 5:[39m copy the .npmignore file');
   cpSync('.npmignore', `${outDirName}/.npmignore`);
+}
+
+function manipulateShowVersionFunction() {
+  console.log('[32m- Step 2.5:[39m grab version from package.json');
+
+  /** @type {PackageJson} */
+  const packageJson = JSON.parse(fs.readFileSync('./package.json').toString());
+  const { version } = packageJson;
+
+  const showVersionFuncPath = path.resolve(process.cwd(), 'dist', 'flags', 'version.js');
+  const showVersionFuncContent = fs.readFileSync(showVersionFuncPath, 'utf-8');
+
+  const updatedShowVersionFuncContent = showVersionFuncContent.replace('{{version}}', version);
+
+  fs.writeFileSync(showVersionFuncPath, updatedShowVersionFuncContent);
 }
