@@ -24,7 +24,7 @@ async function bump() {
 
     const changes = await extractChangesByPackageName({ packageName, mdVersionFilePaths });
 
-    if (isZeroChanges(changes)) return logger.warn('No unreleased changesets found, exiting.');
+    if (isZeroChanges(changes)) return logger.warn('No unreleased changes found, exiting.');
 
     const nextVersion = await calculateNextVersionByChanges({ changes, currentVersion: currentVersionParsed });
 
