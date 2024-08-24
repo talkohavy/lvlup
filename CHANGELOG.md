@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.7
+
+### Patch Changes
+
+- BUGFIX: my custom version flag should grab version from lvlup's version as a constant
+
 ## 0.0.6
 
 ### Patch Changes
