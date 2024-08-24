@@ -48,6 +48,4 @@ async function bump() {
   }
 }
 
-bump();
-
 export { bump };
