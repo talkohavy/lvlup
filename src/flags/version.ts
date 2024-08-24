@@ -1,9 +1,7 @@
-import { readPackageJson } from '../utils/readPackageJson.js';
+import { LVLUP_CURRENT_VERSION } from '../constants/globals.js';
 
 async function showVersion() {
-  const { version } = (await readPackageJson()).packageJsonAsObject;
-
-  console.log(version);
+  console.log(LVLUP_CURRENT_VERSION);
 }
 
 export { showVersion };
