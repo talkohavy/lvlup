@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.5
+
+### Patch Changes
+
+- added an init command
+
 ## 0.0.4
 
 ### Patch Changes
