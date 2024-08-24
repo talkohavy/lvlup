@@ -1,7 +1,7 @@
 import { execSync } from 'child_process';
 import path from 'path';
 import { COLORS } from '../../../constants/colors.js';
-import { LVLUP_BASE_PATH } from '../../../constants/globals.js';
+import { LVLUP_DIR_PATH } from '../../../constants/globals.js';
 import { logger } from '../../../utils/logger/logger.js';
 
 type inquireSemverProps = {
@@ -15,7 +15,7 @@ async function commitTheNewMdFile(props: inquireSemverProps) {
   try {
     const { filenameWithExtension, commitMessage } = props;
 
-    const filenameFullPath = path.resolve(LVLUP_BASE_PATH, filenameWithExtension);
+    const filenameFullPath = path.resolve(LVLUP_DIR_PATH, filenameWithExtension);
     const escapedCommitMessage = commitMessage.replace(/"/g, '\\"');
 
     execSync(`git add ${filenameFullPath}`);

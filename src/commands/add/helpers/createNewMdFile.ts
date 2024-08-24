@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { humanId } from 'human-id';
 import { SemverLevels } from '../../../constants/enums.js';
-import { LVLUP_BASE_PATH } from '../../../constants/globals.js';
+import { LVLUP_DIR_PATH } from '../../../constants/globals.js';
 import { logger } from '../../../utils/logger/logger.js';
 import { mdVersionFileTemplate } from './constants.js';
 
@@ -26,7 +26,7 @@ async function createNewMdFile(props: inquireSemverProps) {
       .replace('{{semverLevel}}', semverLevel)
       .replace('{{commitMessage}}', commitMessage);
 
-    const filenameFullPath = path.resolve(LVLUP_BASE_PATH, filenameWithExtension);
+    const filenameFullPath = path.resolve(LVLUP_DIR_PATH, filenameWithExtension);
 
     fs.writeFileSync(filenameFullPath, newMdContents);
 
