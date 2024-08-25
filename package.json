@@ -13,22 +13,6 @@
     ".": {
       "default": "./dist/index.js",
       "types": "./dist/index.d.js"
-    },
-    "./init": {
-      "default": "./dist/commands/init.js",
-      "types": "./dist/commands/init/index.d.js"
-    },
-    "./add": {
-      "default": "./dist/commands/add.js",
-      "types": "./dist/commands/add/index.d.js"
-    },
-    "./bump": {
-      "default": "./dist/commands/bump.js",
-      "types": "./dist/commands/bump/index.d.js"
-    },
-    "./publish": {
-      "default": "./dist/commands/publish.js",
-      "types": "./dist/commands/publish/index.d.js"
     }
   },
   "scripts": {
