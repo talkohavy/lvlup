@@ -12,6 +12,12 @@
 
 - back to smallest bundle size possible (no minify, only js files)
 
+## 0.0.10
+
+### Patch Changes
+
+- trying to use rollup as bundler and terser as the minify`er
+
 ## 0.0.9
 
 ### Patch Changes
