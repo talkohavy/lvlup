@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.11
+
+### Patch Changes
+
+- back to smallest bundle size possible (no minify, only js files)
+
 ## 0.0.9
 
 ### Patch Changes
