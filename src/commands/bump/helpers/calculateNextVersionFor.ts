@@ -17,8 +17,11 @@ async function calculateNextVersionByChanges(props: CalculateNextVersionByChange
 
   if (changes.major.length) {
     nextVersionObj.major += 1;
+    nextVersionObj.minor = 0;
+    nextVersionObj.patch = 0;
   } else if (changes.minor.length) {
     nextVersionObj.minor += 1;
+    nextVersionObj.patch = 0;
   } else {
     nextVersionObj.patch += 1;
   }
