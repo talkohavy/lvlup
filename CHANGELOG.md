@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.12
+
+### Patch Changes
+
+- BUGFIX: version calculation was wrong
+
 ## 0.0.11
 
 ### Patch Changes
