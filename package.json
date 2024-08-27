@@ -36,11 +36,11 @@
   "author": "Tal Kohavy <talkohavy@gmail.com> (https://github.com/talkohavy)",
   "license": "MIT",
   "dependencies": {
-    "yargs": "^17.7.2",
     "@inquirer/prompts": "^5.3.8",
     "glob": "^11.0.0",
     "gray-matter": "^4.0.3",
-    "human-id": "^4.1.1"
+    "human-id": "^4.1.1",
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
     "@types/node": "^22.3.0",

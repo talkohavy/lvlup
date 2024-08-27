@@ -20,6 +20,9 @@ importers:
       human-id:
         specifier: ^4.1.1
         version: 4.1.1
+      yargs:
+        specifier: ^17.7.2
+        version: 17.7.2
     devDependencies:
       '@types/node':
         specifier: ^22.3.0
@@ -42,9 +45,6 @@ importers:
       typescript:
         specifier: ^5.4.5
         version: 5.5.4
-      yargs:
-        specifier: ^17.7.2
-        version: 17.7.2
 
 packages:
 
