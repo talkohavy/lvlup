@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.15
+
+### Patch Changes
+
+- added a new line for DEFAULT_CONFIG_JSON
+
 ## 0.0.14
 
 ### Patch Changes
