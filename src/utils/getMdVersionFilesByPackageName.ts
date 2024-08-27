@@ -1,6 +1,6 @@
 import path from 'path';
 import { glob } from 'glob';
-import { LVLUP_DIR_NAME, LVLUP_DIR_PATH } from '../../../constants/globals.js';
+import { LVLUP_DIR_NAME, LVLUP_DIR_PATH } from '../constants/globals.js';
 
 async function getAllMdVersionFiles() {
   const mdVersionFilePathsRaw = await glob(`${LVLUP_DIR_NAME}/*.md`);
