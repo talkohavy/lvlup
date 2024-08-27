@@ -27,11 +27,11 @@ async function buildPackageConfig() {
 
   buildWithTsc();
 
-  manipulateShowVersionFunction(); // <--- must come AFTER build!
-
-  copyAndManipulatePackageJsonFile();
-
   copyStaticFiles();
+
+  updateVersionTemplates(); // <--- must come AFTER build!
+
+  manipulatePackageJsonFile(); // <--- must come AFTER copy of static files
 
   console.log(`${os.EOL}[34mDONE !!![39m${os.EOL}`);
 }
@@ -46,11 +46,14 @@ function buildWithTsc() {
   execSync('tsc -p ./tsconfig.json');
 }
 
-function copyAndManipulatePackageJsonFile() {
-  console.log('[32m- Step 4:[39m copy & manipulate the package.json file');
+function manipulatePackageJsonFile() {
+  console.log('[32m- Step 5:[39m copy & manipulate the package.json file');
+
+  const packageJsonPath = path.resolve(ROOT_PROJECT, outDirName, 'package.json');
+
   // Step 1: get the original package.json file
   /** @type {PackageJson} */
-  const packageJson = JSON.parse(fs.readFileSync('./package.json').toString());
+  const packageJson = JSON.parse(fs.readFileSync(packageJsonPath).toString());
 
   // Step 2: Remove all scripts
   delete packageJson.scripts;
@@ -67,12 +70,12 @@ function copyAndManipulatePackageJsonFile() {
   packageJson.types = packageJson.types.replace(`${outDirName}/`, '');
 
   // Step 5: create new package.json file in the output folder
-  fs.writeFileSync(`./${outDirName}/package.json`, JSON.stringify(packageJson));
+  fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson));
   console.log('  • [34mpackage.json[39m file written successfully!');
 }
 
-function manipulateShowVersionFunction() {
-  console.log('[32m- Step 3:[39m grab version from package.json');
+function updateVersionTemplates() {
+  console.log('[32m- Step 3:[39m update version templates with version from package.json');
 
   /** @type {PackageJson} */
   const packageJson = JSON.parse(fs.readFileSync('./package.json').toString());
@@ -80,16 +83,20 @@ function manipulateShowVersionFunction() {
 
   const showVersionFuncPath = path.resolve(process.cwd(), 'dist', 'flags', 'version.js');
   const showVersionFuncContent = fs.readFileSync(showVersionFuncPath, 'utf-8');
-
   const updatedShowVersionFuncContent = showVersionFuncContent.replace('{{version}}', version);
-
   fs.writeFileSync(showVersionFuncPath, updatedShowVersionFuncContent);
+
+  const constantsPath = path.resolve(process.cwd(), 'dist', 'commands', 'init', 'constants.js');
+  const constantsContent = fs.readFileSync(constantsPath, 'utf-8');
+  const updatedConstantsContent = constantsContent.replace('{{version}}', version);
+  fs.writeFileSync(constantsPath, updatedConstantsContent);
 }
 
 function copyStaticFiles() {
-  console.log('[32m- Step 5:[39m copy static files');
+  console.log('[32m- Step 4:[39m copy static files');
 
   const filesToCopyArr = [
+    { filename: 'package.json', sourceDirPath: [], destinationDirPath: [] },
     { filename: '.npmignore', sourceDirPath: [], destinationDirPath: [] },
     { filename: 'README.md', sourceDirPath: [], destinationDirPath: [] },
     { filename: 'schema.json', sourceDirPath: ['src', 'config'], destinationDirPath: [] },

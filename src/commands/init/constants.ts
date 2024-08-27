@@ -1,5 +1,5 @@
 export const DEFAULT_CONFIG_JSON = `{
-  "$schema": "https://unpkg.com/@changesets/config@3.0.2/schema.json",
+  "$schema": "https://unpkg.com/lvlup@{{version}}/schema.json",
   "commit": true,
   "access": "public",
   "baseBranch": "master",
