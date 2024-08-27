@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.14
+
+### Patch Changes
+
+- updated the DEFAULT_CONFIG_JSON & DEFAULT_README_MD
+
 ## 0.0.13
 
 ### Patch Changes
