@@ -3,14 +3,16 @@ import { COLORS } from '../../constants/colors.js';
 import { logger } from '../../utils/logger/logger.js';
 import { readPackageJson } from '../../utils/readPackageJson.js';
 import { validatePackageJsonVersion } from '../../utils/validatePackageJsonVersion.js';
-import { calculateNextVersionByChanges } from './helpers/calculateNextVersionFor.js';
-import { commitBumpChanges } from './helpers/commitBumpChanges.js';
-import { deleteUsedMdFiles } from './helpers/deleteUsedMdFiles.js';
-import { extractChangesByPackageName } from './helpers/ExtractChangesByPackageNameProps.js';
-import { getAllMdVersionFiles } from './helpers/getMdVersionFilesByPackageName.js';
-import { isZeroChanges } from './helpers/isZeroChanges.js';
-import { updateTheChangelog } from './helpers/updateTheChangelog.js';
-import { updateVersionInPackageJson } from './helpers/updateVersionInPackageJson.js';
+import {
+  calculateNextVersionByChanges,
+  commitBumpChanges,
+  deleteUsedMdFiles,
+  extractChangesByPackageName,
+  getAllMdVersionFiles,
+  isZeroChanges,
+  updateTheChangelog,
+  updateVersionInPackageJson,
+} from './helpers/index.js';
 
 async function bump() {
   try {
