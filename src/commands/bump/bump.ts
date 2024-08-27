@@ -1,5 +1,6 @@
 import os from 'os';
 import { COLORS } from '../../constants/colors.js';
+import { extractChangesByPackageName } from '../../utils/ExtractChangesByPackageName.js';
 import { getAllMdVersionFiles } from '../../utils/getMdVersionFilesByPackageName.js';
 import { logger } from '../../utils/logger/logger.js';
 import { readPackageJson } from '../../utils/readPackageJson.js';
@@ -8,7 +9,6 @@ import {
   calculateNextVersionByChanges,
   commitBumpChanges,
   deleteUsedMdFiles,
-  extractChangesByPackageName,
   isZeroChanges,
   updateTheChangelog,
   updateVersionInPackageJson,

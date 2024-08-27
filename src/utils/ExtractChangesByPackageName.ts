@@ -1,9 +1,9 @@
 import fs, { PathOrFileDescriptor } from 'fs';
 import matter from 'gray-matter';
-import { COLORS } from '../../../constants/colors.js';
-import { SemverLevels } from '../../../constants/enums.js';
-import { trimNewLinesAndSpaces } from '../../../utils/trimNewLinesAndSpaces.js';
-import { Changes } from '../types.js';
+import { Changes } from '../commands/bump/types.js';
+import { COLORS } from '../constants/colors.js';
+import { SemverLevels } from '../constants/enums.js';
+import { trimNewLinesAndSpaces } from './trimNewLinesAndSpaces.js';
 
 type ExtractChangesByPackageNameProps = {
   packageName: string;
