@@ -2,7 +2,8 @@ export const DEFAULT_CONFIG_JSON = `{
   "$schema": "https://unpkg.com/lvlup@{{version}}/schema.json",
   "commit": true,
   "access": "public"
-}`;
+}
+`;
 
 export const DEFAULT_README_MD = `# LvLup
 
