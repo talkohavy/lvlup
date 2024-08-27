@@ -16,6 +16,8 @@ import path from 'path';
  * }} PackageJson
  */
 
+const ROOT_PROJECT = process.cwd();
+
 const outDirName = 'dist';
 
 buildPackageConfig();
@@ -27,11 +29,9 @@ async function buildPackageConfig() {
 
   manipulateShowVersionFunction(); // <--- must come AFTER build!
 
-  copyReadmeFile();
-
-  copyNpmIgnore();
-
   copyAndManipulatePackageJsonFile();
+
+  copyStaticFiles();
 
   console.log(`${os.EOL}[34mDONE !!![39m${os.EOL}`);
 }
@@ -44,13 +44,6 @@ function cleanDistDirectory() {
 function buildWithTsc() {
   console.log('[32m- Step 2:[39m build the output dir');
   execSync('tsc -p ./tsconfig.json');
-}
-
-function copyReadmeFile() {
-  console.log('[32m- Step 3:[39m copy the README.md file');
-  const readStreamReadmeMd = fs.createReadStream('./README.md');
-  const writeStreamReadmeMd = fs.createWriteStream(`./${outDirName}/README.md`);
-  readStreamReadmeMd.pipe(writeStreamReadmeMd);
 }
 
 function copyAndManipulatePackageJsonFile() {
@@ -78,13 +71,8 @@ function copyAndManipulatePackageJsonFile() {
   console.log('  • [34mpackage.json[39m file written successfully!');
 }
 
-function copyNpmIgnore() {
-  console.log('[32m- Step 5:[39m copy the .npmignore file');
-  cpSync('.npmignore', `${outDirName}/.npmignore`);
-}
-
 function manipulateShowVersionFunction() {
-  console.log('[32m- Step 2.5:[39m grab version from package.json');
+  console.log('[32m- Step 3:[39m grab version from package.json');
 
   /** @type {PackageJson} */
   const packageJson = JSON.parse(fs.readFileSync('./package.json').toString());
@@ -96,4 +84,22 @@ function manipulateShowVersionFunction() {
   const updatedShowVersionFuncContent = showVersionFuncContent.replace('{{version}}', version);
 
   fs.writeFileSync(showVersionFuncPath, updatedShowVersionFuncContent);
+}
+
+function copyStaticFiles() {
+  console.log('[32m- Step 5:[39m copy static files');
+
+  const filesToCopyArr = [
+    { filename: '.npmignore', sourceDirPath: [], destinationDirPath: [] },
+    { filename: 'README.md', sourceDirPath: [], destinationDirPath: [] },
+    { filename: 'schema.json', sourceDirPath: ['src', 'config'], destinationDirPath: [] },
+  ];
+
+  filesToCopyArr.forEach(({ filename, sourceDirPath, destinationDirPath }) => {
+    const sourceFileFullPath = path.resolve(ROOT_PROJECT, ...sourceDirPath, filename);
+    const destinationFileFullPath = path.resolve(ROOT_PROJECT, outDirName, ...destinationDirPath, filename);
+
+    cpSync(sourceFileFullPath, destinationFileFullPath);
+    console.log(`    • ${filename}`);
+  });
 }
