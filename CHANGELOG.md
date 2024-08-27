@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.13
+
+### Patch Changes
+
+- the init command creates 2 files now: config.json & readme.md
+
 ## 0.0.12
 
 ### Patch Changes
