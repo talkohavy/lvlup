@@ -47,6 +47,7 @@ const yargInstance = yargs(hideBin(process.argv))
   .command('add', 'Add new change')
   .command('status', "Show the status before bumping the package's version")
   .command('bump', "Uses all md version files added by the `add` command to calculate and bump the package's version")
+  .command('publish', 'publishes the package to your designated registry using the rules you specified.')
   .options({
     // ---------
     // Option 1:

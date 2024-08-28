@@ -28,6 +28,7 @@
     "dev-add": "npm run build && node dist/index.js add",
     "dev-status": "npm run build && node dist/index.js status",
     "dev-bump": "npm run build && node dist/index.js bump",
+    "dev-publish": "npm run build && node dist/index.js publish",
     "dev-pub": "npm run build && cd dist && npm publish"
   },
   "publishConfig": {

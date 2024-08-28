@@ -23,5 +23,5 @@ export enum Commands {
   Add = 'add',
   Status = 'status',
   Bump = 'bump',
-  Publish = 'Publish',
+  Publish = 'publish',
 }
