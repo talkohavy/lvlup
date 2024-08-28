@@ -91,7 +91,7 @@ To publish public packages to NPM, you'll need to edit `.lvlup/config.json` and 
 ### 2. `add`
 
 ```
-lvlup add [--empty] [--open]
+lvlup add [--open]
 ```
 
 This command will ask you a series of questions. First, what semver bump type do you require, then it will ask for a summary of the changes. At the final step it will show the change metadata it will generate, and confirm that you want to add it.
