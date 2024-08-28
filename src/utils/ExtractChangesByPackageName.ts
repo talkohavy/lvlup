@@ -19,6 +19,8 @@ async function extractChangesByPackageName(props: ExtractChangesByPackageNamePro
     const fileContent = fs.readFileSync(versionFileAbsolutePath as PathOrFileDescriptor, 'utf-8');
     const { data: frontmatter, content: description } = matter(fileContent);
 
+    const filename = versionFileAbsolutePath.split('/').pop() as string;
+
     const trimmedDescription = trimNewLinesAndSpaces(description);
 
     if (!frontmatter?.[packageName]) return;
@@ -26,15 +28,15 @@ async function extractChangesByPackageName(props: ExtractChangesByPackageNamePro
     const semverLevel = frontmatter[packageName];
 
     if (semverLevel === SemverLevels.Major) {
-      return changes.major.push({ description: trimmedDescription });
+      return changes.major.push({ level: SemverLevels.Major, filename, description: trimmedDescription });
     }
 
     if (semverLevel === SemverLevels.Minor) {
-      return changes.minor.push({ description: trimmedDescription });
+      return changes.minor.push({ level: SemverLevels.Minor, filename, description: trimmedDescription });
     }
 
     if (semverLevel === SemverLevels.Patch) {
-      return changes.patch.push({ description: trimmedDescription });
+      return changes.patch.push({ level: SemverLevels.Patch, filename, description: trimmedDescription });
     }
 
     throw new Error(

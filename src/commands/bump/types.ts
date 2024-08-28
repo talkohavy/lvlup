@@ -1,6 +1,6 @@
 import { SemverLevels } from '../../constants/enums.js';
 
-type SingleChange = { description: string };
+type SingleChange = { filename: string; level: SemverLevels; description: string };
 
 export type Changes = {
   [SemverLevels.Major]: Array<SingleChange>;
