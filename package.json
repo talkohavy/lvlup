@@ -34,6 +34,10 @@
     "registry": "https://registry.npmjs.org/",
     "access": "restricted"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/talkohavy/lvlup"
+  },
   "author": "Tal Kohavy <talkohavy@gmail.com> (https://github.com/talkohavy)",
   "license": "MIT",
   "dependencies": {
