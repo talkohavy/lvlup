@@ -26,6 +26,7 @@
     "dev": "npm run build && node dist/index.js",
     "dev-init": "npm run build && node dist/index.js init",
     "dev-add": "npm run build && node dist/index.js add",
+    "dev-status": "npm run build && node dist/index.js status",
     "dev-bump": "npm run build && node dist/index.js bump",
     "dev-pub": "npm run build && cd dist && npm publish"
   },
