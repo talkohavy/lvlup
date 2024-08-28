@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.21
+
+### Patch Changes
+
+- removed the link
+
 ## 0.0.20
 
 ### Patch Changes
