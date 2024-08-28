@@ -86,7 +86,7 @@ lvlup init
 
 This command sets up the `.lvlup` folder. It generates a README.md and a config.json file. The config file includes the default options. You should run this command once, when you are setting up `lvlup`.
 
-To publish public packages to NPM, you'll need to edit `.lvlup/config.json` and change `"access": "restricted",` to `"access": "public",`. Read more about [access in config file options](https://github.com/changesets/changesets/blob/main/docs/config-file-options.md#access-restricted--public). The `publishConfig` of each `package.json` is also respected and takes a priority over the setting stored under `.lvlup/config.json`.
+To publish public packages to NPM, you'll need to edit `.lvlup/config.json` and change `"access": "restricted",` to `"access": "public",`. The `publishConfig` of each `package.json` is also respected and takes a priority over the setting stored under `.lvlup/config.json`.
 
 ### 2. `add`
 
