@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.18
+
+### Patch Changes
+
+- created a publish command
+
 ## 0.0.17
 
 ### Patch Changes
