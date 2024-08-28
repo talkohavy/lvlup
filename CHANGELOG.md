@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.17
+
+### Patch Changes
+
+- added a link to the git repository
+
 ## 0.0.16
 
 ### Patch Changes
