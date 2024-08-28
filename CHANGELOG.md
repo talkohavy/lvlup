@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.20
+
+### Patch Changes
+
+- added keywords and updated the README.md file
+
 ## 0.0.19
 
 ### Patch Changes
