@@ -5,10 +5,10 @@ import path from 'path';
 
 /**
  * @typedef {{
- *   main: string,
  *   version: string,
- *   types: string,
  *   private?: string | boolean,
+ *   main: string,
+ *   types: string,
  *   scripts?: Record<string, string>,
  *   publishConfig: {
  *     access: string

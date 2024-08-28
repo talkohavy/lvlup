@@ -2,9 +2,14 @@ export type PackageJson = {
   name: string;
   version: string;
   description?: string;
-  type?: 'module' | 'commonjs';
+  private?: boolean;
   main?: string;
   types?: string;
+  type?: 'module' | 'commonjs';
+  publishConfig: {
+    registry: string;
+    access: 'public' | 'restricted';
+  };
 };
 
 export type VersionObject = {

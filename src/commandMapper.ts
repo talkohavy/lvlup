@@ -1,6 +1,7 @@
 import { add } from './commands/add/index.js';
 import { bump } from './commands/bump/index.js';
 import { init } from './commands/init/index.js';
+import { publish } from './commands/publish/publish.js';
 import { status } from './commands/status/status.js';
 import { Commands } from './constants/types.js';
 
@@ -9,7 +10,7 @@ const COMMAND_MAPPER = {
   [Commands.Add]: add,
   [Commands.Status]: status,
   [Commands.Bump]: bump,
-  [Commands.Publish]: add,
+  [Commands.Publish]: publish,
 };
 
 type commandMapperProps = {
