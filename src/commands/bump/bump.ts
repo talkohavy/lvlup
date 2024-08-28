@@ -2,6 +2,7 @@ import os from 'os';
 import { COLORS } from '../../constants/colors.js';
 import { extractChangesByPackageName } from '../../utils/ExtractChangesByPackageName.js';
 import { getAllMdVersionFiles } from '../../utils/getMdVersionFilesByPackageName.js';
+import { isZeroChanges } from '../../utils/isZeroChanges.js';
 import { logger } from '../../utils/logger/logger.js';
 import { readPackageJson } from '../../utils/readPackageJson.js';
 import { validatePackageJsonVersion } from '../../utils/validatePackageJsonVersion.js';
@@ -9,7 +10,6 @@ import {
   calculateNextVersionByChanges,
   commitBumpChanges,
   deleteUsedMdFiles,
-  isZeroChanges,
   updateTheChangelog,
   updateVersionInPackageJson,
 } from './helpers/index.js';
