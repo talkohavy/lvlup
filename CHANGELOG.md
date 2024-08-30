@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.24
+
+### Patch Changes
+
+- EditorTypes accidently got into the choices for editor flag
+
 ## 0.0.23
 
 ### Patch Changes
