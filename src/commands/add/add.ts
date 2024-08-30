@@ -2,6 +2,7 @@ import os from 'os';
 import { COLORS } from '../../constants/colors.js';
 import { SemverLevels } from '../../constants/enums.js';
 import { EditorTypes } from '../../constants/types.js';
+import { logger } from '../../utils/logger/logger.js';
 import { readPackageJson } from '../../utils/readPackageJson.js';
 import { validateRootLvlupExists } from '../../utils/validateRootLvlupExists.js';
 import { commitTheNewMdFile } from './helpers/commitTheNewMdFile.js';
@@ -30,6 +31,12 @@ async function add(props: AddProps) {
 
     const semverLevel = await inquireSemver({ packageName, currentVersion });
     const commitMessage = await inquireCommitMessage({ editor });
+
+    if (!commitMessage) {
+      console.log('');
+      logger.error('commit message cannot be empty... exiting...');
+      throw new Error();
+    }
 
     displayChangesSummary({ packageName, semverLevel });
 

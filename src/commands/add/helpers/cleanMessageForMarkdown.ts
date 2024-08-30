@@ -3,6 +3,7 @@ function cleanMessageForMarkdown(message: string): string {
     .replace(/^#.*\n?/gm, '')
     .replace(/\n+$/g, '')
     .replace(/\n\n+/, '\n')
+    .replace(/\s\s+/g, ' ')
     .trim();
 }
 
