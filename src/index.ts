@@ -88,6 +88,7 @@ const yargInstance = yargs(hideBin(process.argv))
   .showHelpOnFail(false, 'Specify --help for available options') // default value is true.
   .strict() // <--- any unknown command, or unknown flag, will raise an error.
   .updateStrings({
+    'Positionals:': `${COLORS.blue}Flags:${COLORS.stop}`,
     'Commands:': `${COLORS.blue}Commands:${COLORS.stop}`,
     'Options:': `${COLORS.blue}Options:${COLORS.stop}`,
     'Examples:': `${COLORS.blue}Examples:${COLORS.stop}`,
