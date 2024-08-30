@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.22
+
+### Patch Changes
+
+- commit message cannot be empty, cannot be 2 or more consequtive spaces
+
 ## 0.0.21
 
 ### Patch Changes
