@@ -10,7 +10,7 @@
 
 ### Patch Changes
 
-- EditorTypes accidently got into the choices for editor flag
+- EditorTypes accidentally got into the choices for editor flag
 
 ## 0.0.23
 
