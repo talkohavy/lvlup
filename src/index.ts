@@ -53,11 +53,16 @@ const yargInstance = yargs(hideBin(process.argv))
         default: false,
       })
       .example('lvlup add --skip', 'Would skip the confirmation step.');
-    yargs.option('editor', {
-      type: 'string',
-      choices: [EditorTypes.Vi, EditorTypes.Vim, EditorTypes.Nano, EditorTypes.Code] as Array<EditorTypes>,
-      description: 'Choose the external editor for editing your message.',
-    });
+    yargs
+      .option('editor', {
+        type: 'string',
+        choices: [EditorTypes.Vi, EditorTypes.Vim, EditorTypes.Nano, EditorTypes.Code] as Array<EditorTypes>,
+        description: 'Choose the external editor for editing your message.',
+      })
+      .example(
+        'lvlup add --editor code',
+        'Would open up VsCode as editor when you hit enter on the insert message prompt.',
+      );
   })
   .command('status', "Show the status before bumping the package's version")
   .command('bump', "Uses all md version files added by the `add` command to calculate and bump the package's version")
