@@ -27,7 +27,9 @@ async function updateTheChangelog(props: UpdateTheChangelogProps) {
     changesAsOneBigString = `${changesAsOneBigString}${os.EOL}${os.EOL}### ${capitalize(key)} Changes${os.EOL}`;
 
     changes[key as SemverLevels].forEach((change) => {
-      changesAsOneBigString = `${changesAsOneBigString}${os.EOL}- ${change.description}`;
+      const descriptionAsMdBullet = change.description.replace(/\n/, '\n  ');
+
+      changesAsOneBigString = `${changesAsOneBigString}${os.EOL}- ${descriptionAsMdBullet}`;
     });
   }
 
