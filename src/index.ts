@@ -55,7 +55,7 @@ const yargInstance = yargs(hideBin(process.argv))
       .example('lvlup add --skip', 'Would skip the confirmation step.');
     yargs.positional('editor', {
       type: 'string',
-      choices: [EditorTypes.Vi, EditorTypes.Vim, EditorTypes.Nano, EditorTypes.Code, EditorTypes] as Array<EditorTypes>,
+      choices: [EditorTypes.Vi, EditorTypes.Vim, EditorTypes.Nano, EditorTypes.Code] as Array<EditorTypes>,
       description: 'Choose the external editor for editing your message.',
     });
   })
