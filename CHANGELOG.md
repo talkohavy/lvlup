@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.26
+
+### Patch Changes
+
+- bump command can now take into consideration new line items
+
 ## 0.0.25
 
 ### Patch Changes
