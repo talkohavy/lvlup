@@ -1,6 +1,7 @@
 import os from 'os';
 import { COLORS } from '../../constants/colors.js';
 import { SemverLevels } from '../../constants/enums.js';
+import { EditorTypes } from '../../constants/types.js';
 import { readPackageJson } from '../../utils/readPackageJson.js';
 import { validateRootLvlupExists } from '../../utils/validateRootLvlupExists.js';
 import { commitTheNewMdFile } from './helpers/commitTheNewMdFile.js';
@@ -15,11 +16,12 @@ import { inquireSemver } from './helpers/inquireSemver.js';
 
 type AddProps = {
   skip: boolean;
+  editor: EditorTypes;
 };
 
 async function add(props: AddProps) {
   try {
-    const { skip: shouldSkipConfirmation } = props;
+    const { skip: shouldSkipConfirmation, editor } = props;
 
     const { packageJsonAsObject } = await readPackageJson(); // <--- for `add` command, there's no need to run `validatePackageJsonVersion` after `readPackageJson`.
     const { version: currentVersion, name: packageName } = packageJsonAsObject;
@@ -27,7 +29,7 @@ async function add(props: AddProps) {
     validateRootLvlupExists();
 
     const semverLevel = await inquireSemver({ packageName, currentVersion });
-    const commitMessage = await inquireCommitMessage();
+    const commitMessage = await inquireCommitMessage({ editor });
 
     displayChangesSummary({ packageName, semverLevel });
 

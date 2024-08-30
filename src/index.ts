@@ -6,6 +6,7 @@ import yargs from 'yargs/yargs';
 import { commandMapper } from './commandMapper.js';
 import { bigTextLvlUp } from './constants/bigTextLvlUp.js';
 import { COLORS } from './constants/colors.js';
+import { EditorTypes } from './constants/types.js';
 import { showVersion } from './flags/version.js';
 
 type ArgsV = {
@@ -52,6 +53,11 @@ const yargInstance = yargs(hideBin(process.argv))
         default: false,
       })
       .example('lvlup add --skip', 'Would skip the confirmation step.');
+    yargs.positional('editor', {
+      type: 'string',
+      choices: [EditorTypes.Vi, EditorTypes.Vim, EditorTypes.Nano, EditorTypes.Code, EditorTypes] as Array<EditorTypes>,
+      description: 'Choose the external editor for editing your message.',
+    });
   })
   .command('status', "Show the status before bumping the package's version")
   .command('bump', "Uses all md version files added by the `add` command to calculate and bump the package's version")
