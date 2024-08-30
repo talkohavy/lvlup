@@ -47,13 +47,13 @@ const yargInstance = yargs(hideBin(process.argv))
   .command('init', 'To start using lvlup, you first need to run the init command.')
   .command('add [FLAGS]', 'Add new change', (yargs) => {
     yargs
-      .positional('skip', {
+      .option('skip', {
         description: 'Adding the skip option will not prompt the confirmation step, and basically skip it.',
         type: 'boolean',
         default: false,
       })
       .example('lvlup add --skip', 'Would skip the confirmation step.');
-    yargs.positional('editor', {
+    yargs.option('editor', {
       type: 'string',
       choices: [EditorTypes.Vi, EditorTypes.Vim, EditorTypes.Nano, EditorTypes.Code] as Array<EditorTypes>,
       description: 'Choose the external editor for editing your message.',
@@ -88,9 +88,9 @@ const yargInstance = yargs(hideBin(process.argv))
   .showHelpOnFail(false, 'Specify --help for available options') // default value is true.
   .strict() // <--- any unknown command, or unknown flag, will raise an error.
   .updateStrings({
-    'Positionals:': `${COLORS.blue}Flags:${COLORS.stop}`,
+    'Positionals:': `${COLORS.blue}Positionals:${COLORS.stop}`, // <--- I will never use these. only Options, which I alias as 'Flags'.
     'Commands:': `${COLORS.blue}Commands:${COLORS.stop}`,
-    'Options:': `${COLORS.blue}Options:${COLORS.stop}`,
+    'Options:': `${COLORS.blue}Flags:${COLORS.stop}`,
     'Examples:': `${COLORS.blue}Examples:${COLORS.stop}`,
   })
   /**
