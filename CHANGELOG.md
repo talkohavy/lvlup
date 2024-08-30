@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.23
+
+### Patch Changes
+
+- remaned positionals to blue colored Flags
+
 ## 0.0.22
 
 ### Patch Changes
