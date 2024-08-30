@@ -1,20 +1,30 @@
 import { COLORS } from '../../constants/colors.js';
+import { LOG_LEVEL_TO_COLOR, LogLevel } from './constants.js';
+import { LogOptions, PrintLogMessageByLevelProps } from './types.js';
 
 class Logger {
-  log(message: string) {
-    console.log('🎩', message);
+  log(message: string, options?: LogOptions) {
+    this.printLogMessageByLevel({ logLevel: LogLevel.Log, message, options });
   }
 
-  info(message: string) {
-    console.log(`🎩  ${COLORS.blue}info${COLORS.stop}`, message);
+  info(message: string, options?: LogOptions) {
+    this.printLogMessageByLevel({ logLevel: LogLevel.Info, message, options });
   }
 
-  warn(message: string) {
-    console.log(`🎩  ${COLORS.yellow}warn${COLORS.stop}`, message);
+  warn(message: string, options?: LogOptions) {
+    this.printLogMessageByLevel({ logLevel: LogLevel.Warn, message, options });
   }
 
-  error(message: string) {
-    console.log(`🎩  ${COLORS.red}error${COLORS.stop}`, message);
+  error(message: string, options?: LogOptions) {
+    this.printLogMessageByLevel({ logLevel: LogLevel.Error, message, options });
+  }
+
+  private printLogMessageByLevel(props: PrintLogMessageByLevelProps) {
+    const { logLevel, message, options } = props;
+
+    options?.newLineBefore && console.log('');
+    console[logLevel](`🎩  ${LOG_LEVEL_TO_COLOR[logLevel]}${logLevel}${COLORS.stop}`, message);
+    options?.newLineAfter && console.log('');
   }
 }
 

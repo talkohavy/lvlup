@@ -33,8 +33,7 @@ async function add(props: AddProps) {
     const commitMessage = await inquireCommitMessage({ editor });
 
     if (!commitMessage) {
-      console.log('');
-      logger.error('commit message cannot be empty... exiting...');
+      logger.error('commit message cannot be empty... exiting...', { newLineBefore: true });
       throw new Error();
     }
 

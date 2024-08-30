@@ -22,9 +22,10 @@ async function commitBumpChanges(props: CommitBumpChangesProps) {
   execSync('git add CHANGELOG.md');
   execSync("git commit -m 'RELEASING: Releasing 1 package'");
 
-  console.log('');
-  logger.info("✅  LVLUP - All files have been updated and committed. You're ready to publish!");
-  console.log('');
+  logger.info("✅  LVLUP - All files have been updated and committed. You're ready to publish!", {
+    newLineBefore: true,
+    newLineAfter: true,
+  });
 }
 
 export { commitBumpChanges };

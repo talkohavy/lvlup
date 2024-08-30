@@ -21,11 +21,9 @@ async function commitTheNewMdFile(props: inquireSemverProps) {
     execSync(`git add ${filenameFullPath}`);
     execSync(`git commit -m "docs(lvlup): ${escapedCommitMessage}"`);
 
-    console.log('');
-    logger.info('✅  LVLUP changes added and committed');
+    logger.info('✅  LVLUP changes added and committed', { newLineBefore: true });
     logger.info("✅  If you want to modify or expand on the change's summary, you can find it here");
-    logger.info(`✅  ${COLORS.yellow}${filenameFullPath}`);
-    console.log('');
+    logger.info(`✅  ${COLORS.yellow}${filenameFullPath}`, { newLineAfter: true });
   } catch (error) {
     logger.error(`[Git Error] Failed to commit the file '${filenameWithExtension}'...`);
 
