@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.25
+
+### Patch Changes
+
+- replaced positionals with flags in the help menu
+
 ## 0.0.24
 
 ### Patch Changes
