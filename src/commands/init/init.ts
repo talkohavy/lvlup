@@ -7,7 +7,9 @@ import { createConfigJsonFile } from './helpers/createConfigJsonFile.js';
 import { createLvlUpBaseDir } from './helpers/createLvlUpBaseDir.js';
 import { createReadmeMeFile } from './helpers/createReadmeMdFile.js';
 
-async function init() {
+type InitProps = any;
+
+async function init(_props?: InitProps) {
   try {
     if (isRootLvlupDirExists()) {
       logger.warn(

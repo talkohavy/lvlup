@@ -8,7 +8,9 @@ import { logger } from '../../utils/logger/logger.js';
 import { readPackageJson } from '../../utils/readPackageJson.js';
 import { printStatusTable } from './helpers/printStatusTable.js';
 
-async function status() {
+type StatusProps = any;
+
+async function status(_props?: StatusProps) {
   try {
     const { packageJsonAsObject } = await readPackageJson();
 

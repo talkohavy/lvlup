@@ -15,15 +15,15 @@ const COMMAND_MAPPER = {
 
 type commandMapperProps = {
   commands: Array<string>;
-  flags: Record<string, string | number | boolean>;
+  flags: any;
 };
 
 function commandMapper(props: commandMapperProps) {
-  const { commands } = props;
+  const { commands, flags } = props;
 
   const [command] = commands as [Commands];
 
-  COMMAND_MAPPER[command]();
+  COMMAND_MAPPER[command](flags);
 }
 
 export { commandMapper };

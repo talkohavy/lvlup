@@ -44,7 +44,13 @@ const yargInstance = yargs(hideBin(process.argv))
    * Optionally, you can provide a builder object to give hints about the options that your command accepts:
    */
   .command('init', 'To start using lvlup, you first need to run the init command.')
-  .command('add', 'Add new change')
+  .command('add', 'Add new change', (yargs) =>
+    yargs.positional('skip', {
+      describe: 'Adding the skip option will not prompt the confirmation step, and basically skip it.',
+      default: false,
+    }),
+  )
+  .example('lvlup add --skip', 'Would skip the confirmation step.')
   .command('status', "Show the status before bumping the package's version")
   .command('bump', "Uses all md version files added by the `add` command to calculate and bump the package's version")
   .command('publish', 'publishes the package to your designated registry using the rules you specified.')

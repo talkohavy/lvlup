@@ -4,7 +4,9 @@ import { COLORS } from '../../constants/colors.js';
 import { logger } from '../../utils/logger/logger.js';
 import { readPackageJson } from '../../utils/readPackageJson.js';
 
-async function publish() {
+type PublishProps = any;
+
+async function publish(_props?: PublishProps) {
   try {
     const { packageJsonAsObject } = await readPackageJson();
 

@@ -13,8 +13,14 @@ import { inquireSemver } from './helpers/inquireSemver.js';
 // If you're gonna use emojis, use one of these:
 // 🎩👑🌺⭐️✨❄️🥗🏆🎗️🥇🚀💎💊🔑🎁🎀✏️🔍🔓🛑❌✅💯❌🟢🟡🟠🔴🔵
 
-async function add() {
+type AddProps = {
+  skip: boolean;
+};
+
+async function add(props: AddProps) {
   try {
+    const { skip: shouldSkipConfirmation } = props;
+
     const { packageJsonAsObject } = await readPackageJson(); // <--- for `add` command, there's no need to run `validatePackageJsonVersion` after `readPackageJson`.
     const { version: currentVersion, name: packageName } = packageJsonAsObject;
 
@@ -25,7 +31,7 @@ async function add() {
 
     displayChangesSummary({ packageName, semverLevel });
 
-    const shouldMoveForward = await inquireConfirm();
+    const shouldMoveForward = shouldSkipConfirmation || (await inquireConfirm());
 
     if (!shouldMoveForward) return;
 

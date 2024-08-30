@@ -14,7 +14,9 @@ import {
   updateVersionInPackageJson,
 } from './helpers/index.js';
 
-async function bump() {
+type BumpProps = any;
+
+async function bump(_props?: BumpProps) {
   try {
     const { packageJsonAsObject, packageJsonAsString } = await readPackageJson();
 
