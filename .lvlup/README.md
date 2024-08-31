@@ -86,6 +86,7 @@ lvlup init
 
 This command sets up the `.lvlup` folder at the root of your project. It generates a `README.md` and a `config.json` file. The config file has to be found within the `.lvlup` dir in order for the tool to work. You should run the _init_ command once, when you are setting up `lvlup`.
 
+
 ### 2. `add`
 
 ```
@@ -135,6 +136,9 @@ lvlup publish
 
 Publishes to NPM repo. Because this command assumes that last commit is the release commit you should not commit any changes between calling `bump` and `publish`. These commands are separate to enable you to check if release commit is accurate.
 
+
+
+
 ### 5. `status`
 
 ```bash
@@ -142,3 +146,5 @@ lvlup status
 ```
 
 The status command provides information about the changes that currently exist in a nice tabular view.
+
+
