@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.31
+
+### Patch Changes
+
+- removed slashes before backticks inside default.README.md file
+
 ## 0.0.30
 
 ### Patch Changes
