@@ -40,6 +40,10 @@
     "type": "git",
     "url": "git+https://github.com/talkohavy/lvlup.git"
   },
+  "bugs": {
+    "url": "https://github.com/talkohavy/lvlup/issues",
+    "email": "talkohavy@gmail.com"
+  },
   "author": "Tal Kohavy <talkohavy@gmail.com> (https://github.com/talkohavy)",
   "license": "MIT",
   "dependencies": {
