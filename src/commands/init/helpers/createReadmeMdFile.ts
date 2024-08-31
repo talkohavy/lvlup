@@ -1,12 +1,19 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import { LVLUP_DIR_PATH } from '../../../constants/globals.js';
-import { DEFAULT_README_MD } from '../constants.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 function createReadmeMeFile() {
-  const readmeMdPath = path.resolve(LVLUP_DIR_PATH, 'README.md');
+  const readmeMdSourcePath = path.resolve(__dirname, '..', '..', '..', 'README.md');
+  const readmeMdDestinationPath = path.resolve(LVLUP_DIR_PATH, 'README.md');
 
-  fs.writeFileSync(readmeMdPath, DEFAULT_README_MD);
+  const readStream = fs.createReadStream(readmeMdSourcePath);
+  const writeStream = fs.createWriteStream(readmeMdDestinationPath);
+
+  readStream.pipe(writeStream);
 }
 
 export { createReadmeMeFile };

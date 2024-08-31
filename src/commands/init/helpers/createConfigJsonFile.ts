@@ -1,12 +1,19 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import { LVLUP_DIR_PATH } from '../../../constants/globals.js';
-import { DEFAULT_CONFIG_JSON } from '../constants.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 function createConfigJsonFile() {
-  const configJsonPath = path.resolve(LVLUP_DIR_PATH, 'config.json');
+  const configJsonSourcePath = path.resolve(__dirname, '..', '..', '..', 'default.config.json');
+  const configJsonDestinationPath = path.resolve(LVLUP_DIR_PATH, 'config.json');
 
-  fs.writeFileSync(configJsonPath, DEFAULT_CONFIG_JSON);
+  const readStream = fs.createReadStream(configJsonSourcePath);
+  const writeStream = fs.createWriteStream(configJsonDestinationPath);
+
+  readStream.pipe(writeStream);
 }
 
 export { createConfigJsonFile };
