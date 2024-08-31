@@ -1,5 +1,13 @@
 # lvlup
 
+## 0.0.27
+
+### Patch Changes
+
+- colorSemverLevels colored only the first occurrence of semverLevel
+- copying static files in a different way.
+  build process has been updated to support copy of static files.
+
 ## 0.0.26
 
 ### Patch Changes
