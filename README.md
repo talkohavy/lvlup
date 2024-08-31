@@ -46,7 +46,7 @@ and follow the prompts.
 
 The core concept that `lvlup` follows is that contributors to a repository should be able to declare an _intent to release_, and that multiple intents would then be calculated along with the package's current version to generate the next version.
 
-A single _change_ is an intent to release stored as data, with the information we need to combine multiple changes and coordinate releases.
+A single _change_ is an intent to release, stored as data, with the information we need to combine multiple changes and coordinate releases.
 
 ---
 
@@ -58,9 +58,9 @@ A contributor runs:
 npx lvlup add
 ```
 
-and answers the provided questions.
+and answers the prompted questions.
 
-When the maintainer wants to release packages, they should run:
+When the maintainer wants to release the package, they should run:
 
 ```bash
 npx lvlup bump
@@ -72,7 +72,7 @@ followed by:
 npx lvlup publish
 ```
 
-The commands are explained further below.
+The commands are explained further down below.
 
 ---
 
@@ -84,17 +84,16 @@ The commands are explained further below.
 lvlup init
 ```
 
-This command sets up the `.lvlup` folder. It generates a README.md and a config.json file. The config file includes the default options. You should run this command once, when you are setting up `lvlup`.
+This command sets up the `.lvlup` folder at the root of your project. It generates a `README.md` and a `config.json` file. The config file has to be found within the `.lvlup` dir in order for the tool to work. You should run the _init_ command once, when you are setting up `lvlup`.
 
-To publish public packages to NPM, you'll need to edit `.lvlup/config.json` and change `"access": "restricted",` to `"access": "public",`. The `publishConfig` of each `package.json` is also respected and takes a priority over the setting stored under `.lvlup/config.json`.
 
 ### 2. `add`
 
 ```
-lvlup add [--open]
+lvlup add [FLAGS]
 ```
 
-This command will ask you a series of questions. First, what semver bump type do you require, then it will ask for a summary of the changes. At the final step it will show the change metadata it will generate, and confirm that you want to add it.
+This command will ask you a series of questions. First, what semver bump type do you require (`major` | `minor` | `patch`), then it will ask for a summary of the changes. At the final step it will show the change metadata it will generate, and confirm that you want to add it.
 
 Once confirmed, the change metadata will bw written as a Markdown file that contains the summary and YAML front matter which stores the package's name that will be released and the semver bump types for it.
 
@@ -110,9 +109,10 @@ A description of the minor changes.
 
 If you want to modify the md file after it's generated, it's completely fine. Or, if you want to write a change file yourself, that's also fine.
 
-If you set the `commit` option in the config, the command will add the updated changeset files and then commit them.
+If you set the `commit.afterAdd` option in the config to `true`, the command will add the updated change files and then commit them.
 
-- `--open` - opens the created changeset in an external editor
+- `--skip` - skips the confirmation step of "are you sure?" at the end.
+- `--editor EditorType` - Choose an external editor as the means to write the change's description. EditorType can be one of: `vim` | `vi` | `nano` | `code` (code is for VsCode)
 
 ### 3. `bump`
 
@@ -120,29 +120,24 @@ If you set the `commit` option in the config, the command will add the updated c
 lvlup bump
 ```
 
-Updates the version of the package according to all changes under `.lvlup` since the last release.
+Updates the version of the package according to all changes found under `.lvlup` since the last release (WHETHER THEY ARE COMMITTED OR NOT ! ).
 
-Will also create/append to a **CHANGELOG** file using the summaries from the changesets.
+Will also create/append to a **CHANGELOG** file using the summaries from the change files.
 
 We recommend making sure changes made from this command are merged back into the base branch before you run `publish`.
 
-This command will read then delete change files on disk, ensuring that they are only used once.
+This command will **read**, and then **delete**, change files on disk, ensuring that they are only used once.
 
 ### 4. `publish`
 
 ```bash
-lvlup publish [--otp={token}]
+lvlup publish
 ```
 
-Publishes to NPM repo, and creates git tags. Because this command assumes that last commit is the release commit you should not commit any changes between calling `bump` and `publish`. These commands are separate to enable you to check if release commit is accurate.
+Publishes to NPM repo. Because this command assumes that last commit is the release commit you should not commit any changes between calling `bump` and `publish`. These commands are separate to enable you to check if release commit is accurate.
 
-- `--otp={token}` - allows you to provide an npm one-time password if you have auth and writes enabled on npm. The CLI also prompts for the OTP if it's not provided with the `--otp` option.
 
-**NOTE:** You will still need to push your changes back to the base branch after this
 
-```bash
-git push --follow-tags
-```
 
 ### 5. `status`
 
@@ -150,6 +145,6 @@ git push --follow-tags
 lvlup status
 ```
 
-The status command provides information about the changes that currently exist.
+The status command provides information about the changes that currently exist in a nice tabular view.
 
-<!-- - `--verbose` - use if you want to know the new versions, and get a link to the relevant changeset summary. -->
+
