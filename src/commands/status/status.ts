@@ -24,10 +24,12 @@ async function status(_props?: StatusProps) {
 
     for (const key in changes) {
       changes[key as SemverLevels].forEach((changeItem) => {
+        const trimmedDescription = `${changeItem.description.substring(0, 50)}...`;
+
         const cell = {
           Filename: changeItem.filename,
           Level: changeItem.level,
-          Description: changeItem.description,
+          Description: trimmedDescription,
         };
 
         changesAsTable.push(cell);
