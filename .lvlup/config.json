@@ -1,5 +1,5 @@
 {
-  "$schema": "https://unpkg.com/lvlup@0.0.29/schema.json",
+  "$schema": "https://unpkg.com/lvlup@0.0.30/schema.json",
   "commit": {
     "afterAdd": true,
     "afterBump": true
