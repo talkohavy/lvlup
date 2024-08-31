@@ -1,5 +1,7 @@
 {
   "$schema": "https://unpkg.com/lvlup@{{version}}/schema.json",
-  "commit": true,
-  "access": "public"
+  "autoCommit": {
+    "afterAdd": true,
+    "afterBump": true
+  }
 }

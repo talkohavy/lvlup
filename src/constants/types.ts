@@ -12,6 +12,13 @@ export type PackageJson = {
   };
 };
 
+export type ConfigJson = {
+  commit?: {
+    afterAdd?: boolean;
+    afterBump?: boolean;
+  };
+};
+
 export type VersionObject = {
   major: number;
   minor: number;

@@ -30,7 +30,7 @@ async function createNewMdFile(props: inquireSemverProps) {
 
     fs.writeFileSync(filenameFullPath, newMdContents);
 
-    return filenameWithExtension;
+    return filenameFullPath;
   } catch (error) {
     logger.error(`Failed to create file '${filenameWithExtension}'...`);
 
