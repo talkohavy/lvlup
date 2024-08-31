@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.29
+
+### Patch Changes
+
+- both add & bump commands now support the commit option under the `config.json`
+
 ## 0.0.28
 
 ### Patch Changes
