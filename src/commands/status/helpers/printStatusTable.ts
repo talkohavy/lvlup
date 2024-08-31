@@ -42,9 +42,9 @@ function colorTableTitles(tableAsString: string) {
 
 function colorSemverLevels(tableAsString: string) {
   return tableAsString
-    .replace(`  ${SemverLevels.Major}  `, `  ${COLORS.cyan}${SemverLevels.Major}${COLORS.stop}  `)
-    .replace(`  ${SemverLevels.Minor}  `, `  ${COLORS.cyan}${SemverLevels.Minor}${COLORS.stop}  `)
-    .replace(`  ${SemverLevels.Patch}  `, `  ${COLORS.cyan}${SemverLevels.Patch}${COLORS.stop}  `);
+    .replaceAll(`  ${SemverLevels.Major}  `, `  ${COLORS.cyan}${SemverLevels.Major}${COLORS.stop}  `)
+    .replaceAll(`  ${SemverLevels.Minor}  `, `  ${COLORS.cyan}${SemverLevels.Minor}${COLORS.stop}  `)
+    .replaceAll(`  ${SemverLevels.Patch}  `, `  ${COLORS.cyan}${SemverLevels.Patch}${COLORS.stop}  `);
 }
 
 function colorMdFilePaths(tableAsString: string) {
