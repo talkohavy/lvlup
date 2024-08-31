@@ -4,6 +4,7 @@ import { extractChangesByPackageName } from '../../utils/ExtractChangesByPackage
 import { getAllMdVersionFiles } from '../../utils/getMdVersionFilesByPackageName.js';
 import { isZeroChanges } from '../../utils/isZeroChanges.js';
 import { logger } from '../../utils/logger/logger.js';
+import { readConfigJson } from '../../utils/readConfigJson.js';
 import { readPackageJson } from '../../utils/readPackageJson.js';
 import { validatePackageJsonVersion } from '../../utils/validatePackageJsonVersion.js';
 import {
@@ -19,10 +20,11 @@ type BumpProps = any;
 async function bump(_props?: BumpProps) {
   try {
     const { packageJsonAsObject, packageJsonAsString } = await readPackageJson();
-
     const { name: packageName, version: prevVersion } = packageJsonAsObject;
-
     const currentVersionParsed = validatePackageJsonVersion(prevVersion);
+
+    const { configJsonAsObject } = await readConfigJson();
+    const { afterBump: shouldCommitAfterBump } = configJsonAsObject.commit ?? {};
 
     const mdVersionFilePaths = await getAllMdVersionFiles();
 
@@ -40,9 +42,21 @@ async function bump(_props?: BumpProps) {
 
     await updateTheChangelog({ packageName, nextVersion, changes });
 
-    await commitBumpChanges({ mdVersionFilePaths });
-
-    logger.info('All files have been updated and committed. You are ready to publish!');
+    if (shouldCommitAfterBump) {
+      await commitBumpChanges({ mdVersionFilePaths });
+      logger.info("✅  LVLUP - All files have been updated and committed. You're ready to publish!", {
+        newLineBefore: true,
+        newLineAfter: true,
+      });
+    } else {
+      logger.info(
+        "✅  LVLUP - All files have been updated but not yet committed. Please review them, commit them, and then you'll be ready to publish.",
+        {
+          newLineBefore: true,
+          newLineAfter: true,
+        },
+      );
+    }
   } catch (error) {
     logger.error('Something went wrong...');
 
