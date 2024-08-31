@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.30
+
+### Patch Changes
+
+- README.md sourcePath was incorrect !@#$%^&*()_+
+
 ## 0.0.29
 
 ### Patch Changes

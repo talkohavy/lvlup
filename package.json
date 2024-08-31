@@ -1,6 +1,6 @@
 {
   "name": "lvlup",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "description": "A simple version manager solution for packages",
   "private": "true",
   "type": "module",
