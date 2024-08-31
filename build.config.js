@@ -80,6 +80,7 @@ function copyStaticFiles() {
   const filesToCopyArr = [
     { filename: 'package.json', sourceDirPath: [], destinationDirPath: [] },
     { filename: '.npmignore', sourceDirPath: [], destinationDirPath: [] },
+    { filename: '.npmrc', sourceDirPath: [], destinationDirPath: [] },
     { filename: 'README.md', sourceDirPath: [], destinationDirPath: [] },
     {
       filename: 'default.README.md',
