@@ -74,31 +74,23 @@ function manipulatePackageJsonFile() {
   console.log('  • [34mpackage.json[39m file written successfully!');
 }
 
-function updateVersionTemplates() {
-  console.log('[32m- Step 3:[39m update version templates with version from package.json');
-
-  /** @type {PackageJson} */
-  const packageJson = JSON.parse(fs.readFileSync('./package.json').toString());
-  const { version } = packageJson;
-
-  const showVersionFuncPath = path.resolve(process.cwd(), 'dist', 'flags', 'version.js');
-  const showVersionFuncContent = fs.readFileSync(showVersionFuncPath, 'utf-8');
-  const updatedShowVersionFuncContent = showVersionFuncContent.replace('{{version}}', version);
-  fs.writeFileSync(showVersionFuncPath, updatedShowVersionFuncContent);
-
-  const constantsPath = path.resolve(process.cwd(), 'dist', 'commands', 'init', 'constants.js');
-  const constantsContent = fs.readFileSync(constantsPath, 'utf-8');
-  const updatedConstantsContent = constantsContent.replace('{{version}}', version);
-  fs.writeFileSync(constantsPath, updatedConstantsContent);
-}
-
 function copyStaticFiles() {
-  console.log('[32m- Step 4:[39m copy static files');
+  console.log('[32m- Step 3:[39m copy static files');
 
   const filesToCopyArr = [
     { filename: 'package.json', sourceDirPath: [], destinationDirPath: [] },
     { filename: '.npmignore', sourceDirPath: [], destinationDirPath: [] },
     { filename: 'README.md', sourceDirPath: [], destinationDirPath: [] },
+    {
+      filename: 'default.README.md',
+      sourceDirPath: ['src', 'commands', 'init'],
+      destinationDirPath: [],
+    },
+    {
+      filename: 'default.config.json',
+      sourceDirPath: ['src', 'commands', 'init'],
+      destinationDirPath: [],
+    },
     { filename: 'schema.json', sourceDirPath: ['src', 'config'], destinationDirPath: [] },
   ];
 
@@ -109,4 +101,22 @@ function copyStaticFiles() {
     cpSync(sourceFileFullPath, destinationFileFullPath);
     console.log(`    • ${filename}`);
   });
+}
+
+function updateVersionTemplates() {
+  console.log('[32m- Step 4:[39m update version templates with version from package.json');
+
+  /** @type {PackageJson} */
+  const packageJson = JSON.parse(fs.readFileSync('./package.json').toString());
+  const { version } = packageJson;
+
+  const showVersionFuncPath = path.resolve(process.cwd(), 'dist', 'flags', 'version.js');
+  const showVersionFuncContent = fs.readFileSync(showVersionFuncPath, 'utf-8');
+  const updatedShowVersionFuncContent = showVersionFuncContent.replace('{{version}}', version);
+  fs.writeFileSync(showVersionFuncPath, updatedShowVersionFuncContent);
+
+  const defaultConfigJsonPath = path.resolve(process.cwd(), 'dist', 'default.config.json');
+  const defaultConfigJsonContent = fs.readFileSync(defaultConfigJsonPath, 'utf-8');
+  const updatedDefaultConfigJsonContent = defaultConfigJsonContent.replace('{{version}}', version);
+  fs.writeFileSync(defaultConfigJsonPath, updatedDefaultConfigJsonContent);
 }
