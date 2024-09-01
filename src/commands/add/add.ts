@@ -72,7 +72,7 @@ async function executeAddByAnswers(props: ExecuteAddProps) {
   }
 
   logger.info("✅  If you want to modify or expand on the change's summary, you can find it here");
-  logger.info(`✅  ${COLORS.yellow}${filenameFullPath}`, { newLineAfter: true });
+  logger.info(`✅  ${COLORS.yellow}${filenameFullPath}${COLORS.stop}`, { newLineAfter: true });
 }
 
 export { add };

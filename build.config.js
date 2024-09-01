@@ -38,7 +38,7 @@ async function buildPackageConfig() {
 
 function cleanDistDirectory() {
   console.log('[32m- Step 1:[39m clear the dist directory');
-  execSync('rm -rf dist');
+  execSync('rd /s /q dist');
 }
 
 function buildWithTsc() {
