@@ -3,6 +3,8 @@ import path from 'path';
 import { humanId } from 'human-id';
 import { SemverLevels } from '../../../constants/enums.js';
 import { LVLUP_DIR_PATH } from '../../../constants/globals.js';
+import { convertLFToCLRF } from '../../../utils/convertLFToCLRF.js';
+import { isWindows } from '../../../utils/isWindows.js';
 import { logger } from '../../../utils/logger/logger.js';
 import { mdVersionFileTemplate } from './constants.js';
 
@@ -26,9 +28,11 @@ async function createNewMdFile(props: inquireSemverProps) {
       .replace('{{semverLevel}}', semverLevel)
       .replace('{{commitMessage}}', commitMessage);
 
+    const correctedMdContents = isWindows() ? convertLFToCLRF(newMdContents) : newMdContents;
+
     const filenameFullPath = path.resolve(LVLUP_DIR_PATH, filenameWithExtension);
 
-    fs.writeFileSync(filenameFullPath, newMdContents);
+    fs.writeFileSync(filenameFullPath, correctedMdContents);
 
     return filenameFullPath;
   } catch (error) {
