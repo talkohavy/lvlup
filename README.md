@@ -98,7 +98,7 @@ A change that minor bumps `axios` would look like this:
 
 ```md
 ---
-axios: minor
+"axios": minor
 ---
 
 A description of the minor changes.
