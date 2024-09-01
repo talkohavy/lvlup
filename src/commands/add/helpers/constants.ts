@@ -1,5 +1,5 @@
 export const mdVersionFileTemplate = `---
-{{packageName}}: {{semverLevel}}
+"{{packageName}}": {{semverLevel}}
 ---
 
 {{commitMessage}}
