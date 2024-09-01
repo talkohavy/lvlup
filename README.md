@@ -1,9 +1,7 @@
 # lvlup 🎩
 
-<p align="center" >
-  <img src="https://i.ibb.co/Z8cNZVZ/level-up.png" width="250" alt="lvlup logo" 
-  style="background-color:white; border-radius:50%; box-shadow:0px 0px 5px 2px rgba(66,200,118,1);"
-  />
+<p align="center">
+  <img src="https://i.ibb.co/3dqjJfw/lvlup-v1.png" width="250" alt="lvlup logo" />
 </p>
 
 A CLI tool to help you manage your package versions easily.
