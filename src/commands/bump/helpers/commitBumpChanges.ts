@@ -20,7 +20,7 @@ async function commitBumpChanges(props: CommitBumpChangesProps) {
   });
   execSync('git add package.json');
   execSync('git add CHANGELOG.md');
-  execSync("git commit -m 'RELEASING: Releasing 1 package'");
+  execSync('git commit -m "RELEASING: Releasing 1 package"');
 }
 
 export { commitBumpChanges };
