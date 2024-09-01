@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.34
+
+### Patch Changes
+
+- lvlup is now cross platform.
+
 ## 0.0.33
 
 ### Patch Changes
