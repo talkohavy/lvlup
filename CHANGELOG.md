@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.36
+
+### Patch Changes
+
+- init's last logger.info color was wrongfully positioned
+
 ## 0.0.35
 
 ### Patch Changes
