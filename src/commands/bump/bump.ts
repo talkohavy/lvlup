@@ -34,7 +34,7 @@ async function bump(_props?: BumpProps) {
 
     const nextVersion = await calculateNextVersionByChanges({ changes, currentVersion: currentVersionParsed });
 
-    logger.info(`New package version: ${COLORS.yellow}${nextVersion}`);
+    logger.info(`New package version: ${COLORS.yellow}${nextVersion}${COLORS.stop}`);
 
     await updateVersionInPackageJson({ packageJsonAsString, prevVersion, nextVersion });
 
