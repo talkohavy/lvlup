@@ -2,4 +2,4 @@
 lvlup: patch
 ---
 
-lvlup is now cross platform
+lvlup is now cross platform.
