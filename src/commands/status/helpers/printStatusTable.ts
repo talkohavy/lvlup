@@ -1,4 +1,5 @@
 import { Console } from 'console';
+import os from 'os';
 import { Transform } from 'stream';
 import { COLORS } from '../../../constants/colors.js';
 import { SemverLevels } from '../../../constants/enums.js';
@@ -63,7 +64,7 @@ function printStatusTable(input: Array<Record<string, string>>) {
   const tableWithCyanSemverLevels = colorSemverLevels(tableWithGreenTitles);
   const tableWithYellowMdFilePaths = colorMdFilePaths(tableWithCyanSemverLevels);
 
-  console.log(tableWithYellowMdFilePaths);
+  console.log(`${os.EOL}${tableWithYellowMdFilePaths}`);
 }
 
 export { printStatusTable };
