@@ -38,7 +38,11 @@ async function buildPackageConfig() {
 
 function cleanDistDirectory() {
   console.log('[32m- Step 1:[39m clear the dist directory');
-  execSync('rd /s /q dist');
+  if (os.platform() === 'win32') {
+    execSync('rd /s /q dist');
+  } else {
+    execSync('rm -rf dist');
+  }
 }
 
 function buildWithTsc() {
