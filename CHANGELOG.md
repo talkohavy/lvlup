@@ -1,5 +1,13 @@
 # lvlup
 
+## 0.0.37
+
+### Patch Changes
+
+- packageName inside of mdVersionFileTemplate must be wrapped in quotes because scoped packages begin with @ and gray matter can't parse it with out quotes
+- print a new line break before printing the status table
+- after logging the New package version, need to do stop the coloring
+
 ## 0.0.36
 
 ### Patch Changes
