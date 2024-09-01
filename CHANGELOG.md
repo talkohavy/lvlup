@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.35
+
+### Patch Changes
+
+- getAllMdVersionFiles now ignores the README.md file
+
 ## 0.0.34
 
 ### Patch Changes
