@@ -30,7 +30,7 @@ async function init(_props?: InitProps) {
     logger.info(
       `- ${COLORS.blue}${LVLUP_DIR_NAME}/README.md${COLORS.stop} contains information about using ${LVLUP_TOOL_NAME_COLORED}`,
     );
-    logger.info(`${COLORS.blue}- ${LVLUP_DIR_NAME}/config.json is our default config`);
+    logger.info(`- ${COLORS.blue}${LVLUP_DIR_NAME}/config.json${COLORS.stop} is our default config`);
   } catch (_error: any) {
     console.log(`${os.EOL}${COLORS.red}Bye.${os.EOL}`);
   }
