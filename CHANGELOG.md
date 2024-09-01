@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.33
+
+### Patch Changes
+
+- ok NOWWWW the images will support dark mode on github
+
 ## 0.0.32
 
 ### Patch Changes
