@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.32
+
+### Patch Changes
+
+- updated the readme.md main image logo to fit in dark mode
+
 ## 0.0.31
 
 ### Patch Changes
