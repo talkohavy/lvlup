@@ -6,7 +6,7 @@ async function getAllMdVersionFiles() {
   const mdVersionFilePathsRaw = await glob(`${LVLUP_DIR_NAME}/*.md`);
 
   const mdVersionFilePaths = mdVersionFilePathsRaw.map((file) => {
-    const filenameWithExtension = file.replace(`${LVLUP_DIR_NAME}/`, '');
+    const filenameWithExtension = file.replace(path.join(LVLUP_DIR_NAME, path.sep), '');
     const filenameFullPath = path.resolve(LVLUP_DIR_PATH, filenameWithExtension);
     return filenameFullPath;
   });
