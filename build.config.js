@@ -84,7 +84,7 @@ function copyStaticFiles() {
   const filesToCopyArr = [
     { filename: 'package.json', sourceDirPath: [], destinationDirPath: [] },
     { filename: '.npmignore', sourceDirPath: [], destinationDirPath: [] },
-    { filename: '.npmrc', sourceDirPath: [], destinationDirPath: [] },
+    { filename: '.npmrc', sourceDirPath: [], destinationDirPath: [], isAllowedToFail: true },
     { filename: 'README.md', sourceDirPath: [], destinationDirPath: [] },
     {
       filename: 'default.README.md',
@@ -99,12 +99,19 @@ function copyStaticFiles() {
     { filename: 'schema.json', sourceDirPath: ['src', 'config'], destinationDirPath: [] },
   ];
 
-  filesToCopyArr.forEach(({ filename, sourceDirPath, destinationDirPath }) => {
-    const sourceFileFullPath = path.resolve(ROOT_PROJECT, ...sourceDirPath, filename);
-    const destinationFileFullPath = path.resolve(ROOT_PROJECT, outDirName, ...destinationDirPath, filename);
+  filesToCopyArr.forEach(({ filename, sourceDirPath, destinationDirPath, isAllowedToFail }) => {
+    try {
+      const sourceFileFullPath = path.resolve(ROOT_PROJECT, ...sourceDirPath, filename);
+      const destinationFileFullPath = path.resolve(ROOT_PROJECT, outDirName, ...destinationDirPath, filename);
 
-    cpSync(sourceFileFullPath, destinationFileFullPath);
-    console.log(`    • ${filename}`);
+      cpSync(sourceFileFullPath, destinationFileFullPath);
+      console.log(`    • ${filename}`);
+    } catch (error) {
+      console.error(error);
+      if (isAllowedToFail) return;
+
+      throw new Error('File MUST exists in order to PASS build process! cp operation failed...');
+    }
   });
 }
 
