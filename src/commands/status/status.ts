@@ -1,4 +1,5 @@
 import os from 'os';
+import path from 'path';
 import { COLORS } from '../../constants/colors.js';
 import { SemverLevels } from '../../constants/enums.js';
 import { extractChangesByPackageName } from '../../utils/ExtractChangesByPackageName.js';
@@ -27,7 +28,7 @@ async function status(_props?: StatusProps) {
         const trimmedDescription = `${changeItem.description.substring(0, 50)}...`;
 
         const cell = {
-          Filename: changeItem.filename,
+          Filename: path.basename(changeItem.filename),
           Level: changeItem.level,
           Description: trimmedDescription,
         };
