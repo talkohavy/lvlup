@@ -1,5 +1,11 @@
 # lvlup
 
+## 0.0.38
+
+### Patch Changes
+
+- status should only display the filename, not its full path
+
 ## 0.0.37
 
 ### Patch Changes
