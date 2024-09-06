@@ -92,7 +92,7 @@ The mentioned commands are explained further down below.
 
 ---
 
-## Commands
+## 4. Commands
 
 ### 1. `init`
 
@@ -159,3 +159,7 @@ lvlup status
 ```
 
 The status command provides information about all the `experience` files that currently exist in a nice tabular view.
+
+<p align="center">
+  <img src="https://i.ibb.co/9y8gTDC/lvlup-status.png" width="1280" alt="lvlup status" />
+</p>
