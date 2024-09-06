@@ -66,12 +66,12 @@ async function executeAddByAnswers(props: ExecuteAddProps) {
 
   if (shouldCommitAfterAdd) {
     await commitTheNewMdFile({ filenameFullPath, commitMessage });
-    logger.info('✅  LVLUP changes added and committed', { newLineBefore: true });
+    logger.info('✅  LVLUP added an experience file and committed it', { newLineBefore: true });
   } else {
-    logger.info('✅  LVLUP changes added but not yet committed', { newLineBefore: true });
+    logger.info('✅  LVLUP added an experience file. Please go over it and then commit it', { newLineBefore: true });
   }
 
-  logger.info("✅  If you want to modify or expand on the change's summary, you can find it here");
+  logger.info('✅  If you want to modify the experience, or expand its summary, you can find it here:');
   logger.info(`✅  ${COLORS.yellow}${filenameFullPath}${COLORS.stop}`, { newLineAfter: true });
 }
 

@@ -1,5 +1,21 @@
 # lvlup
 
+## 1.0.0
+
+### Major Changes
+
+- First Major release of LvLup CLI tool
+
+### Minor Changes
+
+- added a blue status title
+
+### Patch Changes
+
+- fix status command: remove additional '...' from descriptions below 50 chars
+- found some grammer issues in some prints
+- using console-table-printer now as our table printer
+
 ## 0.0.38
 
 ### Patch Changes
@@ -54,7 +70,7 @@
 
 ### Patch Changes
 
-- README.md sourcePath was incorrect !@#$%^&*()_+
+- README.md sourcePath was incorrect !@#$%^&\*()\_+
 
 ## 0.0.29
 

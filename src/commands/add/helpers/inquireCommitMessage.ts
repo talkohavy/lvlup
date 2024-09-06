@@ -17,7 +17,7 @@ type InquireCommitMessageProps = {
 async function inquireCommitMessage(props?: InquireCommitMessageProps) {
   const { editor } = props ?? {};
 
-  console.log(`${COLORS.green} ✨  Please enter a summary for this change (this will be in the changelogs).`);
+  console.log(`${COLORS.green} ✨  Please enter a summary for this change (this will appear in the CHANGELOG).`);
   console.log(`${COLORS.black} ✨    (submit empty line to open external editor)`);
 
   const commitMessageFromTerminal = await input({ message: 'Summary >' });

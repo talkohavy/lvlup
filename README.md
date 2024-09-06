@@ -6,7 +6,11 @@
 
 A CLI tool to help you manage your package versions easily.
 
-## Getting Started
+<p align="center">
+  <img src="https://i.ibb.co/3y3tYQP/lvlup-help.png" width="1280" alt="lvlup help" />
+</p>
+
+## 1. Getting Started
 
 ### Step 1: Install the package
 
@@ -28,7 +32,7 @@ npx lvlup init
 
 You are now ready to use the CLI tool 🙂
 
-### Step 3: Add your first change
+### Step 3: Add your first experience
 
 Run the following:
 
@@ -40,25 +44,37 @@ and follow the prompts.
 
 ---
 
-## Core Concepts
+## 2. Core Concepts
 
-The core concept that `lvlup` follows is that contributors to a repository should be able to declare an _intent to release_, and that multiple intents would then be calculated along with the package's current version to generate the next version.
+### `lvlup`
 
-A single _change_ is an intent to release, stored as data, with the information we need to combine multiple changes and coordinate releases.
+As the name of the package suggests, **LvLup** is all about leveling up your package. We took the boring concept of package versioning, and added a small form of gamification to it.
+
+### `Experience`
+
+An `experience` is a contributor's _intent to release_, stored as data within a file.
+
+With `lvlup`, you essentially take a package, add some `experience` to it, and when it's ready - it levels up and bumps to the next level, i.e. the next version number.
+
+Contributors to a repository should be able to declare an_intent to release, creating `experience` file(s), and multiple `experience`s would then be used to calculate the next level (next version).
+
+`lvlup` makes sure that an `experience` is only used once for the purpose of leveling up a package.
 
 ---
 
-### Your new Workflow
+## 3. Your new Workflow
 
-A contributor runs:
+When a contributor, working on a side branch, is done working on a new feature or a bugfix, they run:
 
 ```bash
 npx lvlup add
 ```
 
-and answers the prompted questions.
+and answer the prompted questions.
+And `experience` file is then created, holding the new information as data.  
+The contributor then creates a PR for that side branch.
 
-When the maintainer wants to release the package, they should run:
+When the maintainer deems the PR worthy, and merges it, they should run:
 
 ```bash
 npx lvlup bump
@@ -70,7 +86,9 @@ followed by:
 npx lvlup publish
 ```
 
-The commands are explained further down below.
+Typically, and for **best practice purposes**, you should have a CI _trigger on merges to the main branch_, and have it run the `bump` & `publish` commands for you automatically.
+
+The mentioned commands are explained further down below.
 
 ---
 
@@ -90,11 +108,11 @@ This command sets up the `.lvlup` folder at the root of your project. It generat
 lvlup add [FLAGS]
 ```
 
-This command will ask you a series of questions. First, what semver bump type do you require (`major` | `minor` | `patch`), then it will ask for a summary of the changes. At the final step it will show the change metadata it will generate, and confirm that you want to add it.
+This command will ask you a series of questions. First, what semver bump type do you require (`major` | `minor` | `patch`), then it will ask for a summary of the changes. At the final step it will show the `experience`'s metadata to be generated, and confirm that you want to add it.
 
-Once confirmed, the change metadata will bw written as a Markdown file that contains the summary and YAML front matter which stores the package's name that will be released and the semver bump types for it.
+Once confirmed, `experience` file be written as a Markdown file that contains the summary and YAML front matter which stores the package's name that will be released and the semver bump types for it.
 
-A change that minor bumps `axios` would look like this:
+For example, an `experience` file that minor bumps `axios` would look like this:
 
 ```md
 ---
@@ -104,12 +122,12 @@ A change that minor bumps `axios` would look like this:
 A description of the minor changes.
 ```
 
-If you want to modify the md file after it's generated, it's completely fine. Or, if you want to write a change file yourself, that's also fine.
+If you want to modify the `experience` file after it's generated, it's completely fine. You can even write your own `experience` files yourself if you want, just don't forget to commit them.
 
-If you set the `commit.afterAdd` option in the config to `true`, the command will add the updated change files and then commit them.
+Inside your `.lvlup/config.json`, if you were to set the `commit.afterAdd` option to `true`, the `add` command will create and also commit the `experience` file.
 
 - `--skip` - skips the confirmation step of "are you sure?" at the end.
-- `--editor EditorType` - Choose an external editor as the means to write the change's description. EditorType can be one of: `vim` | `vi` | `nano` | `code` (code is for VsCode)
+- `--editor EditorType` - Choose an external editor as the means to write the `experience`'s description. EditorType can be one of: `vim` | `vi` | `nano` | `code` (code is for VsCode)
 
 ### 3. `bump`
 
@@ -117,13 +135,14 @@ If you set the `commit.afterAdd` option in the config to `true`, the command wil
 lvlup bump
 ```
 
-Updates the version of the package according to all changes found under `.lvlup` since the last release (WHETHER THEY ARE COMMITTED OR NOT ! ).
+Levels up your package.  
+Updates the version of the package according to all `experience` files found under `.lvlup` since the last release (WHETHER THEY ARE COMMITTED OR NOT ! So make sure they are committed).
 
-Will also create/append to a **CHANGELOG** file using the summaries from the change files.
+Will also create/append to a **CHANGELOG** file using the summaries from the `experience` files.
 
-We recommend making sure changes made from this command are merged back into the base branch before you run `publish`.
+We recommend making sure changes made from this command are merged back into the main branch before you run `publish`.
 
-This command will **read**, and then **delete**, change files on disk, ensuring that they are only used once.
+This command will **read**, and then **delete**, `experience` files found on disk, ensuring that they are only used once.
 
 ### 4. `publish`
 
@@ -131,7 +150,7 @@ This command will **read**, and then **delete**, change files on disk, ensuring 
 lvlup publish
 ```
 
-Publishes to NPM repo. Because this command assumes that last commit is the release commit you should not commit any changes between calling `bump` and `publish`. These commands are separate to enable you to check if release commit is accurate.
+Publishes the package to a dedicated registry. Because this command assumes that last commit is the release commit you should not commit any changes between calling `bump` and `publish`. These commands are separate to enable you to check if release commit is accurate.
 
 ### 5. `status`
 
@@ -139,4 +158,4 @@ Publishes to NPM repo. Because this command assumes that last commit is the rele
 lvlup status
 ```
 
-The status command provides information about the changes that currently exist in a nice tabular view.
+The status command provides information about all the `experience` files that currently exist in a nice tabular view.
