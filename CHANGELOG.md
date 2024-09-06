@@ -1,5 +1,11 @@
 # lvlup
 
+## 1.0.1
+
+### Patch Changes
+
+- added an example image of the status command's output
+
 ## 1.0.0
 
 ### Major Changes
