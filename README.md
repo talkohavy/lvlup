@@ -56,7 +56,7 @@ An `experience` is a contributor's _intent to release_, stored as data within a 
 
 With `lvlup`, you essentially take a package, add some `experience` to it, and when it's ready - it levels up and bumps to the next level, i.e. the next version number.
 
-Contributors to a repository should be able to declare an_intent to release, creating `experience` file(s), and multiple `experience`s would then be used to calculate the next level (next version).
+Contributors to a repository should be able to declare an _intent to release_, creating `experience` file(s), and multiple `experience`s would then be used to calculate the next level (next version).
 
 `lvlup` makes sure that an `experience` is only used once for the purpose of leveling up a package.
 
@@ -64,29 +64,30 @@ Contributors to a repository should be able to declare an_intent to release, cre
 
 ## 3. Your new Workflow
 
-When a contributor, working on a side branch, is done working on a new feature or a bugfix, they run:
+Your team just started working on a _to-be-released_ branch called `RELEASE-123` (made-up name).
+A contributor branched out of `RELEASE-123`, and checked out to some `side-branch`. When this contributor is done working on a new feature, a bugfix, or a major change oin their `side-branch`, they should run:
 
 ```bash
 npx lvlup add
 ```
 
-and answer the prompted questions.
-And `experience` file is then created, holding the new information as data.  
-The contributor then creates a PR for that side branch.
+and answer the prompted questions. An `experience` file is then created, holding the new information as data.
 
-When the maintainer deems the PR worthy, and merges it, they should run:
+The `experience` file should be committed, and be included in the PR to be merged into branch `RELEASE-123`.
+
+The `lvlup add` command can occur many times either by the same contributor (on the same `side-branch` branch), or by multiple contributors (on different side branches, also to be merged into `RELEASE-123`).
+
+When the maintainer wants to release the package, after all desired PRs to `RELEASE-123` branch had been merged, they should checkout to the `HEAD` of `RELEASE-123`, and run:
 
 ```bash
 npx lvlup bump
 ```
 
-followed by:
+followed by the command:
 
 ```bash
 npx lvlup publish
 ```
-
-Typically, and for **best practice purposes**, you should have a CI _trigger on merges to the main branch_, and have it run the `bump` & `publish` commands for you automatically.
 
 The mentioned commands are explained further down below.
 
