@@ -1,5 +1,11 @@
 # lvlup
 
+## 1.0.2
+
+### Patch Changes
+
+- better explanation of the new workflow
+
 ## 1.0.1
 
 ### Patch Changes
