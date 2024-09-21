@@ -4,10 +4,11 @@ import { logger } from '../../../utils/logger/logger.js';
 
 type CommitBumpChangesProps = {
   mdVersionFilePaths: Array<string>;
+  version: string;
 };
 
 async function commitBumpChanges(props: CommitBumpChangesProps) {
-  const { mdVersionFilePaths } = props;
+  const { mdVersionFilePaths, version } = props;
 
   mdVersionFilePaths.forEach((mdVersionFileAbsolutePath) => {
     try {
@@ -21,6 +22,7 @@ async function commitBumpChanges(props: CommitBumpChangesProps) {
   execSync('git add package.json');
   execSync('git add CHANGELOG.md');
   execSync('git commit -m "RELEASING: Releasing 1 package"');
+  execSync(`git tag -a v${version} -m "Release version ${version}"`);
 }
 
 export { commitBumpChanges };

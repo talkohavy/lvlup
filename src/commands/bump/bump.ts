@@ -43,7 +43,7 @@ async function bump(_props?: BumpProps) {
     await updateTheChangelog({ packageName, nextVersion, changes });
 
     if (shouldCommitAfterBump) {
-      await commitBumpChanges({ mdVersionFilePaths });
+      await commitBumpChanges({ mdVersionFilePaths, version: nextVersion });
       logger.info("✅  LVLUP - All files have been updated and committed. You're ready to publish!", {
         newLineBefore: true,
         newLineAfter: true,
