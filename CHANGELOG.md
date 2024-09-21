@@ -1,5 +1,11 @@
 # lvlup
 
+## 1.0.3
+
+### Patch Changes
+
+- lvlup will now tag your bump commit with the version number
+
 ## 1.0.2
 
 ### Patch Changes
