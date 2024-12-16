@@ -17,6 +17,7 @@ import path from 'path';
  */
 
 const ROOT_PROJECT = process.cwd();
+const mode = process.env.NODE_ENV;
 
 const outDirName = 'dist';
 
@@ -47,7 +48,10 @@ function cleanDistDirectory() {
 
 function buildWithTsc() {
   console.log('[32m- Step 2:[39m build the output dir');
-  execSync('tsc -p ./tsconfig.json');
+
+  const flags = mode === 'production' ? ' --sourceMap false --declaration false' : '';
+
+  execSync(`tsc -p ./tsconfig.json${flags}`);
 }
 
 function manipulatePackageJsonFile() {

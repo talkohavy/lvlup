@@ -61,7 +61,7 @@
     // ---------------
     "noEmit": false, // set to `true` to disable emitting files from a compilation.
     "outDir": "./dist", // Specify an output folder for all emitted files.
-    "declaration": true, // Generate .d.ts files from TypeScript and JavaScript files in your project.
+    "declaration": false, // Generate .d.ts files from TypeScript and JavaScript files in your project.
     // "emitDeclarationOnly": true, // Only output d.ts files and not JavaScript files
     "sourceMap": true, // <--- I need this to be able to debug, but I don't want .map file be published along with my package! defaults to `false`. Create source map files for emitted JavaScript files.
     // "declarationMap": true, // Create sourcemaps for d.ts files.
