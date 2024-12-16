@@ -1,5 +1,11 @@
 # lvlup
 
+## 1.0.4
+
+### Patch Changes
+
+- fixed changelog doesn't work issu
+
 ## 1.0.3
 
 ### Patch Changes
