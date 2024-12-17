@@ -1,5 +1,5 @@
 import { Separator, select } from '@inquirer/prompts';
-import { SemverLevels } from '../../../constants/enums.js';
+import { SemverLevels } from '../../../common/constants/enums.js';
 
 type inquireSemverProps = {
   packageName: string;

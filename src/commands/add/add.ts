@@ -1,11 +1,11 @@
 import os from 'os';
-import { COLORS } from '../../constants/colors.js';
-import { SemverLevels } from '../../constants/enums.js';
-import { EditorTypes } from '../../constants/types.js';
-import { logger } from '../../utils/logger/logger.js';
-import { readConfigJson } from '../../utils/readConfigJson.js';
-import { readPackageJson } from '../../utils/readPackageJson.js';
-import { validateRootLvlupExists } from '../../utils/validateRootLvlupExists.js';
+import { COLORS } from '../../common/constants/colors.js';
+import { SemverLevels } from '../../common/constants/enums.js';
+import { EditorTypes } from '../../common/constants/types.js';
+import { logger } from '../../common/utils/logger/logger.js';
+import { readConfigJson } from '../../common/utils/readConfigJson.js';
+import { readPackageJson } from '../../common/utils/readPackageJson.js';
+import { validateRootLvlupExists } from '../../common/utils/validateRootLvlupExists.js';
 import { commitTheNewMdFile } from './helpers/commitTheNewMdFile.js';
 import { createNewMdFile } from './helpers/createNewMdFile.js';
 import { displayChangesSummary } from './helpers/displayChangesSummary.js';

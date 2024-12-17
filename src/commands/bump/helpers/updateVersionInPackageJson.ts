@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { PROJECT_ROOT } from '../../../constants/globals.js';
+import { PROJECT_ROOT } from '../../../common/constants/globals.js';
 
 type updateVersionInPackageJsonProps = {
   packageJsonAsString: string;

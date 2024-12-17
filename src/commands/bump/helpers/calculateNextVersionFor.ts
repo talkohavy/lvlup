@@ -1,4 +1,4 @@
-import { VersionObject } from '../../../constants/types.js';
+import { VersionObject } from '../../../common/constants/types.js';
 import { Changes } from '../types.js';
 
 type CalculateNextVersionByChangesProps = {

@@ -1,9 +1,9 @@
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
-import { SemverLevels } from '../../../constants/enums.js';
-import { CHANGELOG_FILENAME, PROJECT_ROOT } from '../../../constants/globals.js';
-import { capitalize } from '../../../utils/capitalize.js';
+import { SemverLevels } from '../../../common/constants/enums.js';
+import { CHANGELOG_FILENAME, PROJECT_ROOT } from '../../../common/constants/globals.js';
+import { capitalize } from '../../../common/utils/capitalize.js';
 import { Changes } from '../types.js';
 
 type UpdateTheChangelogProps = {
@@ -12,7 +12,7 @@ type UpdateTheChangelogProps = {
   changes: Changes;
 };
 
-async function updateTheChangelog(props: UpdateTheChangelogProps) {
+export async function updateTheChangelog(props: UpdateTheChangelogProps) {
   const { packageName, nextVersion, changes } = props;
 
   const changelogFullPath = path.resolve(PROJECT_ROOT, CHANGELOG_FILENAME);
@@ -49,5 +49,3 @@ async function updateTheChangelog(props: UpdateTheChangelogProps) {
   // Write the updated content back to the CHANGELOG.md file
   fs.writeFileSync(changelogFullPath, updatedChangelogContent, 'utf-8');
 }
-
-export { updateTheChangelog };

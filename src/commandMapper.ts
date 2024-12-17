@@ -3,7 +3,7 @@ import { bump } from './commands/bump/index.js';
 import { init } from './commands/init/index.js';
 import { publish } from './commands/publish/publish.js';
 import { status } from './commands/status/status.js';
-import { Commands } from './constants/types.js';
+import { Commands } from './common/constants/types.js';
 
 const COMMAND_MAPPER = {
   [Commands.Init]: init,
@@ -18,12 +18,14 @@ type commandMapperProps = {
   flags: any;
 };
 
-function commandMapper(props: commandMapperProps) {
-  const { commands, flags } = props;
+export async function commandMapper(props: commandMapperProps) {
+  try {
+    const { commands, flags } = props;
 
-  const [command] = commands as [Commands];
+    const [command] = commands as [Commands];
 
-  COMMAND_MAPPER[command](flags);
+    await COMMAND_MAPPER[command](flags);
+  } catch (_error: any) {
+    _error;
+  }
 }
-
-export { commandMapper };

@@ -1,15 +1,15 @@
 import os from 'os';
-import { COLORS } from '../../constants/colors.js';
-import { LVLUP_DIR_NAME, LVLUP_TOOL_NAME_COLORED } from '../../constants/globals.js';
-import { isRootLvlupDirExists } from '../../utils/isRootLvlupDirExists.js';
-import { logger } from '../../utils/logger/logger.js';
+import { COLORS } from '../../common/constants/colors.js';
+import { LVLUP_DIR_NAME, LVLUP_TOOL_NAME_COLORED } from '../../common/constants/globals.js';
+import { isRootLvlupDirExists } from '../../common/utils/isRootLvlupDirExists.js';
+import { logger } from '../../common/utils/logger/logger.js';
 import { createConfigJsonFile } from './helpers/createConfigJsonFile.js';
 import { createLvlUpBaseDir } from './helpers/createLvlUpBaseDir.js';
 import { createReadmeMeFile } from './helpers/createReadmeMdFile.js';
 
 type InitProps = any;
 
-async function init(_props?: InitProps) {
+export async function init(_props?: InitProps) {
   try {
     if (isRootLvlupDirExists()) {
       logger.warn(
@@ -35,5 +35,3 @@ async function init(_props?: InitProps) {
     console.log(`${os.EOL}${COLORS.red}Bye.${os.EOL}`);
   }
 }
-
-export { init };

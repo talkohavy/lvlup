@@ -1,12 +1,12 @@
 import { execSync } from 'child_process';
-import { logger } from '../../../utils/logger/logger.js';
+import { logger } from '../../../common/utils/logger/logger.js';
 
 type inquireSemverProps = {
   filenameFullPath: string;
   commitMessage: string;
 };
 
-async function commitTheNewMdFile(props: inquireSemverProps) {
+export async function commitTheNewMdFile(props: inquireSemverProps) {
   const logMetadata = { filenameFullPath: 'no-name' };
 
   try {
@@ -23,5 +23,3 @@ async function commitTheNewMdFile(props: inquireSemverProps) {
     throw error;
   }
 }
-
-export { commitTheNewMdFile };

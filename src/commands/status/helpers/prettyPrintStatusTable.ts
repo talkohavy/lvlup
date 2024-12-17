@@ -1,5 +1,5 @@
 import { Table } from 'console-table-printer';
-import { COLORS } from '../../../constants/colors.js';
+import { COLORS } from '../../../common/constants/colors.js';
 
 const tableFrameStyle = {
   headerTop: {

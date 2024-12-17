@@ -1,6 +1,6 @@
 import os from 'os';
-import { COLORS } from '../../../constants/colors.js';
-import { SemverLevels } from '../../../constants/enums.js';
+import { COLORS } from '../../../common/constants/colors.js';
+import { SemverLevels } from '../../../common/constants/enums.js';
 
 type inquireSemverProps = {
   packageName: string;

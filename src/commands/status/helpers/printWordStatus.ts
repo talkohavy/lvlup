@@ -1,4 +1,4 @@
-import { COLORS } from '../../../constants/colors.js';
+import { COLORS } from '../../../common/constants/colors.js';
 
 function printWordStatus() {
   console.log(`${COLORS.blue}    

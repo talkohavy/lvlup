@@ -1,6 +1,6 @@
 import fs, { PathOrFileDescriptor } from 'fs';
 import matter from 'gray-matter';
-import { Changes } from '../commands/bump/types.js';
+import { Changes } from '../../commands/bump/types.js';
 import { COLORS } from '../constants/colors.js';
 import { SemverLevels } from '../constants/enums.js';
 import { trimNewLinesAndSpaces } from './trimNewLinesAndSpaces.js';
@@ -10,7 +10,7 @@ type ExtractChangesByPackageNameProps = {
   mdVersionFilePaths: Array<string>;
 };
 
-async function extractChangesByPackageName(props: ExtractChangesByPackageNameProps) {
+export async function extractChangesByPackageName(props: ExtractChangesByPackageNameProps) {
   const { mdVersionFilePaths, packageName } = props;
 
   const changes: Changes = { major: [], minor: [], patch: [] };
@@ -46,5 +46,3 @@ async function extractChangesByPackageName(props: ExtractChangesByPackageNamePro
 
   return changes;
 }
-
-export { extractChangesByPackageName };

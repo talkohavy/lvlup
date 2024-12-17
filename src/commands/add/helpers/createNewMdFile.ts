@@ -1,11 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 import { humanId } from 'human-id';
-import { SemverLevels } from '../../../constants/enums.js';
-import { LVLUP_DIR_PATH } from '../../../constants/globals.js';
-import { convertLFToCLRF } from '../../../utils/convertLFToCLRF.js';
-import { isWindows } from '../../../utils/isWindows.js';
-import { logger } from '../../../utils/logger/logger.js';
+import { SemverLevels } from '../../../common/constants/enums.js';
+import { LVLUP_DIR_PATH } from '../../../common/constants/globals.js';
+import { convertLFToCLRF } from '../../../common/utils/convertLFToCLRF.js';
+import { isWindows } from '../../../common/utils/isWindows.js';
+import { logger } from '../../../common/utils/logger/logger.js';
 import { mdVersionFileTemplate } from './constants.js';
 
 type inquireSemverProps = {
@@ -14,7 +14,7 @@ type inquireSemverProps = {
   commitMessage: string;
 };
 
-async function createNewMdFile(props: inquireSemverProps) {
+export async function createNewMdFile(props: inquireSemverProps) {
   let filenameWithExtension = 'no-name';
 
   try {
@@ -41,5 +41,3 @@ async function createNewMdFile(props: inquireSemverProps) {
     throw error;
   }
 }
-
-export { createNewMdFile };

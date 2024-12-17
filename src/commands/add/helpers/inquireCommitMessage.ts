@@ -1,10 +1,10 @@
 import os from 'os';
 import { CreateFileError, ExternalEditor, LaunchEditorError, ReadFileError, RemoveFileError } from 'external-editor';
 import { input } from '@inquirer/prompts';
-import { COLORS } from '../../../constants/colors.js';
-import { LVLUP_TOOL_NAME } from '../../../constants/globals.js';
-import { EditorTypes } from '../../../constants/types.js';
-import { logger } from '../../../utils/logger/logger.js';
+import { COLORS } from '../../../common/constants/colors.js';
+import { LVLUP_TOOL_NAME } from '../../../common/constants/globals.js';
+import { EditorTypes } from '../../../common/constants/types.js';
+import { logger } from '../../../common/utils/logger/logger.js';
 import { cleanMessageForMarkdown } from './cleanMessageForMarkdown.js';
 import { useVsCodeAsEditor } from './useVsCodeAsEditor.js';
 
@@ -14,7 +14,7 @@ type InquireCommitMessageProps = {
   editor?: EditorTypes;
 };
 
-async function inquireCommitMessage(props?: InquireCommitMessageProps) {
+export async function inquireCommitMessage(props?: InquireCommitMessageProps) {
   const { editor } = props ?? {};
 
   console.log(`${COLORS.green} ✨  Please enter a summary for this change (this will appear in the CHANGELOG).`);
@@ -65,5 +65,3 @@ function getMessageFromExternalEditor(editor: string = 'vim') {
     throw error;
   }
 }
-
-export { inquireCommitMessage };

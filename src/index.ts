@@ -4,10 +4,10 @@ import os from 'os';
 import { hideBin } from 'yargs/helpers';
 import yargs from 'yargs/yargs';
 import { commandMapper } from './commandMapper.js';
-import { bigTextLvlUp } from './constants/bigTextLvlUp.js';
-import { COLORS } from './constants/colors.js';
-import { EditorTypes } from './constants/types.js';
-import { showVersion } from './flags/version.js';
+import { bigTextLvlUp } from './common/constants/bigTextLvlUp.js';
+import { COLORS } from './common/constants/colors.js';
+import { EditorTypes } from './common/constants/types.js';
+import { showVersion } from './common/utils/showVersion.js';
 
 type ArgsV = {
   $0: any;
