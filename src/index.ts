@@ -129,7 +129,7 @@ async function run() {
     process.exit(0);
   }
 
-  commandMapper({ commands, flags });
+  await commandMapper({ commands, flags });
 }
 
 run();

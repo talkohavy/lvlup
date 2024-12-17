@@ -1,4 +1,3 @@
-import os from 'os';
 import { COLORS } from '../../common/constants/colors.js';
 import { SemverLevels } from '../../common/constants/enums.js';
 import { EditorTypes } from '../../common/constants/types.js';
@@ -22,32 +21,28 @@ type AddProps = {
 };
 
 async function add(props: AddProps) {
-  try {
-    const { skip: shouldSkipConfirmation, editor } = props;
+  const { skip: shouldSkipConfirmation, editor } = props;
 
-    const { packageJsonAsObject } = await readPackageJson(); // <--- for `add` command, there's no need to run `validatePackageJsonVersion` after `readPackageJson`.
-    const { version: currentVersion, name: packageName } = packageJsonAsObject;
+  const { packageJsonAsObject } = await readPackageJson(); // <--- for `add` command, there's no need to run `validatePackageJsonVersion` after `readPackageJson`.
+  const { version: currentVersion, name: packageName } = packageJsonAsObject;
 
-    validateRootLvlupExists();
+  validateRootLvlupExists();
 
-    const semverLevel = await inquireSemver({ packageName, currentVersion });
-    const commitMessage = await inquireCommitMessage({ editor });
+  const semverLevel = await inquireSemver({ packageName, currentVersion });
+  const commitMessage = await inquireCommitMessage({ editor });
 
-    if (!commitMessage) {
-      logger.error('commit message cannot be empty... exiting...', { newLineBefore: true });
-      throw new Error();
-    }
-
-    displayChangesSummary({ packageName, semverLevel });
-
-    const shouldMoveForward = shouldSkipConfirmation || (await inquireConfirm());
-
-    if (!shouldMoveForward) return;
-
-    executeAddByAnswers({ packageName, semverLevel, commitMessage });
-  } catch (_error: any) {
-    console.log(`${os.EOL}${COLORS.red}Bye.${os.EOL}`);
+  if (!commitMessage) {
+    logger.error('commit message cannot be empty... exiting...', { newLineBefore: true });
+    throw new Error();
   }
+
+  displayChangesSummary({ packageName, semverLevel });
+
+  const shouldMoveForward = shouldSkipConfirmation || (await inquireConfirm());
+
+  if (!shouldMoveForward) return;
+
+  executeAddByAnswers({ packageName, semverLevel, commitMessage });
 }
 
 type ExecuteAddProps = {
