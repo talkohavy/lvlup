@@ -1,6 +1,6 @@
 import { COLORS } from './colors.js';
 
-export const bigTextLvlUp = `
+export const toolNameBigText = `
 ${COLORS.bright}${COLORS.blue}________________________________
  _         _       _   _
 | | __   _| |     | | | |_ __
