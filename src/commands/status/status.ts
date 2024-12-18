@@ -6,6 +6,9 @@ import { readPackageJson } from '../../common/utils/readPackageJson.js';
 import { prettyPrintStatusTable } from './helpers/prettyPrintStatusTable.js';
 import { printWordStatus } from './helpers/printWordStatus.js';
 
+export const statusCommandString = 'status';
+export const statusCommandDescription = "Show the status before bumping the package's version";
+
 type StatusProps = any;
 
 export async function status(_props?: StatusProps) {

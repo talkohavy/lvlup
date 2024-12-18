@@ -15,6 +15,10 @@ import {
   updateVersionInPackageJson,
 } from './helpers/index.js';
 
+export const bumpCommandString = 'bump';
+export const bumpCommandDescription =
+  "Uses all md version files added by the `add` command to calculate and bump the package's version";
+
 type BumpProps = any;
 
 export async function bump(_props?: BumpProps) {

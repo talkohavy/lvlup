@@ -7,6 +7,9 @@ import { createConfigJsonFile } from './helpers/createConfigJsonFile.js';
 import { createLvlUpBaseDir } from './helpers/createLvlUpBaseDir.js';
 import { createReadmeMeFile } from './helpers/createReadmeMdFile.js';
 
+export const initCommandString = 'init';
+export const initCommandDescription = 'To start using lvlup, you first need to run the init command.';
+
 type InitProps = any;
 
 export async function init(_props?: InitProps) {

@@ -1,3 +1,4 @@
+import { Argv } from 'yargs';
 import { COLORS } from '../../common/constants/colors.js';
 import { SemverLevels } from '../../common/constants/globals.js';
 import { EditorTypes } from '../../common/types.js';
@@ -11,6 +12,29 @@ import { displayChangesSummary } from './helpers/displayChangesSummary.js';
 import { inquireCommitMessage } from './helpers/inquireCommitMessage.js';
 import { inquireConfirm } from './helpers/inquireConfirm.js';
 import { inquireSemver } from './helpers/inquireSemver.js';
+
+export const addCommandString = 'add [FLAGS]';
+export const addCommandDescription = 'Add new change';
+
+export function addCommandBuilder(yargs: Argv) {
+  yargs
+    .option('skip', {
+      description: 'Adding the skip option will not prompt the confirmation step, and basically skip it.',
+      type: 'boolean',
+      default: false,
+    })
+    .example('lvlup add --skip', 'Would skip the confirmation step.');
+  yargs
+    .option('editor', {
+      type: 'string',
+      choices: [EditorTypes.Vi, EditorTypes.Vim, EditorTypes.Nano, EditorTypes.Code] as Array<EditorTypes>,
+      description: 'Choose the external editor for editing your message.',
+    })
+    .example(
+      'lvlup add --editor code',
+      'Would open up VsCode as editor when you hit enter on the insert message prompt.',
+    );
+}
 
 // If you're gonna use emojis, use one of these:
 // 🎩👑🌺⭐️✨❄️🥗🏆🎗️🥇🚀💎💊🔑🎁🎀✏️🔍🔓🛑❌✅💯❌🟢🟡🟠🔴🔵

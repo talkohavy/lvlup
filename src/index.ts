@@ -6,13 +6,12 @@ import yargs from 'yargs/yargs';
 import { commandMapper } from './commandMapper.js';
 import { bigTextLvlUp } from './common/constants/bigTextLvlUp.js';
 import { COLORS } from './common/constants/colors.js';
-import { EditorTypes } from './common/types.js';
 import { showVersion } from './common/utils/showVersion.js';
-
-type ArgsV = {
-  $0: any;
-  _: Array<string>;
-} & Record<string, string | number | boolean>;
+import { addCommandBuilder, addCommandDescription, addCommandString } from './commands/add/add.js';
+import { bumpCommandDescription, bumpCommandString } from './commands/bump/bump.js';
+import { initCommandDescription, initCommandString } from './commands/init/init.js';
+import { statusCommandDescription, statusCommandString } from './commands/status/status.js';
+import { publishCommandDescription, publishCommandString } from './commands/publish/publish.js';
 
 const yargInstance = yargs(hideBin(process.argv))
   /**
@@ -44,33 +43,12 @@ const yargInstance = yargs(hideBin(process.argv))
    *
    * Optionally, you can provide a builder object to give hints about the options that your command accepts:
    */
-  .command('init', 'To start using lvlup, you first need to run the init command.')
-  .command('add [FLAGS]', 'Add new change', (yargs) => {
-    yargs
-      .option('skip', {
-        description: 'Adding the skip option will not prompt the confirmation step, and basically skip it.',
-        type: 'boolean',
-        default: false,
-      })
-      .example('lvlup add --skip', 'Would skip the confirmation step.');
-    yargs
-      .option('editor', {
-        type: 'string',
-        choices: [EditorTypes.Vi, EditorTypes.Vim, EditorTypes.Nano, EditorTypes.Code] as Array<EditorTypes>,
-        description: 'Choose the external editor for editing your message.',
-      })
-      .example(
-        'lvlup add --editor code',
-        'Would open up VsCode as editor when you hit enter on the insert message prompt.',
-      );
-  })
-  .command('status', "Show the status before bumping the package's version")
-  .command('bump', "Uses all md version files added by the `add` command to calculate and bump the package's version")
-  .command('publish', 'publishes the package to your designated registry using the rules you specified.')
+  .command(initCommandString, initCommandDescription)
+  .command(addCommandString, addCommandDescription, addCommandBuilder)
+  .command(statusCommandString, statusCommandDescription)
+  .command(bumpCommandString, bumpCommandDescription)
+  .command(publishCommandString, publishCommandDescription)
   .options({
-    // ---------
-    // Option 1:
-    // ---------
     v: {
       alias: 'version',
       type: 'boolean',
@@ -78,13 +56,12 @@ const yargInstance = yargs(hideBin(process.argv))
       default: false,
       global: false,
     },
-    // ---------
-    // Option 1:
-    // ---------
     h: {
       alias: 'help',
       type: 'boolean',
       description: 'Show help manual',
+      default: false,
+      global: true,
     },
   })
   // .example([
@@ -110,6 +87,8 @@ const yargInstance = yargs(hideBin(process.argv))
    * If invoked without parameters, .help() will use --help as the option and help as the implicit command to trigger help output.
    */
   .help(false); // <--- help('help') & help() result in the same behavior.
+
+type ArgsV = { $0: any; _: Array<string> } & Record<string, string | number | boolean>;
 
 async function run() {
   const argv = yargInstance.parse();
