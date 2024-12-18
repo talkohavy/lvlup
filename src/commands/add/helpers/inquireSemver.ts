@@ -1,12 +1,12 @@
 import { Separator, select } from '@inquirer/prompts';
-import { SemverLevels } from '../../../common/constants/enums.js';
+import { SemverLevels } from '../../../common/constants/globals.js';
 
 type inquireSemverProps = {
   packageName: string;
   currentVersion: string;
 };
 
-async function inquireSemver(props: inquireSemverProps) {
+export async function inquireSemver(props: inquireSemverProps) {
   const { packageName, currentVersion } = props;
 
   const semverLevel = await select({
@@ -35,5 +35,3 @@ async function inquireSemver(props: inquireSemverProps) {
 
   return semverLevel;
 }
-
-export { inquireSemver };

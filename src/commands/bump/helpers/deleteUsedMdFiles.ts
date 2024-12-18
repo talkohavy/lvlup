@@ -4,7 +4,7 @@ type deleteUsedMdFilesProps = {
   mdVersionFilePaths: Array<string>;
 };
 
-async function deleteUsedMdFiles(props: deleteUsedMdFilesProps) {
+export async function deleteUsedMdFiles(props: deleteUsedMdFilesProps) {
   const { mdVersionFilePaths } = props;
 
   const promisesArr: Array<Promise<void>> = [];
@@ -16,5 +16,3 @@ async function deleteUsedMdFiles(props: deleteUsedMdFilesProps) {
 
   await Promise.all(promisesArr);
 }
-
-export { deleteUsedMdFiles };

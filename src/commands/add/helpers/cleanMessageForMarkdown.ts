@@ -1,4 +1,4 @@
-function cleanMessageForMarkdown(message: string): string {
+export function cleanMessageForMarkdown(message: string): string {
   return message
     .replace(/^#.*\n?/gm, '')
     .replace(/\n+$/g, '')
@@ -6,5 +6,3 @@ function cleanMessageForMarkdown(message: string): string {
     .replace(/\s\s+/g, ' ')
     .trim();
 }
-
-export { cleanMessageForMarkdown };

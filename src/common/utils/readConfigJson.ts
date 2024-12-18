@@ -1,16 +1,16 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { LVLUP_DIR_PATH, LVLUP_TOOL_NAME_COLORED } from '../constants/globals.js';
-import { ConfigJson } from '../constants/types.js';
+import { CLI_TOOL_DIR_PATH, CLI_TOOL_NAME_COLORED } from '../constants/globals.js';
+import { ConfigJson } from '../types.js';
 import { logger } from './logger/logger.js';
 
 type ReadPackageJsonReturnValue = Promise<{
   configJsonAsObject: ConfigJson;
 }>;
 
-async function readConfigJson(): ReadPackageJsonReturnValue {
+export async function readConfigJson(): ReadPackageJsonReturnValue {
   try {
-    const configJsonPath = path.resolve(LVLUP_DIR_PATH, 'config.json');
+    const configJsonPath = path.resolve(CLI_TOOL_DIR_PATH, 'config.json');
 
     const configJsonAsString = (await fs.readFile(configJsonPath)).toString();
 
@@ -18,10 +18,8 @@ async function readConfigJson(): ReadPackageJsonReturnValue {
 
     return { configJsonAsObject };
   } catch (error) {
-    logger.error(`Failed to read ${LVLUP_TOOL_NAME_COLORED}'s config.json file...`);
+    logger.error(`Failed to read ${CLI_TOOL_NAME_COLORED}'s config.json file...`);
 
     throw error;
   }
 }
-
-export { readConfigJson };

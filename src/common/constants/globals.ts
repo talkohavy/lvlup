@@ -1,16 +1,20 @@
 import path from 'path';
 import { COLORS } from './colors.js';
 
-const LVLUP_TOOL_NAME = 'lvlup';
+export const CLI_TOOL_NAME = 'lvlup';
 
-const LVLUP_TOOL_NAME_COLORED = `${COLORS.green}lvlup${COLORS.stop}`;
+export const CLI_TOOL_NAME_COLORED = `${COLORS.green}${CLI_TOOL_NAME}${COLORS.stop}`;
 
-const LVLUP_DIR_NAME = `.${LVLUP_TOOL_NAME}`;
+export const CLI_TOOL_DIR_NAME = `.${CLI_TOOL_NAME}`;
 
-const CHANGELOG_FILENAME = 'CHANGELOG.md';
+export const CHANGELOG_FILENAME = 'CHANGELOG.md';
 
-const PROJECT_ROOT = process.cwd();
+export const PROJECT_ROOT = process.cwd();
 
-const LVLUP_DIR_PATH = path.resolve(PROJECT_ROOT, LVLUP_DIR_NAME);
+export const CLI_TOOL_DIR_PATH = path.resolve(PROJECT_ROOT, CLI_TOOL_DIR_NAME);
 
-export { CHANGELOG_FILENAME, LVLUP_DIR_NAME, LVLUP_DIR_PATH, LVLUP_TOOL_NAME, LVLUP_TOOL_NAME_COLORED, PROJECT_ROOT };
+export enum SemverLevels {
+  Patch = 'patch',
+  Minor = 'minor',
+  Major = 'major',
+}

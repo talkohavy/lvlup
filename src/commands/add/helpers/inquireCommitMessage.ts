@@ -2,8 +2,8 @@ import os from 'os';
 import { CreateFileError, ExternalEditor, LaunchEditorError, ReadFileError, RemoveFileError } from 'external-editor';
 import { input } from '@inquirer/prompts';
 import { COLORS } from '../../../common/constants/colors.js';
-import { LVLUP_TOOL_NAME } from '../../../common/constants/globals.js';
-import { EditorTypes } from '../../../common/constants/types.js';
+import { CLI_TOOL_NAME } from '../../../common/constants/globals.js';
+import { EditorTypes } from '../../../common/types.js';
 import { logger } from '../../../common/utils/logger/logger.js';
 import { cleanMessageForMarkdown } from './cleanMessageForMarkdown.js';
 import { useVsCodeAsEditor } from './useVsCodeAsEditor.js';
@@ -33,7 +33,7 @@ function getMessageFromExternalEditor(editor: string = 'vim') {
   try {
     const externalEditor = new ExternalEditor(externalEditorTemplate, {
       postfix: '.md',
-      prefix: `${LVLUP_TOOL_NAME}-`,
+      prefix: `${CLI_TOOL_NAME}-`,
     });
 
     if (editor === EditorTypes.Code) useVsCodeAsEditor(externalEditor);

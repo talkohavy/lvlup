@@ -1,8 +1,7 @@
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
-import { SemverLevels } from '../../../common/constants/enums.js';
-import { CHANGELOG_FILENAME, PROJECT_ROOT } from '../../../common/constants/globals.js';
+import { CHANGELOG_FILENAME, PROJECT_ROOT, SemverLevels } from '../../../common/constants/globals.js';
 import { capitalize } from '../../../common/utils/capitalize.js';
 import { Changes } from '../types.js';
 

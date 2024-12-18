@@ -24,7 +24,7 @@ const tableFrameStyle = {
 };
 tableFrameStyle;
 
-function prettyPrintStatusTable(dataArrToPrint: Array<any>) {
+export function prettyPrintStatusTable(dataArrToPrint: Array<any>) {
   const table = new Table({
     // title: 'LvLup Experiences',
     rows: dataArrToPrint,
@@ -45,5 +45,3 @@ function prettyPrintStatusTable(dataArrToPrint: Array<any>) {
 
   table.printTable();
 }
-
-export { prettyPrintStatusTable };

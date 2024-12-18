@@ -1,4 +1,4 @@
-import { SemverLevels } from '../../common/constants/enums.js';
+import { SemverLevels } from '../../common/constants/globals.js';
 
 type SingleChange = { filename: string; level: SemverLevels; description: string };
 

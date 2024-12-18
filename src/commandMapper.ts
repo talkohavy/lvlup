@@ -3,7 +3,7 @@ import { bump } from './commands/bump/index.js';
 import { init } from './commands/init/index.js';
 import { publish } from './commands/publish/publish.js';
 import { status } from './commands/status/status.js';
-import { Commands } from './common/constants/types.js';
+import { Commands } from './common/types.js';
 
 const COMMAND_MAPPER = {
   [Commands.Init]: init,

@@ -1,7 +1,7 @@
-import { VersionObject } from '../constants/types.js';
+import { VersionObject } from '../types.js';
 import { logger } from './logger/logger.js';
 
-function validatePackageJsonVersion(version: string): VersionObject {
+export function validatePackageJsonVersion(version: string): VersionObject {
   const [major, minor, patch] = version.split('.').map(Number) as [number, number, number];
 
   if (!(Number.isInteger(major) && Number.isInteger(minor) && Number.isInteger(patch))) {
@@ -12,5 +12,3 @@ function validatePackageJsonVersion(version: string): VersionObject {
 
   return { major, minor, patch };
 }
-
-export { validatePackageJsonVersion };

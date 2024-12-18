@@ -7,7 +7,7 @@ type CommitBumpChangesProps = {
   version: string;
 };
 
-async function commitBumpChanges(props: CommitBumpChangesProps) {
+export async function commitBumpChanges(props: CommitBumpChangesProps) {
   const { mdVersionFilePaths, version } = props;
 
   mdVersionFilePaths.forEach((mdVersionFileAbsolutePath) => {
@@ -24,5 +24,3 @@ async function commitBumpChanges(props: CommitBumpChangesProps) {
   execSync('git commit -m "RELEASING: Releasing 1 package"');
   execSync(`git tag -a v${version} -m "Release version ${version}"`);
 }
-
-export { commitBumpChanges };

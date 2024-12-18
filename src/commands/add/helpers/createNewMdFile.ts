@@ -1,8 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { humanId } from 'human-id';
-import { SemverLevels } from '../../../common/constants/enums.js';
-import { LVLUP_DIR_PATH } from '../../../common/constants/globals.js';
+import { CLI_TOOL_DIR_PATH, SemverLevels } from '../../../common/constants/globals.js';
 import { convertLFToCLRF } from '../../../common/utils/convertLFToCLRF.js';
 import { isWindows } from '../../../common/utils/isWindows.js';
 import { logger } from '../../../common/utils/logger/logger.js';
@@ -30,7 +29,7 @@ export async function createNewMdFile(props: inquireSemverProps) {
 
     const correctedMdContents = isWindows() ? convertLFToCLRF(newMdContents) : newMdContents;
 
-    const filenameFullPath = path.resolve(LVLUP_DIR_PATH, filenameWithExtension);
+    const filenameFullPath = path.resolve(CLI_TOOL_DIR_PATH, filenameWithExtension);
 
     fs.writeFileSync(filenameFullPath, correctedMdContents);
 

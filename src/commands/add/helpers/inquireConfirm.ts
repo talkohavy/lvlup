@@ -1,7 +1,7 @@
 import { confirm } from '@inquirer/prompts';
 import { COLORS } from '../../../common/constants/colors.js';
 
-async function inquireConfirm() {
+export async function inquireConfirm() {
   const shouldMoveForward = await confirm({
     message: '✨ Is this your desired change?',
     default: true,
@@ -10,5 +10,3 @@ async function inquireConfirm() {
 
   return shouldMoveForward;
 }
-
-export { inquireConfirm };

@@ -1,4 +1,4 @@
-import { EditorTypes } from '../../../common/constants/types.js';
+import { EditorTypes } from '../../../common/types.js';
 
 function useVsCodeAsEditor(editor: any) {
   editor.editor.bin = EditorTypes.Code;

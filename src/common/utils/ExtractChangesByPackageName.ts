@@ -2,7 +2,7 @@ import fs, { PathOrFileDescriptor } from 'fs';
 import matter from 'gray-matter';
 import { Changes } from '../../commands/bump/types.js';
 import { COLORS } from '../constants/colors.js';
-import { SemverLevels } from '../constants/enums.js';
+import { SemverLevels } from '../constants/globals.js';
 import { trimNewLinesAndSpaces } from './trimNewLinesAndSpaces.js';
 
 type ExtractChangesByPackageNameProps = {

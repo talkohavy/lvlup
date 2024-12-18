@@ -1,5 +1,3 @@
-async function showVersion() {
+export async function showVersion() {
   console.log('{{version}}');
 }
-
-export { showVersion };

@@ -8,12 +8,10 @@ type updateVersionInPackageJsonProps = {
   nextVersion: string;
 };
 
-async function updateVersionInPackageJson(props: updateVersionInPackageJsonProps) {
+export async function updateVersionInPackageJson(props: updateVersionInPackageJsonProps) {
   const { packageJsonAsString, prevVersion, nextVersion } = props;
 
   const updatedPackageJsonAsString = packageJsonAsString.replace(prevVersion, nextVersion);
 
   await fs.writeFile(path.resolve(PROJECT_ROOT, 'package.json'), updatedPackageJsonAsString);
 }
-
-export { updateVersionInPackageJson };

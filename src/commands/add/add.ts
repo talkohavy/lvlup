@@ -1,6 +1,6 @@
 import { COLORS } from '../../common/constants/colors.js';
-import { SemverLevels } from '../../common/constants/enums.js';
-import { EditorTypes } from '../../common/constants/types.js';
+import { SemverLevels } from '../../common/constants/globals.js';
+import { EditorTypes } from '../../common/types.js';
 import { logger } from '../../common/utils/logger/logger.js';
 import { readConfigJson } from '../../common/utils/readConfigJson.js';
 import { readPackageJson } from '../../common/utils/readPackageJson.js';
@@ -20,7 +20,7 @@ type AddProps = {
   editor: EditorTypes;
 };
 
-async function add(props: AddProps) {
+export async function add(props: AddProps) {
   const { skip: shouldSkipConfirmation, editor } = props;
 
   const { packageJsonAsObject } = await readPackageJson(); // <--- for `add` command, there's no need to run `validatePackageJsonVersion` after `readPackageJson`.
@@ -69,5 +69,3 @@ async function executeAddByAnswers(props: ExecuteAddProps) {
   logger.info('✅  If you want to modify the experience, or expand its summary, you can find it here:');
   logger.info(`✅  ${COLORS.yellow}${filenameFullPath}${COLORS.stop}`, { newLineAfter: true });
 }
-
-export { add };

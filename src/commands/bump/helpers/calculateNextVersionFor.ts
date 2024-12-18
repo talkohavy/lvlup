@@ -1,4 +1,4 @@
-import { VersionObject } from '../../../common/constants/types.js';
+import { VersionObject } from '../../../common/types.js';
 import { Changes } from '../types.js';
 
 type CalculateNextVersionByChangesProps = {
@@ -10,7 +10,7 @@ type CalculateNextVersionByChangesProps = {
  * @description
  * NOTE! `changes` should ONLY include changes relevant to 1 single package.
  */
-async function calculateNextVersionByChanges(props: CalculateNextVersionByChangesProps) {
+export async function calculateNextVersionByChanges(props: CalculateNextVersionByChangesProps) {
   const { changes, currentVersion } = props;
 
   const nextVersionObj = { ...currentVersion };
@@ -30,5 +30,3 @@ async function calculateNextVersionByChanges(props: CalculateNextVersionByChange
 
   return nextVersion;
 }
-
-export { calculateNextVersionByChanges };
