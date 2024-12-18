@@ -1,5 +1,11 @@
 # lvlup
 
+## 1.0.8
+
+### Patch Changes
+
+- Switched to the modern way of getting the __dirname. Instead of using the 'url' & 'path' modules, to then apply onto the import.meta.url, on node 20 there the new import.meta.filename & dirname attached.
+
 ## 1.0.7
 
 ### Patch Changes
