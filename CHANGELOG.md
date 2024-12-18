@@ -1,5 +1,11 @@
 # lvlup
 
+## 1.0.10
+
+### Patch Changes
+
+- BUGFIX: build process converted package.json type to 'commonjs', when if fact now it should remain it type 'module'. Deleted the line that converts it to 'commonjs'.
+
 ## 1.0.9
 
 ### Patch Changes
