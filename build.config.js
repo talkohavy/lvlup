@@ -150,11 +150,6 @@ function manipulatePackageJsonFile() {
   /** @type {PackageJson} */
   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath).toString());
 
-  if (isProd) {
-    packageJson.type = 'commonjs';
-    console.log(`  • ${blueColor}changed${stopColor} from module to commonjs`);
-  }
-
   delete packageJson.private;
   delete packageJson.scripts;
   delete packageJson.devDependencies;
