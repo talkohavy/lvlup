@@ -64,7 +64,7 @@ async function build() {
       sourcemap: false, // <--- defaults to `false`. for 'node', create sourcemaps is for development only.
       minify: true, // <--- defaults to `false`. should be `true` only in production.
       platform: 'node', // <--- defaults to 'browser'. If you're creating a CLI tool, use 'node' value. Setting platform to 'node' is beneficial when for example, all packages that are built-in to node such as fs are automatically marked as external so esbuild doesn't try to bundle them.
-      format: 'cjs', // <--- When platform is set to 'node', this defaults to 'cjs'.
+      format: 'esm', // <--- When platform is set to 'node', this defaults to 'cjs'.
       tsconfig: 'tsconfig.json', // <--- Normally the build API automatically discovers tsconfig.json files and reads their contents during a build. However, you can also configure a custom tsconfig.json file to use instead. This can be useful if you need to do multiple builds of the same code with different settings.
       treeShaking: true, // <--- defaults to `true`. Removes dead code.
       mainFields: ['main', 'module'], // <--- When platform is set to 'node', this defaults to 'module','main'. When platform is set to 'browser', this defaults to 'browser','module','main'. IMPORTANT! The order matters! 'main', 'module' is not the same as 'module', 'main'! I chose the more risky one, that attempts to tree-shake, but could potentially fail.
