@@ -1,5 +1,11 @@
 # lvlup
 
+## 1.0.12
+
+### Patch Changes
+
+- Renamed 1 global variable: toolNameBigText.
+
 ## 1.0.11
 
 ### Patch Changes

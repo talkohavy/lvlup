@@ -4,7 +4,6 @@ import os from 'os';
 import { hideBin } from 'yargs/helpers';
 import yargs from 'yargs/yargs';
 import { commandMapper } from './commandMapper.js';
-import { toolNameBigText } from './common/constants/toolNameBigText.js';
 import { COLORS } from './common/constants/colors.js';
 import { showVersion } from './common/utils/showVersion.js';
 import { addCommandBuilder, addCommandDescription, addCommandString } from './commands/add/add.js';
@@ -12,6 +11,7 @@ import { bumpCommandDescription, bumpCommandString } from './commands/bump/bump.
 import { initCommandDescription, initCommandString } from './commands/init/init.js';
 import { statusCommandDescription, statusCommandString } from './commands/status/status.js';
 import { publishCommandDescription, publishCommandString } from './commands/publish/publish.js';
+import { toolNameBigText } from './common/constants/globals.js';
 
 const yargInstance = yargs(hideBin(process.argv))
   /**

@@ -18,3 +18,13 @@ export enum SemverLevels {
   Minor = 'minor',
   Major = 'major',
 }
+
+export const toolNameBigText = `
+${COLORS.bright}${COLORS.blue}________________________________
+ _         _       _   _
+| | __   _| |     | | | |_ __
+| | \\ \\ / / |     | | | | '_ \\
+| |__\\ V /| |___  | |_| | |_) |
+|_____\\_/ |_____|  \\___/| .__/
+                        |_|
+________________________________${COLORS.stop}`;
