@@ -26,7 +26,7 @@
     "dev": "node dist/index.js",
     "dev-init": "node dist/index.js init",
     "dev-add": "node dist/index.js add",
-    "dev-status": "node dist/index.js statsus",
+    "dev-status": "node dist/index.js status",
     "dev-bump": "node dist/index.js bump",
     "dev-publish": "cd dist && node index.js publish",
     "dev-pub": "cd dist && npm publish"
