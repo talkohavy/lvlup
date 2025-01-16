@@ -4,11 +4,7 @@
   "description": "A simple version manager solution for packages",
   "private": "true",
   "type": "module",
-  "keywords": [
-    "versioning",
-    "lvlup",
-    "publish"
-  ],
+  "keywords": ["versioning", "lvlup", "publish"],
   "bin": {
     "lvlup": "index.js"
   },
@@ -59,7 +55,7 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "@types/node": "^22.10.2",
+    "@types/node": "^22.10.7",
     "@types/yargs": "^17.0.33",
     "esbuild": "^0.24.0",
     "eslint": "^9.17.0",
