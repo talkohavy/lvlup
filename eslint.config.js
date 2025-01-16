@@ -8,7 +8,7 @@ export default [
     // when an `ignores` key is used without any other keys in the configuration object, then it acts as global `ignores`.
     ignores: ['dist'],
   },
-  { languageOptions: { globals: globals.browser } },
+  { languageOptions: { globals: globals.node } },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   {
