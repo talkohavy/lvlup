@@ -22,7 +22,6 @@ const tableFrameStyle = {
   },
   vertical: `${COLORS.blue}│${COLORS.stop}`,
 };
-tableFrameStyle;
 
 export function prettyPrintStatusTable(dataArrToPrint: Array<any>) {
   const table = new Table({

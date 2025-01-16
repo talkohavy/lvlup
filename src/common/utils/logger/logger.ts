@@ -22,9 +22,11 @@ class Logger {
   private printLogMessageByLevel(props: PrintLogMessageByLevelProps) {
     const { logLevel, message, options } = props;
 
-    options?.newLineBefore && console.log('');
+    if (options?.newLineBefore) console.log('');
+
     console[logLevel](`🎩  ${LOG_LEVEL_TO_COLOR[logLevel]}${logLevel}${COLORS.stop}`, message);
-    options?.newLineAfter && console.log('');
+
+    if (options?.newLineAfter) console.log('');
   }
 }
 

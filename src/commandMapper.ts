@@ -26,6 +26,7 @@ export async function commandMapper(props: commandMapperProps) {
 
     await COMMAND_MAPPER[command](flags);
   } catch (_error: any) {
+    // eslint-disable-next-line
     _error;
   }
 }

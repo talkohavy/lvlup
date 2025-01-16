@@ -16,7 +16,7 @@
   },
   "scripts": {
     "clean": "rm -rf dist",
-    "lint": "eslint -c ./.eslintrc.json \"./src/**/*.ts\"",
+    "lint": "eslint -c eslint.config.js",
     "format-check": "prettier . --check",
     "format-fix": "prettier . --write",
     "test": "node --test",
