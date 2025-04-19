@@ -45,11 +45,11 @@ async function buildPackageConfig() {
 }
 
 function cleanDistDirectory() {
-  console.log(`${greenColor}- Step 1:${stopColor} clear the dist directory`);
+  console.log(`${greenColor}- Step 1:${stopColor} clear the ${outDirName} directory`);
   if (os.platform() === 'win32') {
-    execSync('rd /s /q dist');
+    execSync(`rd /s /q ${outDirName}`);
   } else {
-    execSync('rm -rf dist');
+    execSync(`rm -rf ${outDirName}`);
   }
 }
 
@@ -59,7 +59,7 @@ async function runBuild() {
   await build({
     entryPoints: ['src/index.ts'],
     bundle: true,
-    outfile: 'dist/index.js',
+    outfile: `${outDirName}/index.js`,
     sourcemap: !isProd, // <--- defaults to `false`. for 'node', create sourcemaps is for development only.
     minify: true, // <--- defaults to `false`. should be `true` only in production.
     platform: 'node', // <--- defaults to 'browser'. If you're creating a CLI tool, use 'node' value. Setting platform to 'node' is beneficial when for example, all packages that are built-in to node such as fs are automatically marked as external so esbuild doesn't try to bundle them.
@@ -124,13 +124,13 @@ function updateVersionTemplates() {
   const packageJson = JSON.parse(fs.readFileSync('./package.json').toString());
   const { version } = packageJson;
 
-  const showVersionFuncPath = path.resolve(process.cwd(), 'dist', 'index.js');
+  const showVersionFuncPath = path.resolve(process.cwd(), outDirName, 'index.js');
 
   const showVersionFuncContent = fs.readFileSync(showVersionFuncPath, 'utf-8');
   const updatedShowVersionFuncContent = showVersionFuncContent.replace('{{version}}', version);
   fs.writeFileSync(showVersionFuncPath, updatedShowVersionFuncContent);
 
-  const defaultConfigJsonPath = path.resolve(process.cwd(), 'dist', 'default.config.json');
+  const defaultConfigJsonPath = path.resolve(process.cwd(), outDirName, 'default.config.json');
   const defaultConfigJsonContent = fs.readFileSync(defaultConfigJsonPath, 'utf-8');
   const updatedDefaultConfigJsonContent = defaultConfigJsonContent.replace('{{version}}', version);
   fs.writeFileSync(defaultConfigJsonPath, updatedDefaultConfigJsonContent);
