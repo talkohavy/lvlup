@@ -2,7 +2,7 @@ import { execSync } from 'child_process';
 import fs, { cpSync } from 'fs';
 import os from 'os';
 import path from 'path';
-import * as esbuild from 'esbuild';
+import { build } from 'esbuild';
 
 /**
  * @typedef {{
@@ -33,7 +33,7 @@ buildPackageConfig();
 async function buildPackageConfig() {
   cleanDistDirectory();
 
-  await build();
+  await runBuild();
 
   copyStaticFiles();
 
@@ -53,10 +53,10 @@ function cleanDistDirectory() {
   }
 }
 
-async function build() {
+async function runBuild() {
   console.log(`${greenColor}- Step 2:${stopColor} build the output dir`);
 
-  await esbuild.build({
+  await build({
     entryPoints: ['src/index.ts'],
     bundle: true,
     outfile: 'dist/index.js',
