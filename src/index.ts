@@ -14,6 +14,7 @@ import { publishCommandDescription, publishCommandString } from './commands/publ
 import { toolNameBigText } from './common/constants/globals.js';
 
 const yargInstance = yargs(hideBin(process.argv))
+  .completion()
   /**
    * @description
    * Set the name of your script ($0). Default is the base filename executed by node (process.argv[1] or process.argv[0] for built electron apps)
