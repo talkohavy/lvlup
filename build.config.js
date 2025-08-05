@@ -22,14 +22,12 @@ import { build } from 'esbuild';
 const ROOT_PROJECT = process.cwd();
 const mode = process.env.NODE_ENV;
 const isProd = mode === 'production';
-
+const outDirName = 'dist';
 const COLORS = {
   green: '[32m',
   blue: '[34m',
   stop: '[39m',
 };
-
-const outDirName = 'dist';
 
 buildPackageConfig();
 
