@@ -1,6 +1,6 @@
 import { execSync } from 'child_process';
 import { COLORS } from '../../../common/constants/colors.js';
-import { logger } from '../../../common/utils/logger/logger.js';
+import { logger } from '../../../lib/logger/logger.js';
 
 type CommitBumpChangesProps = {
   mdVersionFilePaths: Array<string>;

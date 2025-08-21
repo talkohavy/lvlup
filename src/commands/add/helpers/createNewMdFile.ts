@@ -4,7 +4,7 @@ import { humanId } from 'human-id';
 import { CLI_TOOL_DIR_PATH, SemverLevels } from '../../../common/constants/globals.js';
 import { convertLFToCLRF } from '../../../common/utils/convertLFToCLRF.js';
 import { isWindows } from '../../../common/utils/isWindows.js';
-import { logger } from '../../../common/utils/logger/logger.js';
+import { logger } from '../../../lib/logger/logger.js';
 import { mdVersionFileTemplate } from './constants.js';
 
 type inquireSemverProps = {

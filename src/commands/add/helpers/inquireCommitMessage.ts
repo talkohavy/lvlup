@@ -4,7 +4,7 @@ import { input } from '@inquirer/prompts';
 import { COLORS } from '../../../common/constants/colors.js';
 import { CLI_TOOL_NAME } from '../../../common/constants/globals.js';
 import { EditorTypes } from '../../../common/types.js';
-import { logger } from '../../../common/utils/logger/logger.js';
+import { logger } from '../../../lib/logger/logger.js';
 import { cleanMessageForMarkdown } from './cleanMessageForMarkdown.js';
 import { useVsCodeAsEditor } from './useVsCodeAsEditor.js';
 

@@ -1,5 +1,5 @@
 import { execSync } from 'child_process';
-import { logger } from '../../../common/utils/logger/logger.js';
+import { logger } from '../../../lib/logger/logger.js';
 
 type inquireSemverProps = {
   filenameFullPath: string;

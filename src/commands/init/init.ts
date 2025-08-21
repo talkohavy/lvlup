@@ -2,7 +2,7 @@ import os from 'os';
 import { COLORS } from '../../common/constants/colors.js';
 import { CLI_TOOL_DIR_NAME, CLI_TOOL_NAME_COLORED } from '../../common/constants/globals.js';
 import { isRootLvlupDirExists } from '../../common/utils/isRootLvlupDirExists.js';
-import { logger } from '../../common/utils/logger/logger.js';
+import { logger } from '../../lib/logger/logger.js';
 import { createConfigJsonFile } from './helpers/createConfigJsonFile.js';
 import { createLvlUpBaseDir } from './helpers/createLvlUpBaseDir.js';
 import { createReadmeMeFile } from './helpers/createReadmeMdFile.js';

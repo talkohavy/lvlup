@@ -1,4 +1,4 @@
-import { COLORS } from '../../constants/colors.js';
+import { COLORS } from '../../common/constants/colors.js';
 import { LOG_LEVEL_TO_COLOR, LogLevel } from './constants.js';
 import { LogOptions, PrintLogMessageByLevelProps } from './types.js';
 

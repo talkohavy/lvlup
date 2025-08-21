@@ -2,7 +2,7 @@ import { Argv } from 'yargs';
 import { COLORS } from '../../common/constants/colors.js';
 import { SemverLevels } from '../../common/constants/globals.js';
 import { EditorTypes } from '../../common/types.js';
-import { logger } from '../../common/utils/logger/logger.js';
+import { logger } from '../../lib/logger/logger.js';
 import { readConfigJson } from '../../common/utils/readConfigJson.js';
 import { readPackageJson } from '../../common/utils/readPackageJson.js';
 import { validateRootLvlupExists } from '../../common/utils/validateRootLvlupExists.js';

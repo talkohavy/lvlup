@@ -1,7 +1,7 @@
 import { extractChangesByPackageName } from '../../common/utils/extractChangesByPackageName.js';
 import { getAllMdVersionFiles } from '../../common/utils/getMdVersionFilesByPackageName.js';
 import { isZeroChanges } from '../../common/utils/isZeroChanges.js';
-import { logger } from '../../common/utils/logger/logger.js';
+import { logger } from '../../lib/logger/logger.js';
 import { readPackageJson } from '../../common/utils/readPackageJson.js';
 import { prettyPrintStatusTable } from './helpers/prettyPrintStatusTable.js';
 import { printWordStatus } from './helpers/printWordStatus.js';

@@ -1,5 +1,5 @@
 import { execSync } from 'child_process';
-import { logger } from '../../common/utils/logger/logger.js';
+import { logger } from '../../lib/logger/logger.js';
 import { readPackageJson } from '../../common/utils/readPackageJson.js';
 
 export const publishCommandString = 'publish';

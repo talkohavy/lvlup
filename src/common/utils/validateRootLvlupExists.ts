@@ -1,6 +1,6 @@
 import { CLI_TOOL_DIR_NAME, CLI_TOOL_NAME_COLORED } from '../constants/globals.js';
 import { isRootLvlupDirExists } from './isRootLvlupDirExists.js';
-import { logger } from './logger/logger.js';
+import { logger } from '../../lib/logger/logger.js';
 
 export function validateRootLvlupExists() {
   if (!isRootLvlupDirExists()) {
