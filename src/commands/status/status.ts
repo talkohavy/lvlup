@@ -1,4 +1,4 @@
-import { extractChangesByPackageName } from '../../common/utils/extractChangesByPackageName.js';
+import { extractChangesByPackageName } from '../../common/utils/extractChangesByPkgName.js';
 import { getAllMdVersionFiles } from '../../common/utils/getMdVersionFilesByPackageName.js';
 import { isZeroChanges } from '../../common/utils/isZeroChanges.js';
 import { logger } from '../../lib/logger/logger.js';

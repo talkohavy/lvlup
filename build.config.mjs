@@ -157,6 +157,8 @@ function updateVersionTemplates(outDirName) {
   const defaultConfigJsonContent = fs.readFileSync(defaultConfigJsonPath, 'utf-8');
   const updatedDefaultConfigJsonContent = defaultConfigJsonContent.replace('{{version}}', version);
   fs.writeFileSync(defaultConfigJsonPath, updatedDefaultConfigJsonContent);
+
+  console.log('');
 }
 
 /**
@@ -188,7 +190,7 @@ function manipulatePackageJsonFile(outDirName) {
 }
 
 /**
- * @param {number} startTime in milliseconds
+ * @param {number} startTime - in milliseconds
  */
 function printDoneMessage(startTime) {
   const endTime = Date.now();
