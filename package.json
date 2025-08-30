@@ -4,14 +4,19 @@
   "description": "A simple version manager solution for packages",
   "private": "true",
   "type": "module",
+  "main": "only-the-path-in-bin-matters-in-cli.js",
   "keywords": ["versioning", "lvlup", "publish"],
   "bin": {
     "lvlup": "index.js"
   },
   "exports": {
     ".": {
-      "types": "./dist/index.d.js",
-      "default": "./dist/index.js"
+      "import": {
+        "default": "./only-the-path-in-bin-matters-in-cli.js"
+      },
+      "require": {
+        "default": "./only-the-path-in-bin-matters-in-cli.js"
+      }
     }
   },
   "scripts": {
@@ -30,7 +35,8 @@
     "dev-status": "node dist/index.js status",
     "dev-bump": "node dist/index.js bump",
     "dev-publish": "cd dist && node index.js publish",
-    "dev-pub": "cd dist && npm publish"
+    "dev-pub": "cd dist && npm publish",
+    "install-as-cli": "npm install -g ./dist"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
