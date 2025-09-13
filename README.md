@@ -1,7 +1,7 @@
 # lvlup 🎩
 
 <p align="center">
-  <img src="https://i.ibb.co/3dqjJfw/lvlup-v1.png" width="250" alt="lvlup logo" />
+  <img src="https://i.ibb.co/8LLRHz6c/create-query-language.png" width="250" alt="lvlup logo" />
 </p>
 
 A CLI tool to help you manage your package versions easily.
