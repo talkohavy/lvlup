@@ -1,4 +1,5 @@
-import { execSync } from 'child_process';
+import { execSync } from 'node:child_process';
+import fs from 'node:fs';
 import { COLORS } from '../../../common/constants/colors.js';
 import { logger } from '../../../lib/logger/logger.js';
 
@@ -20,7 +21,13 @@ export async function commitBumpChanges(props: CommitBumpChangesProps) {
     }
   });
   execSync('git add package.json');
-  execSync('git add CHANGELOG.md');
+
+  const changelogFileName = fs.readdirSync('.').find((f) => f.toLowerCase() === 'changelog.md');
+
+  if (changelogFileName) {
+    execSync(`git add ${changelogFileName}`);
+  }
+
   execSync('git commit -m "RELEASING: Releasing 1 package"');
   execSync(`git tag -a v${version} -m "Release version ${version}"`);
 }
