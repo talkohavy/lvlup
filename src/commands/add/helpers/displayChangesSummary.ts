@@ -1,6 +1,6 @@
 import os from 'os';
+import type { SemverLevels } from '../../../common/constants/globals.js';
 import { COLORS } from '../../../common/constants/colors.js';
-import { SemverLevels } from '../../../common/constants/globals.js';
 
 type inquireSemverProps = {
   packageName: string;

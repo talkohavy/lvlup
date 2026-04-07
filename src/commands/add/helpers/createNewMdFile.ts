@@ -1,7 +1,7 @@
 import fs from 'fs';
-import path from 'path';
 import { humanId } from 'human-id';
-import { CLI_TOOL_DIR_PATH, SemverLevels } from '../../../common/constants/globals.js';
+import path from 'path';
+import { CLI_TOOL_DIR_PATH, type SemverLevels } from '../../../common/constants/globals.js';
 import { convertLFToCLRF } from '../../../common/utils/convertLFToCLRF.js';
 import { isWindows } from '../../../common/utils/isWindows.js';
 import { logger } from '../../../lib/logger/logger.js';

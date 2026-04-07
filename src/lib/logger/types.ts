@@ -1,4 +1,4 @@
-import { LogLevel } from './constants.js';
+import type { LogLevel } from './constants.js';
 
 export type LogOptions = {
   newLineBefore?: boolean;

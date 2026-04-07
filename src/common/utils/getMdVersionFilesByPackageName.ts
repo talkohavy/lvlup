@@ -1,5 +1,5 @@
-import path from 'path';
 import { glob } from 'glob';
+import path from 'path';
 import { CLI_TOOL_DIR_NAME, CLI_TOOL_DIR_PATH } from '../constants/globals.js';
 
 export async function getAllMdVersionFiles() {

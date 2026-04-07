@@ -1,8 +1,8 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { CLI_TOOL_DIR_PATH, CLI_TOOL_NAME_COLORED } from '../constants/globals.js';
-import { ConfigJson } from '../types.js';
+import type { ConfigJson } from '../types.js';
 import { logger } from '../../lib/logger/logger.js';
+import { CLI_TOOL_DIR_PATH, CLI_TOOL_NAME_COLORED } from '../constants/globals.js';
 
 type ReadPackageJsonReturnValue = Promise<{
   configJsonAsObject: ConfigJson;

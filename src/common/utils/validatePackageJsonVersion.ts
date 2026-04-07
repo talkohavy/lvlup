@@ -1,4 +1,4 @@
-import { VersionObject } from '../types.js';
+import type { VersionObject } from '../types.js';
 import { logger } from '../../lib/logger/logger.js';
 
 export function validatePackageJsonVersion(version: string): VersionObject {

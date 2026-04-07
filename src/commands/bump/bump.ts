@@ -1,12 +1,12 @@
-import os from 'os';
+import os from 'node:os';
 import { COLORS } from '../../common/constants/colors.js';
 import { extractChangesByPackageName } from '../../common/utils/extractChangesByPkgName.js';
 import { getAllMdVersionFiles } from '../../common/utils/getMdVersionFilesByPackageName.js';
 import { isZeroChanges } from '../../common/utils/isZeroChanges.js';
-import { logger } from '../../lib/logger/logger.js';
 import { readConfigJson } from '../../common/utils/readConfigJson.js';
 import { readPackageJson } from '../../common/utils/readPackageJson.js';
 import { validatePackageJsonVersion } from '../../common/utils/validatePackageJsonVersion.js';
+import { logger } from '../../lib/logger/logger.js';
 import {
   calculateNextVersionByChanges,
   commitBumpChanges,

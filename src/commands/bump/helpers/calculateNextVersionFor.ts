@@ -1,5 +1,5 @@
-import { VersionObject } from '../../../common/types.js';
-import { Changes } from '../types.js';
+import type { VersionObject } from '../../../common/types.js';
+import type { Changes } from '../types.js';
 
 type CalculateNextVersionByChangesProps = {
   changes: Changes;

@@ -1,6 +1,6 @@
-import os from 'os';
-import { CreateFileError, ExternalEditor, LaunchEditorError, ReadFileError, RemoveFileError } from 'external-editor';
 import { input } from '@inquirer/prompts';
+import { CreateFileError, ExternalEditor, LaunchEditorError, ReadFileError, RemoveFileError } from 'external-editor';
+import os from 'os';
 import { COLORS } from '../../../common/constants/colors.js';
 import { CLI_TOOL_NAME } from '../../../common/constants/globals.js';
 import { EditorTypes } from '../../../common/types.js';
@@ -29,7 +29,7 @@ export async function inquireCommitMessage(props?: InquireCommitMessageProps) {
   return commitMessage;
 }
 
-function getMessageFromExternalEditor(editor: string = 'vim') {
+function getMessageFromExternalEditor(editor = 'vim') {
   try {
     const externalEditor = new ExternalEditor(externalEditorTemplate, {
       postfix: '.md',

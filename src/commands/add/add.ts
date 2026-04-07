@@ -1,11 +1,11 @@
-import { Argv } from 'yargs';
+import type { Argv } from 'yargs';
+import type { SemverLevels } from '../../common/constants/globals.js';
 import { COLORS } from '../../common/constants/colors.js';
-import { SemverLevels } from '../../common/constants/globals.js';
 import { EditorTypes } from '../../common/types.js';
-import { logger } from '../../lib/logger/logger.js';
 import { readConfigJson } from '../../common/utils/readConfigJson.js';
 import { readPackageJson } from '../../common/utils/readPackageJson.js';
 import { validateRootLvlupExists } from '../../common/utils/validateRootLvlupExists.js';
+import { logger } from '../../lib/logger/logger.js';
 import { commitTheNewMdFile } from './helpers/commitTheNewMdFile.js';
 import { createNewMdFile } from './helpers/createNewMdFile.js';
 import { displayChangesSummary } from './helpers/displayChangesSummary.js';

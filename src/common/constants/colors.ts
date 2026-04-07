@@ -1,6 +1,6 @@
 const color = (num: number) => `\x1b[${num}m`;
 
-const COLORS = {
+export const COLORS = {
   black: color(30),
   blink: color(5),
   blue: color(34),
@@ -13,5 +13,3 @@ const COLORS = {
   yellow: color(33),
   stop: '\x1b[0m',
 };
-
-export { COLORS };

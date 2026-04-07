@@ -1,8 +1,8 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { PROJECT_ROOT } from '../constants/globals.js';
-import { PackageJson } from '../types.js';
+import type { PackageJson } from '../types.js';
 import { logger } from '../../lib/logger/logger.js';
+import { PROJECT_ROOT } from '../constants/globals.js';
 
 type ReadPackageJsonReturnValue = Promise<{
   packageJsonAsString: string;
