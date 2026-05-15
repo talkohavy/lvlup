@@ -10,6 +10,7 @@ import { displayChangesSummary } from './helpers/displayChangesSummary';
 import { inquireCommitMessage } from './helpers/inquireCommitMessage';
 import { inquireConfirm } from './helpers/inquireConfirm';
 import { inquireSemver } from './helpers/inquireSemver';
+import { resolveMessageFromFile } from './helpers/resolveMessageFromFile';
 import type { Argv } from 'yargs';
 
 export const addCommandString = 'add [FLAGS]';
@@ -23,6 +24,36 @@ export function addCommandBuilder(yargs: Argv) {
       default: false,
     })
     .example('lvlup add --skip', 'Would skip the confirmation step.');
+  yargs
+    .option('level', {
+      alias: 'l',
+      type: 'string',
+      choices: ['major', 'minor', 'patch'] as const,
+      description:
+        'Semver bump type (major, minor, or patch). With --message or --message-file, runs with no prompts; otherwise you are prompted for any missing flag.',
+    })
+    .option('message', {
+      alias: 'm',
+      type: 'string',
+      description:
+        'Summary for the experience (CHANGELOG). Mutually exclusive with --message-file. With --level, runs with no prompts; otherwise you are prompted for any missing flag.',
+    })
+    .option('message-file', {
+      alias: 'f',
+      type: 'string',
+      description:
+        'Read the summary from a file. Mutually exclusive with --message. With --level, runs with no prompts; otherwise you are prompted for any missing flag.',
+    })
+    .conflicts('message', 'message-file')
+    .example(
+      'lvlup add --level minor --message "Add widget API"',
+      'Fully non-interactive add (for scripts, CI, and automation).',
+    )
+    .example('lvlup add -l patch -m "Fix null handling"', 'Fully non-interactive add using short flags.')
+    .example(
+      'lvlup add --level minor --message-file ./release-notes.md',
+      'Fully non-interactive add with summary from a file.',
+    );
   yargs
     .option('editor', {
       type: 'string',
@@ -41,19 +72,22 @@ export function addCommandBuilder(yargs: Argv) {
 type AddProps = {
   skip: boolean;
   editor: EditorTypes;
+  level?: SemverLevelValues;
+  message?: string;
+  messageFile?: string;
 };
 
 export async function add(props: AddProps) {
-  const { skip: shouldSkipConfirmation, editor } = props;
+  const { skip: shouldSkipConfirmation, editor, level, message, messageFile } = props;
 
   const { packageJsonAsObject } = await readPackageJson(); // <--- for `add` command, there's no need to run `validatePackageJsonVersion` after `readPackageJson`.
   const { version: currentVersion, name: packageName } = packageJsonAsObject;
 
   validateRootLvlupExists();
 
-  const semverLevel = await inquireSemver({ packageName, currentVersion });
+  const semverLevel = level ?? (await inquireSemver({ packageName, currentVersion }));
 
-  const commitMessage = await inquireCommitMessage({ editor });
+  const commitMessage = message ?? resolveMessageFromFile(messageFile) ?? (await inquireCommitMessage({ editor }));
 
   if (!commitMessage) {
     logger.error('commit message cannot be empty... exiting...', { newLineBefore: true });
@@ -62,7 +96,9 @@ export async function add(props: AddProps) {
 
   displayChangesSummary({ packageName, semverLevel });
 
-  const shouldMoveForward = shouldSkipConfirmation || (await inquireConfirm());
+  const isNonInteractive = Boolean(level && (message || messageFile));
+
+  const shouldMoveForward = isNonInteractive || shouldSkipConfirmation || (await inquireConfirm());
 
   if (!shouldMoveForward) return;
 
