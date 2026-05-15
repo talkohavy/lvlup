@@ -1,5 +1,5 @@
 import { Separator, select } from '@inquirer/prompts';
-import { SemverLevels } from '../../../common/constants/globals.js';
+import { SemverLevels } from '@src/common/constants';
 
 type inquireSemverProps = {
   packageName: string;

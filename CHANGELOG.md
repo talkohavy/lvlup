@@ -1,5 +1,11 @@
 # lvlup
 
+## 1.1.0
+
+### Minor Changes
+
+- lvlup add now supports arguments for level, simple message, and a message file.
+
 ## 1.0.14
 
 ### Patch Changes

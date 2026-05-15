@@ -1,10 +1,9 @@
 import os from 'os';
-import type { SemverLevels } from '../../../common/constants/globals.js';
-import { COLORS } from '../../../common/constants/colors.js';
+import { COLORS, type SemverLevelValues } from '@src/common/constants';
 
 type inquireSemverProps = {
   packageName: string;
-  semverLevel: SemverLevels;
+  semverLevel: SemverLevelValues;
 };
 
 export async function displayChangesSummary(props: inquireSemverProps) {

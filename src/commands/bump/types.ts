@@ -1,9 +1,9 @@
-import { SemverLevels } from '../../common/constants/globals.js';
+import type { SemverLevelValues } from '@src/common/constants';
 
-type SingleChange = { filename: string; level: SemverLevels; description: string };
-
-export type Changes = {
-  [SemverLevels.Major]: Array<SingleChange>;
-  [SemverLevels.Minor]: Array<SingleChange>;
-  [SemverLevels.Patch]: Array<SingleChange>;
+type SingleChange = {
+  filename: string;
+  level: SemverLevelValues;
+  description: string;
 };
+
+export type Changes = Record<SemverLevelValues, Array<SingleChange>>;

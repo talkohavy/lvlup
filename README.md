@@ -109,7 +109,7 @@ This command sets up the `.lvlup` folder at the root of your project. It generat
 lvlup add [FLAGS]
 ```
 
-This command will ask you a series of questions. First, what semver bump type do you require (`major` | `minor` | `patch`), then it will ask for a summary of the changes. At the final step it will show the `experience`'s metadata to be generated, and confirm that you want to add it.
+By default this command is **interactive**: it asks for semver bump type (`major` | `minor` | `patch`), then a summary of the changes, then confirmation. You can pass flags to pre-fill answers—any value you omit is still prompted. When **`--level`** is given together with **`--message`** or **`--message-file`**, the command runs **fully non-interactively** (no prompts, confirmation skipped).
 
 Once confirmed, `experience` file be written as a Markdown file that contains the summary and YAML front matter which stores the package's name that will be released and the semver bump types for it.
 
@@ -127,8 +127,21 @@ If you want to modify the `experience` file after it's generated, it's completel
 
 Inside your `.lvlup/config.json`, if you were to set the `commit.afterAdd` option to `true`, the `add` command will create and also commit the `experience` file.
 
-- `--skip` - skips the confirmation step of "are you sure?" at the end.
-- `--editor EditorType` - Choose an external editor as the means to write the `experience`'s description. EditorType can be one of: `vim` | `vi` | `nano` | `code` (code is for VsCode)
+- `--skip` — skips the final "are you sure?" confirmation (other prompts still run unless you pass enough flags for a fully non-interactive run).
+- `--editor EditorType` — use an external editor for the summary when not using `--message` / `--message-file`. EditorType: `vim` | `vi` | `nano` | `code` (VsCode).
+- `-l, --level` — semver bump type. Omit to be prompted.
+- `-m, --message` — summary text (CHANGELOG). Cannot be combined with `--message-file`. Omit to be prompted (or use `--editor`).
+- `-f, --message-file` — read the summary from a file. Cannot be combined with `--message`. Omit to be prompted.
+
+**Fully non-interactive** (scripts, CI, AI agents): pass **`--level`** and exactly one of **`--message`** or **`--message-file`**.
+
+```bash
+lvlup add --level minor --message "Add widget API"
+lvlup add -l patch -m "Fix null handling"
+lvlup add --level major --message-file ./release-notes.md
+```
+
+**Partial flags** (hybrid): e.g. `lvlup add --level minor` prompts only for the summary; `lvlup add -m "Fix typo"` prompts only for semver level.
 
 ### 3. `bump`
 

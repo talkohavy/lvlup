@@ -1,6 +1,6 @@
-import { glob } from 'glob';
 import path from 'path';
-import { CLI_TOOL_DIR_NAME, CLI_TOOL_DIR_PATH } from '../constants/globals.js';
+import { glob } from 'glob';
+import { CLI_TOOL_DIR_NAME, CLI_TOOL_DIR_PATH } from '../constants';
 
 export async function getAllMdVersionFiles() {
   const mdVersionFilePathsRaw = await glob(`${CLI_TOOL_DIR_NAME}/*.md`, {

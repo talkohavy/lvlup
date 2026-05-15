@@ -1,12 +1,11 @@
+import os from 'os';
 import { input } from '@inquirer/prompts';
 import { CreateFileError, ExternalEditor, LaunchEditorError, ReadFileError, RemoveFileError } from 'external-editor';
-import os from 'os';
-import { COLORS } from '../../../common/constants/colors.js';
-import { CLI_TOOL_NAME } from '../../../common/constants/globals.js';
-import { EditorTypes } from '../../../common/types.js';
-import { logger } from '../../../lib/logger/logger.js';
-import { cleanMessageForMarkdown } from './cleanMessageForMarkdown.js';
-import { useVsCodeAsEditor } from './useVsCodeAsEditor.js';
+import { COLORS, CLI_TOOL_NAME } from '@src/common/constants';
+import { EditorTypes } from '@src/common/types';
+import { logger } from '@src/lib/logger';
+import { cleanMessageForMarkdown } from './cleanMessageForMarkdown';
+import { useVsCodeAsEditor } from './useVsCodeAsEditor';
 
 const externalEditorTemplate = `${os.EOL}${os.EOL}# An empty message aborts the editor.${os.EOL}# Please enter a summary for your changes.`;
 

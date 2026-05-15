@@ -13,12 +13,6 @@ export const PROJECT_ROOT = process.cwd();
 
 export const CLI_TOOL_DIR_PATH = path.resolve(PROJECT_ROOT, CLI_TOOL_DIR_NAME);
 
-export enum SemverLevels {
-  Patch = 'patch',
-  Minor = 'minor',
-  Major = 'major',
-}
-
 export const toolNameBigText = `
 ${COLORS.bright}${COLORS.blue}________________________________
  _         _       _   _
