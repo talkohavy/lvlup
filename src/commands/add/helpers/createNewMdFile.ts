@@ -1,15 +1,15 @@
 import fs from 'fs';
-import { humanId } from 'human-id';
 import path from 'path';
-import { CLI_TOOL_DIR_PATH, type SemverLevels } from '../../../common/constants/globals.js';
-import { convertLFToCLRF } from '../../../common/utils/convertLFToCLRF.js';
-import { isWindows } from '../../../common/utils/isWindows.js';
-import { logger } from '../../../lib/logger/logger.js';
-import { mdVersionFileTemplate } from './constants.js';
+import { humanId } from 'human-id';
+import { CLI_TOOL_DIR_PATH, type SemverLevelValues } from '@src/common/constants';
+import { convertLFToCLRF } from '@src/common/utils/convertLFToCLRF';
+import { isWindows } from '@src/common/utils/isWindows';
+import { logger } from '@src/lib/logger/logger';
+import { mdVersionFileTemplate } from './constants';
 
 type inquireSemverProps = {
   packageName: string;
-  semverLevel: SemverLevels;
+  semverLevel: SemverLevelValues;
   commitMessage: string;
 };
 

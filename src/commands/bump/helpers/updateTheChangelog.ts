@@ -1,9 +1,9 @@
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
+import { CHANGELOG_FILENAME, PROJECT_ROOT, type SemverLevelValues } from '@src/common/constants';
+import { capitalize } from '@src/common/utils/capitalize';
 import type { Changes } from '../types.js';
-import { CHANGELOG_FILENAME, PROJECT_ROOT, type SemverLevels } from '../../../common/constants/globals.js';
-import { capitalize } from '../../../common/utils/capitalize.js';
 
 type UpdateTheChangelogProps = {
   packageName: string;
@@ -21,11 +21,11 @@ export async function updateTheChangelog(props: UpdateTheChangelogProps) {
   let changesAsOneBigString = `## ${nextVersion}`;
 
   for (const key in changes) {
-    if (!changes[key as SemverLevels].length) continue;
+    if (!changes[key as SemverLevelValues].length) continue;
 
     changesAsOneBigString = `${changesAsOneBigString}${os.EOL}${os.EOL}### ${capitalize(key)} Changes${os.EOL}`;
 
-    changes[key as SemverLevels].forEach((change) => {
+    changes[key as SemverLevelValues].forEach((change) => {
       const descriptionAsMdBullet = change.description.replace(/\n/, '\n  ');
 
       changesAsOneBigString = `${changesAsOneBigString}${os.EOL}- ${descriptionAsMdBullet}`;

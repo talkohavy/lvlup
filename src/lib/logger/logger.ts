@@ -1,6 +1,6 @@
-import type { LogOptions, PrintLogMessageByLevelProps } from './types.js';
-import { COLORS } from '../../common/constants/colors.js';
+import { COLORS } from '@src/common/constants';
 import { LOG_LEVEL_TO_COLOR, LogLevel } from './constants.js';
+import type { LogOptions, PrintLogMessageByLevelProps } from './types.js';
 
 class Logger {
   log(message: string, options?: LogOptions) {

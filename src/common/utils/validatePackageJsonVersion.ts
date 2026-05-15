@@ -1,5 +1,5 @@
-import type { VersionObject } from '../types.js';
-import { logger } from '../../lib/logger/logger.js';
+import { logger } from '@src/lib/logger';
+import type { VersionObject } from '@src/common/types';
 
 export function validatePackageJsonVersion(version: string): VersionObject {
   const [major, minor, patch] = version.split('.').map(Number) as [number, number, number];

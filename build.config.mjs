@@ -1,8 +1,8 @@
 import { execSync } from 'child_process';
-import { build as esbuild } from 'esbuild';
 import fs, { cpSync } from 'fs';
 import os from 'os';
 import path from 'path';
+import { build as esbuild } from 'esbuild';
 
 /**
  * @typedef {{

@@ -1,17 +1,16 @@
+import { COLORS, type SemverLevelValues } from '@src/common/constants';
+import { EditorTypes } from '@src/common/types';
+import { readConfigJson } from '@src/common/utils/readConfigJson';
+import { readPackageJson } from '@src/common/utils/readPackageJson';
+import { validateRootLvlupExists } from '@src/common/utils/validateRootLvlupExists';
+import { logger } from '@src/lib/logger';
+import { commitTheNewMdFile } from './helpers/commitTheNewMdFile';
+import { createNewMdFile } from './helpers/createNewMdFile';
+import { displayChangesSummary } from './helpers/displayChangesSummary';
+import { inquireCommitMessage } from './helpers/inquireCommitMessage';
+import { inquireConfirm } from './helpers/inquireConfirm';
+import { inquireSemver } from './helpers/inquireSemver';
 import type { Argv } from 'yargs';
-import type { SemverLevels } from '../../common/constants/globals.js';
-import { COLORS } from '../../common/constants/colors.js';
-import { EditorTypes } from '../../common/types.js';
-import { readConfigJson } from '../../common/utils/readConfigJson.js';
-import { readPackageJson } from '../../common/utils/readPackageJson.js';
-import { validateRootLvlupExists } from '../../common/utils/validateRootLvlupExists.js';
-import { logger } from '../../lib/logger/logger.js';
-import { commitTheNewMdFile } from './helpers/commitTheNewMdFile.js';
-import { createNewMdFile } from './helpers/createNewMdFile.js';
-import { displayChangesSummary } from './helpers/displayChangesSummary.js';
-import { inquireCommitMessage } from './helpers/inquireCommitMessage.js';
-import { inquireConfirm } from './helpers/inquireConfirm.js';
-import { inquireSemver } from './helpers/inquireSemver.js';
 
 export const addCommandString = 'add [FLAGS]';
 export const addCommandDescription = 'Add new change';
@@ -53,6 +52,7 @@ export async function add(props: AddProps) {
   validateRootLvlupExists();
 
   const semverLevel = await inquireSemver({ packageName, currentVersion });
+
   const commitMessage = await inquireCommitMessage({ editor });
 
   if (!commitMessage) {
@@ -66,12 +66,12 @@ export async function add(props: AddProps) {
 
   if (!shouldMoveForward) return;
 
-  executeAddByAnswers({ packageName, semverLevel, commitMessage });
+  await executeAddByAnswers({ packageName, semverLevel, commitMessage });
 }
 
 type ExecuteAddProps = {
   packageName: string;
-  semverLevel: SemverLevels;
+  semverLevel: SemverLevelValues;
   commitMessage: string;
 };
 
