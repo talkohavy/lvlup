@@ -13,6 +13,9 @@ export type PackageJson = {
 };
 
 export type ConfigJson = {
+  add?: {
+    requireGitChanges?: boolean;
+  };
   commit?: {
     afterAdd?: boolean;
     afterBump?: boolean;

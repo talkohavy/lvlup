@@ -1,5 +1,8 @@
 {
   "$schema": "https://unpkg.com/lvlup@{{version}}/schema.json",
+  "add": {
+    "requireGitChanges": true
+  },
   "commit": {
     "afterAdd": true,
     "afterBump": true

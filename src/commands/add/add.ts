@@ -85,7 +85,13 @@ export async function add(props: AddProps) {
   const { version: currentVersion, name: packageName } = packageJsonAsObject;
 
   validateRootLvlupExists();
-  validateGitHasChanges();
+
+  const { configJsonAsObject } = await readConfigJson();
+  const areGitChangesRequired = configJsonAsObject.add?.requireGitChanges ?? true;
+
+  if (areGitChangesRequired) {
+    validateGitHasChanges();
+  }
 
   const semverLevel = level ?? (await inquireSemver({ packageName, currentVersion }));
 

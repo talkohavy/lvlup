@@ -127,6 +127,8 @@ If you want to modify the `experience` file after it's generated, it's completel
 
 Inside your `.lvlup/config.json`, if you were to set the `commit.afterAdd` option to `true`, the `add` command will create and also commit the `experience` file.
 
+By default, `add` requires uncommitted git changes (`add.requireGitChanges` defaults to `true`). Set `"requireGitChanges": false` under `add` to allow running `add` on a clean working tree.
+
 - `--skip` — skips the final "are you sure?" confirmation (other prompts still run unless you pass enough flags for a fully non-interactive run).
 - `--editor EditorType` — use an external editor for the summary when not using `--message` / `--message-file`. EditorType: `vim` | `vi` | `nano` | `code` (VsCode).
 - `-l, --level` — semver bump type. Omit to be prompted.
