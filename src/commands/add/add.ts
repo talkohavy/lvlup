@@ -2,6 +2,7 @@ import { COLORS, type SemverLevelValues } from '@src/common/constants';
 import { EditorTypes } from '@src/common/types';
 import { readConfigJson } from '@src/common/utils/readConfigJson';
 import { readPackageJson } from '@src/common/utils/readPackageJson';
+import { validateGitHasChanges } from '@src/common/utils/validateGitHasChanges';
 import { validateRootLvlupExists } from '@src/common/utils/validateRootLvlupExists';
 import { logger } from '@src/lib/logger';
 import { commitTheNewMdFile } from './helpers/commitTheNewMdFile';
@@ -84,6 +85,7 @@ export async function add(props: AddProps) {
   const { version: currentVersion, name: packageName } = packageJsonAsObject;
 
   validateRootLvlupExists();
+  validateGitHasChanges();
 
   const semverLevel = level ?? (await inquireSemver({ packageName, currentVersion }));
 
