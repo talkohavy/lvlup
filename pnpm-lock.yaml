@@ -20,6 +20,9 @@ importers:
       external-editor:
         specifier: ^3.1.0
         version: 3.1.0
+      glob:
+        specifier: ^13.0.6
+        version: 13.0.6
       gray-matter:
         specifier: ^4.0.3
         version: 4.0.3
@@ -51,9 +54,6 @@ importers:
       eslint-plugin-react-compiler:
         specifier: 19.1.0-rc.2
         version: 19.1.0-rc.2(eslint@10.3.0)
-      glob:
-        specifier: ^13.0.6
-        version: 13.0.6
       globals:
         specifier: ^17.6.0
         version: 17.6.0
