@@ -1,5 +1,16 @@
 # lvlup
 
+## 1.2.0
+
+### Minor Changes
+
+- make add git-changes guard configurable via add.requireGitChanges
+
+### Patch Changes
+
+- lvlup add command now requires git changes in order to work.
+- glob should be a dependency, not a dev dependency.
+
 ## 1.1.0
 
 ### Minor Changes
