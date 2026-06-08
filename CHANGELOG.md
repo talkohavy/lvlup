@@ -1,5 +1,11 @@
 # lvlup
 
+## 1.2.1
+
+### Patch Changes
+
+- BUGFIX: a lowercased changelog.md was not being updated. Now it is.
+
 ## 1.2.0
 
 ### Minor Changes
