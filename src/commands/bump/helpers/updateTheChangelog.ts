@@ -14,7 +14,11 @@ type UpdateTheChangelogProps = {
 export async function updateTheChangelog(props: UpdateTheChangelogProps) {
   const { packageName, nextVersion, changes } = props;
 
-  const changelogFullPath = path.resolve(PROJECT_ROOT, CHANGELOG_FILENAME);
+  const changelogFilenameLowercased = CHANGELOG_FILENAME.toLowerCase();
+  const actualChangelogFileName = fs
+    .readdirSync(PROJECT_ROOT)
+    .find((f) => f.toLowerCase() === changelogFilenameLowercased);
+  const changelogFullPath = path.resolve(PROJECT_ROOT, actualChangelogFileName ?? CHANGELOG_FILENAME);
 
   let changelogContent = `# ${packageName}`;
 
@@ -32,7 +36,7 @@ export async function updateTheChangelog(props: UpdateTheChangelogProps) {
     });
   }
 
-  if (fs.existsSync(changelogFullPath)) {
+  if (actualChangelogFileName) {
     changelogContent = fs.readFileSync(changelogFullPath, 'utf-8');
   } else {
     // Add new line at the end of the file on its first creation
@@ -45,6 +49,6 @@ export async function updateTheChangelog(props: UpdateTheChangelogProps) {
     `# ${packageName}${os.EOL}${os.EOL}${changesAsOneBigString}`,
   );
 
-  // Write the updated content back to the CHANGELOG.md file
+  // Write the updated content back to the changelog file
   fs.writeFileSync(changelogFullPath, updatedChangelogContent, 'utf-8');
 }
